@@ -1,13 +1,24 @@
 # 栗崎園の新ホームページプロジェクト
 [旧ホームページ](http://www.kurisakien.com)から新ホームページに以降するためのプロジェクトです．
+プルリクお待ちしています！！！！
 
-# はじめ方
+開発のページは[firebase hosting](https://kurisakienhomepage.firebaseapp.com/)を使って公開しています．
+
+# 動かしか方
 git clone した後に
 ### `npm install`
 を実行すると環境が整います．
 ### `npm start`
-を実行することで動かすことができます．
+を実行することでサーバーが立ち上がります．
 
+# プルリクの流れ
+1. issueを立てる(すでにissueがある場合はスキップ)
+2. forkする
+3. branchを切って変更をcommit&push
+4. プルリクを投げる
+
+# 使用技術
+React, React Router, npm, unstated-next(state管理), webpack, fireabase(hoiting)
 
 # Getting Started with Create React App
 
