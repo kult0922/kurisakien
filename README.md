@@ -18,7 +18,7 @@ git clone した後に
 4. プルリクを投げる
 
 # 使用技術
-React, React Router, npm, unstated-next(state管理), webpack, fireabase(hoiting)
+React, React Router, npm, unstated-next(state管理), TypeScript, webpack, fireabase(hoiting)
 
 <!--
 # Getting Started with Create React App
