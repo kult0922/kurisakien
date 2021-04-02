@@ -12,7 +12,6 @@ export const Order: React.FC = () => {
       {itemList.map((item, i) => {
         return (
           <div key={i}>
-            {' '}
             <Link to={'/merchandise/' + item.id}>
               <div>
                 <Item id={item.id} />
