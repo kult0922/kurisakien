@@ -1,4 +1,4 @@
-import { OrderContainer } from "../containers/OrderContainer";
+import { OrderContainer } from '../containers/OrderContainer';
 
 interface CartProps {
   id: string;
@@ -12,4 +12,4 @@ const AddCart: React.FC<CartProps> = (props) => {
   return <button onClick={onClick}>カートに入れる</button>;
 };
 
-export default AddCart
+export default AddCart;
