@@ -1,14 +1,13 @@
 interface item {
-    imagePath: string
-    id: string
-    name: string
-    price: string
-    discription: string
+  imagePath: string;
+  id: string;
+  name: string;
+  price: string;
+  discription: string;
 }
 interface cartData {
-  id: string
-  amount: number
+  id: string;
+  amount: number;
 }
 
-export {item, cartData}
-
+export { item, cartData };
