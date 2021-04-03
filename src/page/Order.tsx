@@ -1,8 +1,6 @@
-import React from 'react';
-import { Item } from '../components/Item';
-
-import { itemList } from '../data/ItemData';
 import { Link } from 'react-router-dom';
+import { Item } from '~/components/Item';
+import { itemList } from '~/data/ItemData';
 
 export const Order: React.FC = () => {
   return (
