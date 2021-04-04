@@ -1,4 +1,4 @@
-import { itemList, id2index } from '~/data/ItemData';
+import { id2index, itemList } from '../data/ItemData';
 
 interface ItemProps {
   id: string;
