@@ -1,4 +1,4 @@
-import { OrderContainer } from '../containers/OrderContainer';
+import { OrderContainer } from '~/containers/OrderContainer';
 
 interface CartProps {
   id: string;

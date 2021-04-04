@@ -40,5 +40,15 @@
           "allow": ["warn", "error"]
         }
       ]
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "webpack": {
+          "config": "/config/webpack.config.js" 
+        }
+      }
     }
   }

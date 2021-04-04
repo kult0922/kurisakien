@@ -1,5 +1,4 @@
-import React from 'react';
-import { itemList, id2index } from '../data/ItemData';
+import { itemList, id2index } from '~/data/ItemData';
 
 interface ItemProps {
   id: string;

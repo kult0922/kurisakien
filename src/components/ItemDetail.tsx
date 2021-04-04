@@ -1,10 +1,10 @@
-import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { itemList, id2index } from '../data/ItemData';
-import { OrderContainer } from '../containers/OrderContainer';
-import AddCart from '../components/AddCart';
+import { itemList, id2index } from '~/data/ItemData';
+import { OrderContainer } from '~/containers/OrderContainer';
+import AddCart from '~/components/AddCart';
 
 type Props = RouteComponentProps<{ id: string }>;
+
 export const ItemDetail: React.FC<Props> = (props) => {
   const orderContainer = OrderContainer.useContainer();
   const id = props.match.params.id;

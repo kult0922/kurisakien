@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createContainer } from 'unstated-next';
-import { itemList, id2index } from '../data/ItemData';
-import { cartData } from '../@types/product';
+import { itemList, id2index } from '~/data/ItemData';
+import { cartData } from '~/@types/product';
 
 const useOrderContainer = () => {
   // カートの情報を保管する. {id, amount}のリスト
