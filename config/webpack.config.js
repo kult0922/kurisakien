@@ -71,8 +71,6 @@ const hasJsxRuntime = (() => {
   }
 })();
 
-const rootPath = path.resolve(__dirname, '../');
-
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -326,7 +324,6 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
-        '~': path.resolve(rootPath, '/src'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
