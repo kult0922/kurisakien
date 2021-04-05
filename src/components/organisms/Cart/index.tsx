@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
-import { OrderContainer } from '../../../containers/OrderContainer';
+import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
 
 export const Cart: React.FC = () => {
-  const orderContainer = OrderContainer.useContainer();
-  const CartList = orderContainer.cartList;
+  const { cartList, total } = OrderContainer.useContainer();
   return (
     <div>
       <br />
-      {CartList.map((item, i) => {
+      {cartList.map((item, i) => {
         return (
           <div key={i}>
             <Link to={'/merchandise/' + item.id}>
@@ -21,7 +20,7 @@ export const Cart: React.FC = () => {
         );
       })}
       <h2>合計金額</h2>
-      {orderContainer.total}円
+      {total}円
       <br />
       <button>注文する</button>
     </div>

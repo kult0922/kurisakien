@@ -1,12 +1,12 @@
 import { RouteComponentProps } from 'react-router-dom';
-import { OrderContainer } from '../../../containers/OrderContainer';
 import { id2index, itemList } from '../../../data/ItemData';
+import { OrderContainer } from '../../../store/Global/Order';
 import { AddCart } from '../../molecules/AddCart';
 
 type Props = RouteComponentProps<{ id: string }>;
 
 export const ItemDetail: React.FC<Props> = (props) => {
-  const orderContainer = OrderContainer.useContainer();
+  const { onChangeItemCount, addItem } = OrderContainer.useContainer();
   const id = props.match.params.id;
   const index = id2index[id];
   const options = [
@@ -30,14 +30,14 @@ export const ItemDetail: React.FC<Props> = (props) => {
         {itemList[index].price}円 <br />
         {itemList[index].discription}
         <br />
-        <select defaultValue="1" onChange={orderContainer.ChangeItemCount}>
+        <select defaultValue="1" onChange={onChangeItemCount}>
           {options.map((option, i) => (
             <option key={i} value={option.value}>
               {option.label}
             </option>
           ))}
         </select>
-        <AddCart id={id} />
+        <AddCart id={id} addItem={addItem} />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-import { item } from '../@types/product';
+import { Item } from '../@types/product';
 
 // 商品のリスト
 // {id, 画像のパス, 商品名, 値段, 説明文} のリスト
-const itemList: item[] = [
+const itemList: Item[] = [
   {
     id: 'a01',
     imagePath: 'path1',

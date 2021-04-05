@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { createContainer } from 'unstated-next';
-import { cartData } from '../@types/product';
-import { id2index, itemList } from '../data/ItemData';
+import { CartData } from '../../../@types/product';
+import { id2index, itemList } from '../../../data/ItemData';
 
-const useOrderContainer = () => {
+const useOrder = () => {
   // カートの情報を保管する. {id, amount}のリスト
-  const [cartList, setCart] = useState<cartData[]>([]);
+  const [cartList, setCart] = useState<CartData[]>([]);
   // 商品の個数を一時的に保存するための変数
   const [itemCount, setItemCount] = useState<string>('1');
   // 合計金額
@@ -48,11 +48,11 @@ const useOrderContainer = () => {
     setTotal(total);
   };
 
-  const ChangeItemCount = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangeItemCount = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemCount(e.target.value);
   };
 
-  return { cartList, total, addItem, calcTotal, ChangeItemCount };
+  return { cartList, total, addItem, calcTotal, onChangeItemCount };
 };
 
-export const OrderContainer = createContainer(useOrderContainer);
+export const OrderContainer = createContainer(useOrder);
