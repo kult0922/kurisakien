@@ -1,26 +1,26 @@
 import { RouteComponentProps } from 'react-router-dom';
 import { id2index, itemList } from '../../../data/ItemData';
 import { OrderContainer } from '../../../store/Global/Order';
-import { AddCart } from '../../molecules/AddCart';
 
 type Props = RouteComponentProps<{ id: string }>;
 
-export const ItemDetail: React.FC<Props> = (props) => {
+const options = [
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '3', label: '3' },
+  { value: '4', label: '4' },
+  { value: '5', label: '5' },
+  { value: '6', label: '6' },
+  { value: '7', label: '7' },
+  { value: '8', label: '8' },
+  { value: '9', label: '9' },
+  { value: '10', label: '10' },
+];
+
+export const ItemDetail: React.FC<Props> = ({ match }) => {
   const { onChangeItemCount, addItem } = OrderContainer.useContainer();
-  const id = props.match.params.id;
+  const id = match.params.id;
   const index = id2index[id];
-  const options = [
-    { value: '1', label: '1' },
-    { value: '2', label: '2' },
-    { value: '3', label: '3' },
-    { value: '4', label: '4' },
-    { value: '5', label: '5' },
-    { value: '6', label: '6' },
-    { value: '7', label: '7' },
-    { value: '8', label: '8' },
-    { value: '9', label: '9' },
-    { value: '10', label: '10' },
-  ];
   return (
     <div>
       <br />
@@ -37,7 +37,13 @@ export const ItemDetail: React.FC<Props> = (props) => {
             </option>
           ))}
         </select>
-        <AddCart id={id} addItem={addItem} />
+        <button
+          onClick={() => {
+            addItem(id);
+          }}
+        >
+          カートに入れる
+        </button>
       </div>
     </div>
   );

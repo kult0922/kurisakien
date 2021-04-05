@@ -5,7 +5,7 @@ import { Item } from '../../molecules/Item';
 export const Cart: React.FC = () => {
   const { cartList, total } = OrderContainer.useContainer();
   return (
-    <div>
+    <>
       <br />
       {cartList.map((item, i) => {
         return (
@@ -23,6 +23,6 @@ export const Cart: React.FC = () => {
       {total}円
       <br />
       <button>注文する</button>
-    </div>
+    </>
   );
 };
