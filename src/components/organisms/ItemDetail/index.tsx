@@ -1,7 +1,7 @@
 import { RouteComponentProps } from 'react-router-dom';
-import { OrderContainer } from '../containers/OrderContainer';
-import { id2index, itemList } from '../data/ItemData';
-import { AddCart } from './AddCart';
+import { OrderContainer } from '../../../containers/OrderContainer';
+import { id2index, itemList } from '../../../data/ItemData';
+import { AddCart } from '../../molecules/AddCart';
 
 type Props = RouteComponentProps<{ id: string }>;
 

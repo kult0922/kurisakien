@@ -1,16 +1,22 @@
 import './App.css';
-import MyRoot from './components/MyRoot';
+// import MyRoot from './components/MyRoot';
+// import { Header } from './components/organisms/Header';
+import { Routing } from './components/routing';
 import { OrderContainer } from './containers/OrderContainer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">栗﨑園</header>
-      <OrderContainer.Provider>
-        <MyRoot />
-      </OrderContainer.Provider>
-    </div>
+    // <div className="App">
+    //   {/* <header className="App-header">栗﨑園</header> */}
+    //   <Header>栗﨑園</Header>
+    //   <OrderContainer.Provider>
+    //     <MyRoot />
+    //   </OrderContainer.Provider>
+    // </div>
+    <OrderContainer.Provider>
+      <Routing />
+    </OrderContainer.Provider>
   );
-}
+};
 
 export default App;

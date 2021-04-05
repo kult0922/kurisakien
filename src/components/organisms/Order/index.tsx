@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Item } from '../components/Item';
-import { itemList } from '../data/ItemData';
+import { itemList } from '../../../data/ItemData';
+import { Item } from '../../molecules/Item';
 
 export const Order: React.FC = () => {
   return (

@@ -1,9 +1,8 @@
-// import { Item } from '~/components/Item';
 import { Link } from 'react-router-dom';
-import { Item } from '../components/Item';
-import { OrderContainer } from '../containers/OrderContainer';
+import { OrderContainer } from '../../../containers/OrderContainer';
+import { Item } from '../../molecules/Item';
 
-export const Cart: React.FC<Array<string>> = () => {
+export const Cart: React.FC = () => {
   const orderContainer = OrderContainer.useContainer();
   const CartList = orderContainer.cartList;
   return (
