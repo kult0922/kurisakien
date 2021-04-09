@@ -1,16 +1,12 @@
-import './App.css';
-import MyRoot from './components/MyRoot';
-import { OrderContainer } from './containers/OrderContainer';
+import { Routing } from './components/routing';
+import { OrderContainer } from './store/Global/Order';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">栗﨑園</header>
-      <OrderContainer.Provider>
-        <MyRoot />
-      </OrderContainer.Provider>
-    </div>
+    <OrderContainer.Provider>
+      <Routing />
+    </OrderContainer.Provider>
   );
-}
+};
 
 export default App;

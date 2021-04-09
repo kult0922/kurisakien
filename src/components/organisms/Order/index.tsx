@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Item } from '../components/Item';
-import { itemList } from '../data/ItemData';
+import { itemList } from '../../../data/ItemData';
+import { Item } from '../../molecules/Item';
 
 export const Order: React.FC = () => {
   return (
-    <div>
+    <>
       <h1>注文ページ</h1>
-
       {itemList.map((item, i) => {
         return (
           <div key={i}>
@@ -18,6 +17,6 @@ export const Order: React.FC = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };

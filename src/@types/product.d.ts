@@ -1,13 +1,11 @@
-interface item {
+export interface Item {
   imagePath: string;
   id: string;
   name: string;
   price: string;
   discription: string;
 }
-interface cartData {
+export interface CartData {
   id: string;
   amount: number;
 }
-
-export { item, cartData };
