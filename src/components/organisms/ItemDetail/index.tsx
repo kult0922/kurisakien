@@ -1,5 +1,5 @@
 import { RouteComponentProps } from 'react-router-dom';
-import { id2index, itemList } from '../../../data/ItemData';
+import { itemList } from '../../../constants/store';
 import { OrderContainer } from '../../../store/Global/Order';
 
 type Props = RouteComponentProps<{ id: string }>;
@@ -20,15 +20,16 @@ const options = [
 export const ItemDetail: React.FC<Props> = ({ match }) => {
   const { onChangeItemCount, addItem } = OrderContainer.useContainer();
   const id = match.params.id;
-  const index = id2index[id];
+  const item = itemList.find((item) => item.id === id);
+  if (!item) return null;
   return (
     <div>
       <br />
       <img src="http://placehold.jp/24/339933/223322/300x200.png?text=商品画像" alt="mercahndise" />
       <div>
-        {itemList[index].name} <br />
-        {itemList[index].price}円 <br />
-        {itemList[index].discription}
+        {item.name} <br />
+        {item.price}円 <br />
+        {item.discription}
         <br />
         <select defaultValue="1" onChange={onChangeItemCount}>
           {options.map((option, i) => (

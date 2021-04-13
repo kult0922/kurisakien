@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createContainer } from 'unstated-next';
 import { CartData } from '../../../@types/product';
-import { id2index, itemList } from '../../../data/ItemData';
+import { itemList } from '../../../constants/store';
 
 const useOrder = () => {
   // カートの情報を保管する. {id, amount}のリスト
@@ -31,8 +31,10 @@ const useOrder = () => {
       );
     }
 
-    const itemIndex = id2index[id];
-    const itemPrice = Number(itemCount) * Number(itemList[itemIndex].price);
+    // const itemIndex = id2index[id];
+    // 絶対直す
+    const item = itemList.find((item) => item.id === id);
+    const itemPrice = Number(itemCount) * Number(item?.price);
     setTotal(total + itemPrice);
     // アイテムの初期化
     setItemCount('1');
@@ -41,8 +43,10 @@ const useOrder = () => {
   const calcTotal = () => {
     let total = 0;
     cartList.forEach((item) => {
-      const itemIndex = id2index[item.id];
-      const itemPrice = item.amount * Number(itemList[itemIndex].price);
+      // const itemIndex = id2index[item.id];
+      // FIXME: ぜったいなおす
+      const hoge = itemList.find((f) => f.id === item.id);
+      const itemPrice = item.amount * Number(hoge?.price);
       total += itemPrice;
     });
     setTotal(total);
