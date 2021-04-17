@@ -5,20 +5,20 @@ import { OrderContainer } from '../../../store/Global/Order';
 type Props = RouteComponentProps<{ id: string }>;
 
 const options = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
-  { value: '4', label: '4' },
-  { value: '5', label: '5' },
-  { value: '6', label: '6' },
-  { value: '7', label: '7' },
-  { value: '8', label: '8' },
-  { value: '9', label: '9' },
-  { value: '10', label: '10' },
+  { value: 1, label: 1 },
+  { value: 2, label: 2 },
+  { value: 3, label: 3 },
+  { value: 4, label: 4 },
+  { value: 5, label: 5 },
+  { value: 6, label: 6 },
+  { value: 7, label: 7 },
+  { value: 8, label: 8 },
+  { value: 9, label: 9 },
+  { value: 10, label: 10 },
 ];
 
 export const ItemDetail: React.FC<Props> = ({ match }) => {
-  const { onChangeItemCount, addItem } = OrderContainer.useContainer();
+  const { onChangeItemCount, addCartList } = OrderContainer.useContainer();
   const id = match.params.id;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
@@ -31,7 +31,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
         {item.price}円 <br />
         {item.discription}
         <br />
-        <select defaultValue="1" onChange={onChangeItemCount}>
+        <select defaultValue={1} onChange={onChangeItemCount}>
           {options.map((option, i) => (
             <option key={i} value={option.value}>
               {option.label}
@@ -40,7 +40,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
         </select>
         <button
           onClick={() => {
-            addItem(id);
+            addCartList(id);
           }}
         >
           カートに入れる
