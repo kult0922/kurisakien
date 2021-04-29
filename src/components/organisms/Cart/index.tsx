@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
+import { Link } from 'react-router-dom';
 
 export const Cart: React.FC = () => {
   const { cartList, total } = OrderContainer.useContainer();
@@ -22,7 +22,7 @@ export const Cart: React.FC = () => {
       <h2>合計金額</h2>
       {total}円
       <br />
-      <button>注文する</button>
+      <Link to="orderInformation">注文に進む</Link>
     </>
   );
 };

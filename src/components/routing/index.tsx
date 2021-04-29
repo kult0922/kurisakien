@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Template } from '../layouts';
 import { Cart } from '../organisms/Cart';
 import { Home } from '../organisms/Home';
+import { OrderInformation } from '../organisms/OrderInformation';
 import { ItemDetail } from '../organisms/ItemDetail';
 import { Order } from '../organisms/Order';
 
@@ -16,6 +17,7 @@ export const Routing: React.FC = () => {
           <Route path="/merchandise/:id" component={ItemDetail} />
         </Switch>
       </Template>
+      <Route path="/orderInformation" exact component={OrderInformation} />
     </BrowserRouter>
   );
 };
