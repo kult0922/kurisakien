@@ -2,7 +2,7 @@ import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
 
 export const Cart: React.FC = () => {
-  const { carts, total, addCartList } = OrderContainer.useContainer();
+  const { carts, total, addCarts } = OrderContainer.useContainer();
   return (
     <>
       <br />
@@ -13,7 +13,7 @@ export const Cart: React.FC = () => {
             <select
               defaultValue={item.amount}
               onChange={(event) => {
-                addCartList(item.id, Number(event.target.value));
+                addCarts(item.id, Number(event.target.value));
               }}
             >
               {[...Array(10)].map((_, i) => (

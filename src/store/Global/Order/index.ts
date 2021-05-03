@@ -7,7 +7,7 @@ const useOrder = () => {
   const [carts, setCarts] = useState<CartData[]>([]);
   const [total, setTotal] = useState(0);
 
-  const addCartList = useCallback(
+  const addCarts = useCallback(
     (id: string, amount: number) => {
       const existCheck = carts.find((item) => item.id === id);
       const cartItem = itemList.find((item) => item.id === id);
@@ -27,7 +27,7 @@ const useOrder = () => {
     );
   }, [carts]);
 
-  return { carts, total, addCartList };
+  return { carts, total, addCarts };
 };
 
 export const OrderContainer = createContainer(useOrder);

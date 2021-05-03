@@ -6,7 +6,7 @@ import { OrderContainer } from '../../../store/Global/Order';
 type Props = RouteComponentProps<{ id: string }>;
 
 export const ItemDetail: React.FC<Props> = ({ match }) => {
-  const { addCartList } = OrderContainer.useContainer();
+  const { addCarts } = OrderContainer.useContainer();
   const [itemCount, setItemCount] = useState(0);
   const id = match.params.id;
   const item = itemList.find((item) => item.id === id);
@@ -34,7 +34,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
         </select>
         <button
           onClick={() => {
-            addCartList(id, itemCount);
+            addCarts(id, itemCount);
           }}
         >
           カートに入れる
