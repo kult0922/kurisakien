@@ -5,7 +5,6 @@ export interface Item {
   price: number;
   discription: string;
 }
-export interface CartData {
-  id: string;
+export interface CartData extends Item {
   amount: number;
 }

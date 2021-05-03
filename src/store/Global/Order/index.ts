@@ -1,37 +1,33 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
 import { CartData } from '../../../@types/product';
 import { itemList } from '../../../constants/store';
 
 const useOrder = () => {
-  const [cartList, setCart] = useState<CartData[]>([]);
-  const [itemCount, setItemCount] = useState(1);
+  const [carts, setCarts] = useState<CartData[]>([]);
   const [total, setTotal] = useState(0);
 
-  const addCartList = (id: string) => {
-    const existCheck = cartList.find((item) => item.id === id);
-    if (!existCheck) {
-      setCart((prev) => [...prev, { id, amount: itemCount }]);
-    } else {
-      setCart((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, amount: item.amount + itemCount } : { ...item },
-        ),
+  const addCartList = useCallback(
+    (id: string, amount: number) => {
+      const existCheck = carts.find((item) => item.id === id);
+      const cartItem = itemList.find((item) => item.id === id);
+      setCarts(
+        !existCheck && cartItem
+          ? (prev) => [...prev, { ...cartItem, amount }]
+          : (prev) => prev.map((item) => (item.id === id ? { ...item, amount } : { ...item })),
       );
-    }
-    const item = itemList.find((item) => item.id === id);
-    if (item) {
-      const itemPrice = itemCount * item.price;
-      setTotal((prev) => prev + itemPrice);
-      setItemCount(1);
-    }
-  };
+    },
+    [carts],
+  );
 
-  const onChangeItemCount = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemCount(Number(e.target.value));
-  };
+  useEffect(() => {
+    const prices = carts.map((cart) => cart.amount * cart.price);
+    setTotal(
+      prices.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0),
+    );
+  }, [carts]);
 
-  return { cartList, total, addCartList, onChangeItemCount };
+  return { carts, total, addCartList };
 };
 
 export const OrderContainer = createContainer(useOrder);
