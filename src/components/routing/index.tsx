@@ -15,9 +15,9 @@ export const Routing: React.FC = () => {
           <Route path="/order" exact component={Order} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/merchandise/:id" component={ItemDetail} />
+          <Route path="/orderInformation" exact component={OrderInformation} />
         </Switch>
       </Template>
-      <Route path="/orderInformation" exact component={OrderInformation} />
     </BrowserRouter>
   );
 };

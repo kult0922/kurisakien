@@ -27,9 +27,9 @@ export const CustomerInformation: React.FC = () => {
           <FormTableRow>
             <FormTableHeader>氏名</FormTableHeader>
             <FormTableData>
-              姓&nbsp;&nbsp;
+              姓
               <Input width={100} />
-              &nbsp;&nbsp;名&nbsp;&nbsp;
+              名
               <Input width={100} />
             </FormTableData>
           </FormTableRow>

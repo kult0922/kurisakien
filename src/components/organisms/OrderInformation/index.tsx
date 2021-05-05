@@ -3,18 +3,16 @@ import { PaymentInformation } from '../../molecules/PaymentInformation';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const Center = styled.div({
+const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const OrderInformation: React.FC = () => {
   return (
-    <>
-      <Center>
-        <CustomerInformation></CustomerInformation>
-        <PaymentInformation></PaymentInformation>
-        <Link to="orderConfirm">注文内容確認</Link>
-      </Center>
-    </>
+    <Wrapper>
+      <CustomerInformation />
+      <PaymentInformation />
+      <Link to="orderConfirm">注文内容確認</Link>
+    </Wrapper>
   );
 };
