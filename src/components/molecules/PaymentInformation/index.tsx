@@ -12,26 +12,28 @@ export const PaymentInformation: React.FC = () => {
     <>
       <h1>決済方法の選択</h1>
       <FormTable>
-        <FormTableRow>
-          <FormTableHeader>
-            <input type="radio" value="1" onChange={handleChange} checked={val === '1'}></input>a
-          </FormTableHeader>
-          <FormTableData>郵便振り込みです</FormTableData>
-        </FormTableRow>
+        <tbody>
+          <FormTableRow>
+            <FormTableHeader>
+              <input type="radio" value="1" onChange={handleChange} checked={val === '1'}></input>
+            </FormTableHeader>
+            <FormTableData>郵便振り込み</FormTableData>
+          </FormTableRow>
 
-        <FormTableRow>
-          <FormTableHeader>
-            <input type="radio" value="2" onChange={handleChange} checked={val === '2'}></input>b
-          </FormTableHeader>
-          <FormTableData>代引きです</FormTableData>
-        </FormTableRow>
+          <FormTableRow>
+            <FormTableHeader>
+              <input type="radio" value="2" onChange={handleChange} checked={val === '2'}></input>
+            </FormTableHeader>
+            <FormTableData>コンビニ決済</FormTableData>
+          </FormTableRow>
 
-        <FormTableRow>
-          <FormTableHeader>
-            <input type="radio" value="3" onChange={handleChange} checked={val === '3'}></input>c
-          </FormTableHeader>
-          <FormTableData>銀行振り込みです</FormTableData>
-        </FormTableRow>
+          <FormTableRow>
+            <FormTableHeader>
+              <input type="radio" value="3" onChange={handleChange} checked={val === '3'}></input>
+            </FormTableHeader>
+            <FormTableData>銀行振り込み</FormTableData>
+          </FormTableRow>
+        </tbody>
       </FormTable>
     </>
   );
