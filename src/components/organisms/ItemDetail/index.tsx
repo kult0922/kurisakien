@@ -1,6 +1,7 @@
 import { RouteComponentProps } from 'react-router-dom';
 import { id2index, itemList } from '../../../data/ItemData';
 import { OrderContainer } from '../../../store/Global/Order';
+import { TabBar } from '../../molecules/TabBar';
 
 type Props = RouteComponentProps<{ id: string }>;
 
@@ -22,7 +23,8 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
   const id = match.params.id;
   const index = id2index[id];
   return (
-    <div>
+    <>
+      <TabBar />
       <br />
       <img src="http://placehold.jp/24/339933/223322/300x200.png?text=商品画像" alt="mercahndise" />
       <div>
@@ -45,6 +47,6 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
           カートに入れる
         </button>
       </div>
-    </div>
+    </>
   );
 };

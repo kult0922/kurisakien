@@ -1,11 +1,13 @@
 import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
 import { Link } from 'react-router-dom';
+import { TabBar } from '../../molecules/TabBar';
 
 export const Cart: React.FC = () => {
   const { cartList, total } = OrderContainer.useContainer();
   return (
     <>
+      <TabBar />
       <br />
       {cartList.map((item, i) => {
         return (
