@@ -7,7 +7,7 @@ type Props = RouteComponentProps<{ id: string }>;
 
 export const ItemDetail: React.FC<Props> = ({ match }) => {
   const { addCarts } = OrderContainer.useContainer();
-  const [itemCount, setItemCount] = useState(0);
+  const [itemCount, setItemCount] = useState(1);
   const id = match.params.id;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
