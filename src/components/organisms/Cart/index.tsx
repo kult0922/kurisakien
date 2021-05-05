@@ -1,10 +1,13 @@
 import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
+import { Link } from 'react-router-dom';
+import { TabBar } from '../../molecules/TabBar';
 
 export const Cart: React.FC = () => {
   const { carts, total, addCarts } = OrderContainer.useContainer();
   return (
     <>
+      <TabBar />
       <br />
       {carts.map((item, i) => {
         return (
@@ -28,7 +31,7 @@ export const Cart: React.FC = () => {
       <h2>合計金額</h2>
       {total}円
       <br />
-      <button>注文する</button>
+      <Link to="orderInformation">注文に進む</Link>
     </>
   );
 };
