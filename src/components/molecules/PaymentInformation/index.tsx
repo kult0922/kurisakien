@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export const PaymentInformation: React.FC = () => {
   const [paymentOption, setPaymentOption] = useState<string>('1');
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangePaymentOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentOption(e.currentTarget.value);
   };
 
@@ -20,7 +20,7 @@ export const PaymentInformation: React.FC = () => {
               <input
                 type="radio"
                 value="1"
-                onChange={handleChange}
+                onChange={onChangePaymentOption}
                 checked={paymentOption === '1'}
               />
             </FormTableHeader>
@@ -32,7 +32,7 @@ export const PaymentInformation: React.FC = () => {
               <input
                 type="radio"
                 value="2"
-                onChange={handleChange}
+                onChange={onChangePaymentOption}
                 checked={paymentOption === '2'}
               />
             </FormTableHeader>
@@ -44,7 +44,7 @@ export const PaymentInformation: React.FC = () => {
               <input
                 type="radio"
                 value="3"
-                onChange={handleChange}
+                onChange={onChangePaymentOption}
                 checked={paymentOption === '3'}
               />
             </FormTableHeader>
