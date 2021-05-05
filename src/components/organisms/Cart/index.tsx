@@ -1,21 +1,27 @@
-import { Link } from 'react-router-dom';
 import { OrderContainer } from '../../../store/Global/Order';
 import { Item } from '../../molecules/Item';
 
 export const Cart: React.FC = () => {
-  const { cartList, total } = OrderContainer.useContainer();
+  const { carts, total, addCarts } = OrderContainer.useContainer();
   return (
     <>
       <br />
-      {cartList.map((item, i) => {
+      {carts.map((item, i) => {
         return (
           <div key={i}>
-            <Link to={'/merchandise/' + item.id}>
-              <div>
-                <Item id={item.id} /> <br />
-                {item.amount}個
-              </div>
-            </Link>
+            <Item id={item.id} /> <br />
+            <select
+              defaultValue={item.amount}
+              onChange={(event) => {
+                addCarts(item.id, Number(event.target.value));
+              }}
+            >
+              {[...Array(10)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}個
+                </option>
+              ))}
+            </select>
           </div>
         );
       })}

@@ -2,10 +2,9 @@ export interface Item {
   imagePath: string;
   id: string;
   name: string;
-  price: string;
+  price: number;
   discription: string;
 }
-export interface CartData {
-  id: string;
+export interface CartData extends Item {
   amount: number;
 }
