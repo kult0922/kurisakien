@@ -2,13 +2,26 @@ import { FormTable } from '../../atoms/FormTable';
 import { FormTableHeader } from '../../atoms/FormTableHeader';
 import { FormTableRow } from '../../atoms/FormTableRow';
 import { FormTableData } from '../../atoms/FormTableData';
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { PaymentMethod } from '../../../@types/order';
 
-export const PaymentInformation: React.FC = () => {
-  const [paymentOption, setPaymentOption] = useState<string>('1');
-  const onChangePaymentOption = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPaymentOption(e.currentTarget.value);
-  };
+export const PaymentInformation: React.FC<{
+  updatePaymentMethod: (paymentMethod: PaymentMethod) => void;
+}> = ({ updatePaymentMethod }) => {
+  const [paymentOption, setPaymentOption] = useState<PaymentMethod>('postal');
+
+  // ラジオボタンが変更されたら、paymentOptionを更新する
+  const onChangePaymentOption = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setPaymentOption(event.currentTarget.value as PaymentMethod);
+    },
+    [setPaymentOption],
+  );
+
+  // paymentOptionが更新されたら、親コンポーネントのpaymentOptionを更新
+  useEffect(() => {
+    updatePaymentMethod(paymentOption);
+  }, [paymentOption, updatePaymentMethod]);
 
   return (
     <>
@@ -19,9 +32,9 @@ export const PaymentInformation: React.FC = () => {
             <FormTableHeader>
               <input
                 type="radio"
-                value="1"
+                value="postal"
                 onChange={onChangePaymentOption}
-                checked={paymentOption === '1'}
+                checked={paymentOption === 'postal'}
               />
             </FormTableHeader>
             <FormTableData>郵便振り込み</FormTableData>
@@ -31,9 +44,9 @@ export const PaymentInformation: React.FC = () => {
             <FormTableHeader>
               <input
                 type="radio"
-                value="2"
+                value="convenience"
                 onChange={onChangePaymentOption}
-                checked={paymentOption === '2'}
+                checked={paymentOption === 'convenience'}
               />
             </FormTableHeader>
             <FormTableData>コンビニ決済</FormTableData>
@@ -43,9 +56,9 @@ export const PaymentInformation: React.FC = () => {
             <FormTableHeader>
               <input
                 type="radio"
-                value="3"
+                value="bank"
                 onChange={onChangePaymentOption}
-                checked={paymentOption === '3'}
+                checked={paymentOption === 'bank'}
               />
             </FormTableHeader>
             <FormTableData>銀行振り込み</FormTableData>
