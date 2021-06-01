@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
 import { CartData } from '../../../@types/product';
-import { OrderInformation, Customer, PaymentMethod } from '../../../@types/order';
+import { OrderInformation, Customer, PaymentType } from '../../../@types/order';
 import { itemList } from '../../../constants/store';
 
 const useOrder = () => {
@@ -15,7 +15,7 @@ const useOrder = () => {
     phone: '',
     email: '',
   };
-  const paymentOption: PaymentMethod = 'postal';
+  const paymentOption: PaymentType = 'postal';
   const [orderInformation, setOrderInformation] = useState<OrderInformation>({
     customer: customer,
     paymentMethod: paymentOption,

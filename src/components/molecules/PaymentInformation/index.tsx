@@ -3,25 +3,22 @@ import { FormTableHeader } from '../../atoms/FormTableHeader';
 import { FormTableRow } from '../../atoms/FormTableRow';
 import { FormTableData } from '../../atoms/FormTableData';
 import { useState, useCallback, useEffect } from 'react';
-import { PaymentMethod } from '../../../@types/order';
+import { PaymentType } from '../../../@types/order';
 
 export const PaymentInformation: React.FC<{
-  updatePaymentMethod: (paymentMethod: PaymentMethod) => void;
-}> = ({ updatePaymentMethod }) => {
-  const [paymentOption, setPaymentOption] = useState<PaymentMethod>('postal');
+  updatePaymentType: (paymentMethod: PaymentType) => void;
+}> = ({ updatePaymentType }) => {
+  const [paymentOption, setPaymentOption] = useState<PaymentType>('postal');
 
   // ラジオボタンが変更されたら、paymentOptionを更新する
-  const onChangePaymentOption = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPaymentOption(event.currentTarget.value as PaymentMethod);
-    },
-    [setPaymentOption],
-  );
+  const onChangePaymentOption = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setPaymentOption(event.currentTarget.value as PaymentType);
+  }, []);
 
   // paymentOptionが更新されたら、親コンポーネントのpaymentOptionを更新
   useEffect(() => {
-    updatePaymentMethod(paymentOption);
-  }, [paymentOption, updatePaymentMethod]);
+    updatePaymentType(paymentOption);
+  }, [paymentOption, updatePaymentType]);
 
   return (
     <>

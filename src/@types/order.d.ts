@@ -1,4 +1,4 @@
-type PaymentMethod = 'postal' | 'convenience' | 'bank';
+type PaymentType = 'postal' | 'convenience' | 'bank';
 
 export interface Customer {
   postalCode: string;
