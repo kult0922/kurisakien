@@ -1,3 +1,4 @@
+import { Customer } from '../../@types/order';
 import { Item } from '../../@types/product';
 
 export const itemList: Item[] = [
@@ -23,3 +24,12 @@ export const itemList: Item[] = [
     discription: '国産のマイルドな紅茶です',
   },
 ];
+
+export const initialCustomer: Customer = {
+  postalCode: '',
+  address: '',
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+};

@@ -12,14 +12,13 @@ export const OrderInformationEnter: React.FC = () => {
   const {
     paymentOption,
     onChangePaymentOption,
-    updateCustomer,
     onClickConfirmButton,
+    onChangeCutomer,
   } = useOrderInformation();
 
   return (
     <Wrapper>
-      {console.log(paymentOption)}
-      <CustomerInformation updateCustomer={updateCustomer} />
+      <CustomerInformation onChangeCutomer={onChangeCutomer} />
       <PaymentInformation
         paymentOption={paymentOption}
         onChangePaymentOption={onChangePaymentOption}
