@@ -3,9 +3,7 @@ import { Customer, PaymentType } from '../../../@types/order';
 // import { OrderContainer } from '../../Global/Order';
 
 export const useOrderInformation = () => {
-  // const { setOrderInformation } = OrderContainer.useContainer();
-
-  // ユーザー情報
+  const [paymentOption, setPaymentOption] = useState<PaymentType>('postal');
   const [customer, setCustomer] = useState<Customer>({
     postalCode: '',
     address: '',
@@ -14,14 +12,16 @@ export const useOrderInformation = () => {
     phone: '',
     email: '',
   });
-  // ユーザーが選択した決済方法
   const [paymentType, setPaymentType] = useState<PaymentType>('postal');
 
-  // ユーザー情報と決済方法を更新するための関数
   const updateCustomer = useCallback(
     (updatedCustomer: Customer): void => setCustomer(updatedCustomer),
     [],
   );
+
+  const onChangePaymentOption = useCallback((value: PaymentType) => {
+    setPaymentOption(value);
+  }, []);
 
   const updatePaymentType = useCallback(
     (updatedPaymentMethod: PaymentType): void => setPaymentType(updatedPaymentMethod),
@@ -29,15 +29,17 @@ export const useOrderInformation = () => {
   );
 
   // 「注文確認へ」を押したらオーダー情報をstoreにセットする
-  /*
-  const OrderCheckButtonClicked = () => {
-    const orderInformation: OrderInformation = {
-      customer: customer,
-      paymentMethod: paymentMethod,
-    };
-    setOrderInformation(orderInformation);
-  };
-  */
+  const onClickConfirmButton = useCallback(() => {
+    console.log('hello');
+  }, []);
 
-  return { customer, paymentType, updateCustomer, updatePaymentType };
+  return {
+    customer,
+    paymentType,
+    paymentOption,
+    updateCustomer,
+    onChangePaymentOption,
+    updatePaymentType,
+    onClickConfirmButton,
+  };
 };

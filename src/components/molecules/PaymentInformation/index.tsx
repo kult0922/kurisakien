@@ -2,24 +2,14 @@ import { FormTable } from '../../atoms/FormTable';
 import { FormTableHeader } from '../../atoms/FormTableHeader';
 import { FormTableRow } from '../../atoms/FormTableRow';
 import { FormTableData } from '../../atoms/FormTableData';
-import { useState, useCallback, useEffect } from 'react';
 import { PaymentType } from '../../../@types/order';
 
-export const PaymentInformation: React.FC<{
-  updatePaymentType: (paymentMethod: PaymentType) => void;
-}> = ({ updatePaymentType }) => {
-  const [paymentOption, setPaymentOption] = useState<PaymentType>('postal');
+interface Props {
+  paymentOption: PaymentType;
+  onChangePaymentOption: (paymentMethod: PaymentType) => void;
+}
 
-  // ラジオボタンが変更されたら、paymentOptionを更新する
-  const onChangePaymentOption = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setPaymentOption(event.currentTarget.value as PaymentType);
-  }, []);
-
-  // paymentOptionが更新されたら、親コンポーネントのpaymentOptionを更新
-  useEffect(() => {
-    updatePaymentType(paymentOption);
-  }, [paymentOption, updatePaymentType]);
-
+export const PaymentInformation: React.FC<Props> = ({ paymentOption, onChangePaymentOption }) => {
   return (
     <>
       <h1>決済方法の選択</h1>
@@ -30,7 +20,9 @@ export const PaymentInformation: React.FC<{
               <input
                 type="radio"
                 value="postal"
-                onChange={onChangePaymentOption}
+                onChange={(event) => {
+                  onChangePaymentOption(event.target.value as PaymentType);
+                }}
                 checked={paymentOption === 'postal'}
               />
             </FormTableHeader>
@@ -42,7 +34,9 @@ export const PaymentInformation: React.FC<{
               <input
                 type="radio"
                 value="convenience"
-                onChange={onChangePaymentOption}
+                onChange={(event) => {
+                  onChangePaymentOption(event.target.value as PaymentType);
+                }}
                 checked={paymentOption === 'convenience'}
               />
             </FormTableHeader>
@@ -54,7 +48,9 @@ export const PaymentInformation: React.FC<{
               <input
                 type="radio"
                 value="bank"
-                onChange={onChangePaymentOption}
+                onChange={(event) => {
+                  onChangePaymentOption(event.target.value as PaymentType);
+                }}
                 checked={paymentOption === 'bank'}
               />
             </FormTableHeader>
