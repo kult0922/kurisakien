@@ -1,10 +1,11 @@
-import { CartContainer } from '../../../store/Global/Cart';
 import { Item } from '../../molecules/Item';
 import { Link } from 'react-router-dom';
 import { TabBar } from '../../molecules/TabBar';
+import { GlobalStore } from '../../../store/Global';
 
 export const Cart: React.FC = () => {
-  const { carts, total, addCarts } = CartContainer.useContainer();
+  const { cart: cartStore } = GlobalStore.useContainer();
+  const { carts, total, addCarts } = cartStore;
   return (
     <>
       <TabBar />

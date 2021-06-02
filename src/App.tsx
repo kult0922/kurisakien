@@ -1,14 +1,11 @@
 import { Routing } from './components/routing';
-import { CartContainer } from './store/Global/Cart';
-import { OrderContainer } from './store/Global/Order';
+import { GlobalStore } from './store/Global';
 
 const App = () => {
   return (
-    <CartContainer.Provider>
-      <OrderContainer.Provider>
-        <Routing />
-      </OrderContainer.Provider>
-    </CartContainer.Provider>
+    <GlobalStore.Provider>
+      <Routing />
+    </GlobalStore.Provider>
   );
 };
 

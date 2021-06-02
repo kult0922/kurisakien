@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { createContainer } from 'unstated-next';
 import { CartData } from '../../../@types/product';
 import { itemList } from '../../../constants/store';
 
-const useCart = () => {
+export const useCart = () => {
   const [carts, setCarts] = useState<CartData[]>([]);
   const [total, setTotal] = useState(0);
 
@@ -29,5 +28,3 @@ const useCart = () => {
 
   return { carts, total, addCarts };
 };
-
-export const CartContainer = createContainer(useCart);

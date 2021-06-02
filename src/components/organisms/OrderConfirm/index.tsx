@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
-import { CartContainer } from '../../../store/Global/Cart';
-import { OrderContainer } from '../../../store/Global/Order';
+import { GlobalStore } from '../../../store/Global';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const OrderConfirm: React.FC = () => {
-  const { carts, total } = CartContainer.useContainer();
-  const { paymentType, customer } = OrderContainer.useContainer();
+  const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
+  const { carts, total } = cartStore;
+  const { paymentType, customer } = orderStore;
 
   return (
     <Wrapper>

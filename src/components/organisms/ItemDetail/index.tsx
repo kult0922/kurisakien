@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { itemList } from '../../../constants/store';
-import { CartContainer } from '../../../store/Global/Cart';
+import { GlobalStore } from '../../../store/Global';
 import { TabBar } from '../../molecules/TabBar';
 
 type Props = RouteComponentProps<{ id: string }>;
 
 export const ItemDetail: React.FC<Props> = ({ match }) => {
-  const { addCarts } = CartContainer.useContainer();
+  const { cart: cartStore } = GlobalStore.useContainer();
+  const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
   const id = match.params.id;
   const item = itemList.find((item) => item.id === id);

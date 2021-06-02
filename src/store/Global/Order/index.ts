@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
-import { createContainer } from 'unstated-next';
 import { Customer, PaymentType } from '../../../@types/order';
 import { initialCustomer, initialPaymentType } from '../../../constants/store';
 
-const useOrder = () => {
+export const useOrder = () => {
   const [paymentType, setPaymentType] = useState<PaymentType>(initialPaymentType);
   const [customer, setCustomer] = useState<Customer>(initialCustomer);
 
@@ -22,5 +21,3 @@ const useOrder = () => {
     onChangeCutomer,
   };
 };
-
-export const OrderContainer = createContainer(useOrder);
