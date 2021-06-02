@@ -3,7 +3,7 @@ import { itemList } from '../../../constants/store';
 import { Item } from '../../molecules/Item';
 import { TabBar } from '../../molecules/TabBar';
 
-export const Order: React.FC = () => {
+export const Shop: React.FC = () => {
   return (
     <>
       <TabBar />

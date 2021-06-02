@@ -5,7 +5,7 @@ import { Home } from '../organisms/Home';
 import { OrderCreate } from '../organisms/OrderCreate';
 import { OrderConfirm } from '../organisms/OrderConfirm';
 import { ItemDetail } from '../organisms/ItemDetail';
-import { Order } from '../organisms/Order';
+import { Shop } from '../organisms/Shop';
 
 export const Routing: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ export const Routing: React.FC = () => {
       <Template>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/order" exact component={Order} />
+          <Route path="/shop" exact component={Shop} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/merchandise/:id" component={ItemDetail} />
           <Route path="/order-create" exact component={OrderCreate} />
