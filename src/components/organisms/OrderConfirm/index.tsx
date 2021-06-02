@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
 import { OrderContainer } from '../../../store/Global/Order';
+import { OrderInformationContainer } from '../../../store/Organisms/OrderInformation';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const OrderConfirm: React.FC = () => {
-  const { carts, total, orderInformation } = OrderContainer.useContainer();
+  const { carts, total } = OrderContainer.useContainer();
+  const { paymentOption, customer } = OrderInformationContainer.useContainer();
+
   return (
     <Wrapper>
       <h1>注文確認</h1>
@@ -24,17 +27,17 @@ export const OrderConfirm: React.FC = () => {
       <br />
       合計金額: {total}円
       <br />
-      郵便番号: {orderInformation.customer.postalCode}
+      郵便番号: {customer.postalCode}
       <br />
-      住所: {orderInformation.customer.address}
+      住所: {customer.address}
       <br />
-      氏名: {orderInformation.customer.lastName} {orderInformation.customer.firstName}
+      氏名: {customer.lastName} {customer.firstName}
       <br />
-      メールアドレス: {orderInformation.customer.email}
+      メールアドレス: {customer.email}
       <br />
-      電話番号: {orderInformation.customer.phone}
+      電話番号: {customer.phone}
       <br />
-      決済方法: {orderInformation.paymentMethod}
+      決済方法: {paymentOption}
       <br />
       <Link to="orderComplete">注文確定</Link>
     </Wrapper>

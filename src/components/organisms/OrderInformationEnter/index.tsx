@@ -2,7 +2,8 @@ import { CustomerInformation } from '../../molecules/CustomerInformation';
 import { PaymentInformation } from '../../molecules/PaymentInformation';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useOrderInformation } from '../../../store/Organisms/OrderInformation';
+//import { useOrderInformation } from '../../../store/Organisms/OrderInformation';
+import { OrderInformationContainer } from '../../../store/Organisms/OrderInformation';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -14,7 +15,7 @@ export const OrderInformationEnter: React.FC = () => {
     onChangePaymentOption,
     onClickConfirmButton,
     onChangeCutomer,
-  } = useOrderInformation();
+  } = OrderInformationContainer.useContainer();
 
   return (
     <Wrapper>
