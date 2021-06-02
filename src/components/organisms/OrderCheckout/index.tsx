@@ -8,7 +8,7 @@ const Wrapper = styled.div({
   textAlign: 'center',
 });
 
-export const OrderCreate: React.FC = () => {
+export const OrderCheckout: React.FC = () => {
   const { paymentType, onChangePaymentType, onChangeCutomer } = OrderContainer.useContainer();
 
   return (
