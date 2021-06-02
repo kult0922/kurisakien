@@ -32,7 +32,7 @@ export const Cart: React.FC = () => {
       <h2>合計金額</h2>
       {total}円
       <br />
-      <Link to="order-create">注文に進む</Link>
+      <Link to="order-checkout">注文に進む</Link>
     </>
   );
 };
