@@ -5,11 +5,11 @@ import { FormTableData } from '../../atoms/FormTableData';
 import { PaymentType } from '../../../@types/order';
 
 interface Props {
-  paymentOption: PaymentType;
-  onChangePaymentOption: (paymentMethod: PaymentType) => void;
+  paymentType: PaymentType;
+  onChangePaymentType: (paymentType: PaymentType) => void;
 }
 
-export const PaymentInformation: React.FC<Props> = ({ paymentOption, onChangePaymentOption }) => {
+export const PaymentForm: React.FC<Props> = ({ paymentType, onChangePaymentType }) => {
   return (
     <>
       <h1>決済方法の選択</h1>
@@ -21,9 +21,9 @@ export const PaymentInformation: React.FC<Props> = ({ paymentOption, onChangePay
                 type="radio"
                 value="postal"
                 onChange={(event) => {
-                  onChangePaymentOption(event.target.value as PaymentType);
+                  onChangePaymentType(event.target.value as PaymentType);
                 }}
-                checked={paymentOption === 'postal'}
+                checked={paymentType === 'postal'}
               />
             </FormTableHeader>
             <FormTableData>郵便振り込み</FormTableData>
@@ -35,9 +35,9 @@ export const PaymentInformation: React.FC<Props> = ({ paymentOption, onChangePay
                 type="radio"
                 value="convenience"
                 onChange={(event) => {
-                  onChangePaymentOption(event.target.value as PaymentType);
+                  onChangePaymentType(event.target.value as PaymentType);
                 }}
-                checked={paymentOption === 'convenience'}
+                checked={paymentType === 'convenience'}
               />
             </FormTableHeader>
             <FormTableData>コンビニ決済</FormTableData>
@@ -49,9 +49,9 @@ export const PaymentInformation: React.FC<Props> = ({ paymentOption, onChangePay
                 type="radio"
                 value="bank"
                 onChange={(event) => {
-                  onChangePaymentOption(event.target.value as PaymentType);
+                  onChangePaymentType(event.target.value as PaymentType);
                 }}
-                checked={paymentOption === 'bank'}
+                checked={paymentType === 'bank'}
               />
             </FormTableHeader>
             <FormTableData>銀行振り込み</FormTableData>

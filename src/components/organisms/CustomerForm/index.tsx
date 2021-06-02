@@ -8,7 +8,7 @@ interface Props {
   onChangeCutomer: (value: string, key: string) => void;
 }
 
-export const CustomerInformation: React.FC<Props> = ({ onChangeCutomer }) => {
+export const CustomerForm: React.FC<Props> = ({ onChangeCutomer }) => {
   return (
     <>
       <h1>お客様情報入力</h1>

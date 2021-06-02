@@ -1,47 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import { CartData } from '../../../@types/product';
-import { OrderInformation, Customer, PaymentType } from '../../../@types/order';
-import { itemList } from '../../../constants/store';
+import { Customer, PaymentType } from '../../../@types/order';
+import { initialCustomer, initialPaymentType } from '../../../constants/store';
 
 const useOrder = () => {
-  const [carts, setCarts] = useState<CartData[]>([]);
-  const [total, setTotal] = useState(0);
-  const customer: Customer = {
-    postalCode: '',
-    address: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
+  const [paymentType, setPaymentType] = useState<PaymentType>(initialPaymentType);
+  const [customer, setCustomer] = useState<Customer>(initialCustomer);
+
+  const onChangePaymentType = useCallback((value: PaymentType) => {
+    setPaymentType(value);
+  }, []);
+
+  const onChangeCutomer = useCallback((value: string, key: string) => {
+    setCustomer((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  return {
+    paymentType,
+    customer,
+    onChangePaymentType,
+    onChangeCutomer,
   };
-  const paymentOption: PaymentType = 'postal';
-  const [orderInformation, setOrderInformation] = useState<OrderInformation>({
-    customer: customer,
-    paymentMethod: paymentOption,
-  });
-
-  const addCarts = useCallback(
-    (id: string, amount: number) => {
-      const existCheck = carts.find((item) => item.id === id);
-      const cartItem = itemList.find((item) => item.id === id);
-      setCarts(
-        !existCheck && cartItem
-          ? (prev) => [...prev, { ...cartItem, amount }]
-          : (prev) => prev.map((item) => (item.id === id ? { ...item, amount } : { ...item })),
-      );
-    },
-    [carts],
-  );
-
-  useEffect(() => {
-    const prices = carts.map((cart) => cart.amount * cart.price);
-    setTotal(
-      prices.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0),
-    );
-  }, [carts]);
-
-  return { carts, total, orderInformation, setOrderInformation, addCarts };
 };
 
 export const OrderContainer = createContainer(useOrder);

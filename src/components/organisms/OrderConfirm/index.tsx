@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
+import { CartContainer } from '../../../store/Global/Cart';
 import { OrderContainer } from '../../../store/Global/Order';
-import { OrderInformationContainer } from '../../../store/Organisms/OrderInformation';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const OrderConfirm: React.FC = () => {
-  const { carts, total } = OrderContainer.useContainer();
-  const { paymentOption, customer } = OrderInformationContainer.useContainer();
+  const { carts, total } = CartContainer.useContainer();
+  const { paymentType, customer } = OrderContainer.useContainer();
 
   return (
     <Wrapper>
@@ -37,9 +37,9 @@ export const OrderConfirm: React.FC = () => {
       <br />
       電話番号: {customer.phone}
       <br />
-      決済方法: {paymentOption}
+      決済方法: {paymentType}
       <br />
-      <Link to="orderComplete">注文確定</Link>
+      <Link to="order-complete">注文確定</Link>
     </Wrapper>
   );
 };

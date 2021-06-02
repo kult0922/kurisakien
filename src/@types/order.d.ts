@@ -9,7 +9,7 @@ export interface Customer {
   email: string;
 }
 
-export interface OrderInformation {
+export interface Order {
   customer: Customer;
   paymentMethod: PaymentMethod;
 }
