@@ -7,7 +7,7 @@ const Wrapper = styled.div({
   textAlign: 'center',
 });
 
-export const OrderConfirm: React.FC = () => {
+export const Confirm: React.FC = () => {
   const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
   const { carts, total } = cartStore;
   const { paymentType, customer } = orderStore;
@@ -39,7 +39,7 @@ export const OrderConfirm: React.FC = () => {
       <br />
       決済方法: {paymentType}
       <br />
-      <Link to="order-complete">注文確定</Link>
+      <Link to="complete">注文確定</Link>
     </Wrapper>
   );
 };

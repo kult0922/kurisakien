@@ -8,7 +8,7 @@ const Wrapper = styled.div({
   textAlign: 'center',
 });
 
-export const OrderCheckout: React.FC = () => {
+export const Checkout: React.FC = () => {
   const { order: orderContainer } = GlobalStore.useContainer();
   const { paymentType, onChangePaymentType, onChangeCutomer } = orderContainer;
 
@@ -16,7 +16,7 @@ export const OrderCheckout: React.FC = () => {
     <Wrapper>
       <CustomerForm onChangeCutomer={onChangeCutomer} />
       <PaymentForm paymentType={paymentType} onChangePaymentType={onChangePaymentType} />
-      <Link to="order-confirm">注文内容確認へ</Link>
+      <Link to="confirm">注文内容確認へ</Link>
     </Wrapper>
   );
 };

@@ -11,7 +11,7 @@ export const Shop: React.FC = () => {
       {itemList.map((item, i) => {
         return (
           <div key={i}>
-            <Link to={'/merchandise/' + item.id}>
+            <Link to={'/items/' + item.id}>
               <div>
                 <Item id={item.id} />
               </div>

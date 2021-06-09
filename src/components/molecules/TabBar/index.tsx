@@ -5,7 +5,7 @@ export const TabBar: React.FC = () => {
   return (
     <>
       <Tab to="/">ホーム</Tab>
-      <Tab to="/shop">注文</Tab>
+      <Tab to="/items">注文</Tab>
       <Tab bottom="-7px" to="/cart">
         <ShoppingCart width={18} height={18} />
       </Tab>
