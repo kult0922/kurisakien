@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
 import { GlobalStore } from '../../../store/Global';
+import { routing } from '../../../constants/routing';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -39,7 +40,7 @@ export const Confirm: React.FC = () => {
       <br />
       決済方法: {paymentType}
       <br />
-      <Link to="complete">注文確定</Link>
+      <Link to={routing.complete.root}>注文確定</Link>
     </Wrapper>
   );
 };

@@ -2,6 +2,7 @@ import { Item } from '../../molecules/Item';
 import { Link } from 'react-router-dom';
 import { TabBar } from '../../molecules/TabBar';
 import { GlobalStore } from '../../../store/Global';
+import { routing } from '../../../constants/routing';
 
 export const Cart: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
@@ -32,7 +33,7 @@ export const Cart: React.FC = () => {
       <h2>合計金額</h2>
       {total}円
       <br />
-      <Link to="checkout">注文に進む</Link>
+      <Link to={routing.checkout.root}>注文に進む</Link>
     </>
   );
 };

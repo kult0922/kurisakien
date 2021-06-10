@@ -7,19 +7,20 @@ import { Confirm } from '../organisms/Confirm';
 import { Complete } from '../organisms/Complete';
 import { ItemDetail } from '../organisms/ItemDetail';
 import { Shop } from '../organisms/Items';
+import { routing } from '../../constants/routing';
 
 export const Routing: React.FC = () => {
   return (
     <BrowserRouter>
       <Template>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/items" exact component={Shop} />
-          <Route path="/cart" exact component={Cart} />
-          <Route path="/items/:id" component={ItemDetail} />
-          <Route path="/checkout" exact component={Checkout} />
-          <Route path="/confirm" component={Confirm} />
-          <Route path="/complete" component={Complete} />
+          <Route path={routing.root} exact component={Home} />
+          <Route path={routing.items.root} exact component={Shop} />
+          <Route path={routing.items.itemId} component={ItemDetail} />
+          <Route path={routing.cart.root} exact component={Cart} />
+          <Route path={routing.checkout.root} exact component={Checkout} />
+          <Route path={routing.confirm.root} component={Confirm} />
+          <Route path={routing.complete.root} component={Complete} />
         </Switch>
       </Template>
     </BrowserRouter>

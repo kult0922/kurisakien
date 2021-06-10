@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
 import { GlobalStore } from '../../../store/Global';
+import { routing } from '../../../constants/routing';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -23,7 +24,7 @@ export const Complete: React.FC = () => {
         );
       })}
       <br />
-      <Link to="/">ホームへ戻る</Link>
+      <Link to={routing.root}>ホームへ戻る</Link>
     </Wrapper>
   );
 };
