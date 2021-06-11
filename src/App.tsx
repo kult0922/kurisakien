@@ -1,11 +1,11 @@
 import { Routing } from './components/routing';
-import { OrderContainer } from './store/Global/Order';
+import { GlobalStore } from './store/Global';
 
 const App = () => {
   return (
-    <OrderContainer.Provider>
+    <GlobalStore.Provider>
       <Routing />
-    </OrderContainer.Provider>
+    </GlobalStore.Provider>
   );
 };
 

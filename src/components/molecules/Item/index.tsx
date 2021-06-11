@@ -13,7 +13,6 @@ export const Item: React.FC<ItemProps> = ({ id }) => {
       <br />
       {item.name} <br />
       {item.price}円 <br />
-      <br />
     </div>
   );
 };

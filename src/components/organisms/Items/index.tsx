@@ -3,7 +3,7 @@ import { itemList } from '../../../constants/store';
 import { Item } from '../../molecules/Item';
 import { TabBar } from '../../molecules/TabBar';
 
-export const Order: React.FC = () => {
+export const Items: React.FC = () => {
   return (
     <>
       <TabBar />
@@ -11,7 +11,7 @@ export const Order: React.FC = () => {
       {itemList.map((item, i) => {
         return (
           <div key={i}>
-            <Link to={'/merchandise/' + item.id}>
+            <Link to={'/items/' + item.id}>
               <div>
                 <Item id={item.id} />
               </div>

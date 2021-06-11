@@ -33,12 +33,6 @@
         {
           "argsIgnorePattern": "^_"
         }
-      ],
-      "no-console": [
-        "error",
-        {
-          "allow": ["warn", "error"]
-        }
       ]
     },
     "settings": {

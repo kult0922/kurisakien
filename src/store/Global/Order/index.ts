@@ -1,33 +1,23 @@
-import { useCallback, useEffect, useState } from 'react';
-import { createContainer } from 'unstated-next';
-import { CartData } from '../../../@types/product';
-import { itemList } from '../../../constants/store';
+import { useCallback, useState } from 'react';
+import { Customer, PaymentType } from '../../../@types/order';
+import { initialCustomer, initialPaymentType } from '../../../constants/store';
 
-const useOrder = () => {
-  const [carts, setCarts] = useState<CartData[]>([]);
-  const [total, setTotal] = useState(0);
+export const useOrder = () => {
+  const [paymentType, setPaymentType] = useState<PaymentType>(initialPaymentType);
+  const [customer, setCustomer] = useState<Customer>(initialCustomer);
 
-  const addCarts = useCallback(
-    (id: string, amount: number) => {
-      const existCheck = carts.find((item) => item.id === id);
-      const cartItem = itemList.find((item) => item.id === id);
-      setCarts(
-        !existCheck && cartItem
-          ? (prev) => [...prev, { ...cartItem, amount }]
-          : (prev) => prev.map((item) => (item.id === id ? { ...item, amount } : { ...item })),
-      );
-    },
-    [carts],
-  );
+  const onChangePaymentType = useCallback((value: PaymentType) => {
+    setPaymentType(value);
+  }, []);
 
-  useEffect(() => {
-    const prices = carts.map((cart) => cart.amount * cart.price);
-    setTotal(
-      prices.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0),
-    );
-  }, [carts]);
+  const onChangeCutomer = useCallback((value: string, key: string) => {
+    setCustomer((prev) => ({ ...prev, [key]: value }));
+  }, []);
 
-  return { carts, total, addCarts };
+  return {
+    paymentType,
+    customer,
+    onChangePaymentType,
+    onChangeCutomer,
+  };
 };
-
-export const OrderContainer = createContainer(useOrder);
