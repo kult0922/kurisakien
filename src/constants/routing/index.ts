@@ -15,6 +15,7 @@ export const routing = {
   },
   checkout: {
     root: checkout,
+    error: checkout + '/error',
   },
   confirm: {
     root: confirm,

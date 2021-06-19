@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "axios": "^0.21.1",
     "babel-jest": "^26.6.0",
     "babel-plugin-named-asset-import": "^0.3.7",
     "bfj": "^7.0.2",
