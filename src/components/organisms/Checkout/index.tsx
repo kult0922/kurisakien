@@ -17,7 +17,7 @@ export const Checkout: React.FC = () => {
     <Wrapper>
       <CustomerForm onChangeCutomer={onChangeCutomer} />
       <PaymentForm paymentType={paymentType} onChangePaymentType={onChangePaymentType} />
-      <Link to={routing.confirm.root}>注文内容確認へ</Link>
+      <Link to={routing.checkout.confirm}>注文内容確認へ</Link>
     </Wrapper>
   );
 };

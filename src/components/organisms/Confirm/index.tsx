@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { CartData } from '../../../@types/product';
+import { CartItem } from '../../../@types/product';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
 import { GlobalStore } from '../../../store/Global';
@@ -24,7 +24,7 @@ export const Confirm: React.FC = () => {
   const sendEmail = async (
     customer: Customer,
     paymentType: PaymentType,
-    carts: CartData[],
+    carts: CartItem[],
     total: number,
   ) => {
     const orderEmailBody = createOrderEmailBody(
@@ -57,7 +57,7 @@ export const Confirm: React.FC = () => {
         destinationEmail: OWNER_EMAIL,
         subject: '注文メール',
       });
-      handleLink(routing.complete.root);
+      handleLink(routing.checkout.complete);
       console.log(JSON.stringify(response.data));
     } catch (error) {
       console.error(error);

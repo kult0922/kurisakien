@@ -21,8 +21,8 @@ export const Routing: React.FC = () => {
           <Route path={routing.cart.root} exact component={Cart} />
           <Route path={routing.checkout.root} exact component={Checkout} />
           <Route path={routing.checkout.error} exact component={CheckoutError} />
-          <Route path={routing.confirm.root} component={Confirm} />
-          <Route path={routing.complete.root} component={Complete} />
+          <Route path={routing.checkout.confirm} component={Confirm} />
+          <Route path={routing.checkout.complete} component={Complete} />
         </Switch>
       </Template>
     </BrowserRouter>
