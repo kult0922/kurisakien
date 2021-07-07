@@ -1,7 +1,6 @@
 import { OWNER_EMAIL } from '../../../../constants/env';
 import { Email } from '../../../entity/Email';
 
-//FIXME: リファクタ
 const createOrderText = (email: Email) => {
   let items = '';
   email.carts.forEach((cartItem) => {
@@ -12,42 +11,23 @@ const createOrderText = (email: Email) => {
 
   const { customer, paymentType, totalAmount } = email;
 
-  const body =
-    '氏名: ' +
-    customer.lastName +
-    ' ' +
-    customer.firstName +
-    '<br />' +
-    '郵便番号: ' +
-    customer.postalCode +
-    ' <br /> ' +
-    '住所: ' +
-    customer.address +
-    '<br />' +
-    '電話番号: ' +
-    customer.phone +
-    '<br />' +
-    'メール: ' +
-    customer.email +
-    '<br />' +
-    '支払い方法: ' +
-    paymentType +
-    '<br />' +
-    '＜注文内容＞' +
-    '<br />' +
-    '<br />' +
-    items +
-    '<br />' +
-    '合計金額: ' +
-    totalAmount +
-    '円';
-
+  const body = `氏名: ${customer.lastName} ${customer.firstName}<br />
+                郵便番号: ${customer.postalCode}<br />
+                住所: ${customer.address}<br />
+                電話番号: ${customer.phone}<br />
+                メール: ${customer.email}<br />
+                支払い方法: ${paymentType}<br /><br />
+                ＜注文内容＞<br />
+                ${items}
+                合計金額: ${totalAmount}
+                円
+                `;
   return body;
 };
 
 const createOwnerEmailBody = (email: Email) => {
   const orderText = createOrderText(email);
-  const preface = '注文がありました' + '<br />';
+  const preface = `注文がありました<br />`;
 
   return preface + orderText;
 };
@@ -55,15 +35,10 @@ const createOwnerEmailBody = (email: Email) => {
 const createUserEmailBody = (email: Email) => {
   const orderText = createOrderText(email);
 
-  const preface: string =
-    'ご注文ありがとうございます！' +
-    '<br />' +
-    '以下の内容でご注文を承りました。' +
-    '<br />' +
-    '担当者が確認次第、再度メールにてご連絡いたします。' +
-    '<br />' +
-    'しばらくお待ち下さい。' +
-    '<br /><br />';
+  const preface = `ご注文ありがとうございます！<br />
+                   以下の内容でご注文を承りました。<br />
+                   担当者が確認次第、再度メールにてご連絡いたします。<br />
+                   しばらくお待ち下さい。<br /><br />`;
 
   return preface + orderText;
 };
