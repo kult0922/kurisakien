@@ -3,6 +3,7 @@ import { Template } from '../layouts';
 import { Cart } from '../organisms/Cart';
 import { Home } from '../organisms/Home';
 import { Checkout } from '../organisms/Checkout';
+import { CheckoutError } from '../organisms/CheckoutError';
 import { Confirm } from '../organisms/Confirm';
 import { Complete } from '../organisms/Complete';
 import { ItemDetail } from '../organisms/ItemDetail';
@@ -19,8 +20,9 @@ export const Routing: React.FC = () => {
           <Route path={routing.items.itemId} component={ItemDetail} />
           <Route path={routing.cart.root} exact component={Cart} />
           <Route path={routing.checkout.root} exact component={Checkout} />
-          <Route path={routing.confirm.root} component={Confirm} />
-          <Route path={routing.complete.root} component={Complete} />
+          <Route path={routing.checkout.error} exact component={CheckoutError} />
+          <Route path={routing.checkout.confirm} component={Confirm} />
+          <Route path={routing.checkout.complete} component={Complete} />
         </Switch>
       </Template>
     </BrowserRouter>

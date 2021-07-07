@@ -1,8 +1,6 @@
 const items = '/items';
 const cart = '/cart';
 const checkout = '/checkout';
-const confirm = '/confirm';
-const complete = '/complete';
 
 export const routing = {
   root: '/',
@@ -15,11 +13,8 @@ export const routing = {
   },
   checkout: {
     root: checkout,
-  },
-  confirm: {
-    root: confirm,
-  },
-  complete: {
-    root: complete,
+    confirm: checkout + '/confirm',
+    complete: checkout + '/complete',
+    error: checkout + '/error',
   },
 };

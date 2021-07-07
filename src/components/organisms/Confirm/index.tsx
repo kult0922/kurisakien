@@ -1,17 +1,13 @@
-import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Item } from '../../molecules/Item';
-import { GlobalStore } from '../../../store/Global';
-import { routing } from '../../../constants/routing';
+import { useConfirm } from '../../../store/organisms/Confirm';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const Confirm: React.FC = () => {
-  const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
-  const { carts, total } = cartStore;
-  const { paymentType, customer } = orderStore;
+  const { carts, total, paymentType, customer, onClickConfirmButton } = useConfirm();
 
   return (
     <Wrapper>
@@ -40,7 +36,7 @@ export const Confirm: React.FC = () => {
       <br />
       決済方法: {paymentType}
       <br />
-      <Link to={routing.complete.root}>注文確定</Link>
+      <button onClick={onClickConfirmButton}>注文確定</button>
     </Wrapper>
   );
 };

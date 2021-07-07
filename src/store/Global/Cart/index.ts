@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { CartData } from '../../../@types/product';
+import { CartItem } from '../../../@types/product';
 import { itemList } from '../../../constants/store';
 
 export const useCart = () => {
-  const [carts, setCarts] = useState<CartData[]>([]);
+  const [carts, setCarts] = useState<CartItem[]>([]);
   const [total, setTotal] = useState(0);
 
   const addCarts = useCallback(
