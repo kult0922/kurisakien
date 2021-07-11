@@ -3,6 +3,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { itemList } from '../../../constants/store';
 import { GlobalStore } from '../../../store/Global';
 import { TabBar } from '../../molecules/TabBar';
+import { Link } from 'react-router-dom';
+import { routing } from '../../../constants/routing';
 
 type Props = RouteComponentProps<{ id: string }>;
 
@@ -35,13 +37,14 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
             </option>
           ))}
         </select>
-        <button
+        <Link
+          to={routing.cart.root}
           onClick={() => {
             addCarts(id, itemCount);
           }}
         >
           カートに入れる
-        </button>
+        </Link>
       </div>
     </>
   );

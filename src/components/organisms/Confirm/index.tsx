@@ -1,28 +1,19 @@
 import styled from '@emotion/styled';
-import { Item } from '../../molecules/Item';
 import { useConfirm } from '../../../store/organisms/Confirm';
+import { CartTable } from '../CartTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
 export const Confirm: React.FC = () => {
-  const { carts, total, paymentType, customer, onClickConfirmButton } = useConfirm();
+  const { paymentType, customer, onClickConfirmButton } = useConfirm();
 
   return (
     <Wrapper>
       <h1>注文確認</h1>
-      {carts.map((item, i) => {
-        return (
-          <div key={i}>
-            <Item id={item.id} />
-            {item.amount}個
-          </div>
-        );
-      })}
+      <CartTable changeItemAmount={false} />
       <br />
-      <br />
-      合計金額: {total}円
       <br />
       郵便番号: {customer.postalCode}
       <br />
