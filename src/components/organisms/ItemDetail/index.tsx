@@ -19,7 +19,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
     <>
       <TabBar />
       <br />
-      <img src="http://placehold.jp/24/339933/223322/300x200.png?text=商品画像" alt="mercahndise" />
+      <img src={item.imagePath} alt="item" />
       <div>
         {item.name} <br />
         {item.price}円 <br />
