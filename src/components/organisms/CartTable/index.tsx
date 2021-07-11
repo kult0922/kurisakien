@@ -37,52 +37,50 @@ export const CartTable: React.FC<Props> = ({ changeItemAmount }) => {
   const { carts, total, addCarts } = cartStore;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
-    <>
-      <Table>
-        <tbody>
-          <tr>
-            <th>商品名</th>
-            <th></th>
-            <th>値段</th>
-            <th>個数</th>
-            <th>小計</th>
-          </tr>
-          {carts.map((item, i) => {
-            return (
-              <ItemRow key={i}>
-                <ItemData>
-                  <img src={item.imagePath} width="100px" alt="itme" />
-                </ItemData>
-                <ItemData>{item.name}</ItemData>
-                <ItemData>{item.price}円</ItemData>
-                <ItemData>
-                  {changeItemAmount ? (
-                    <select
-                      defaultValue={item.amount}
-                      onChange={(event) => {
-                        addCarts(item.id, Number(event.target.value));
-                      }}
-                    >
-                      {[...Array(10)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1}個
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    item.amount
-                  )}
-                </ItemData>
-                <ItemData>{item.price * item.amount}円</ItemData>
-              </ItemRow>
-            );
-          })}
-          <tr>
-            <td colSpan={4}></td>
-            <TotalData>合計: {total}円</TotalData>
-          </tr>
-        </tbody>
-      </Table>
-    </>
+    <Table>
+      <tbody>
+        <tr>
+          <th>商品名</th>
+          <th></th>
+          <th>値段</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+        {carts.map((item, i) => {
+          return (
+            <ItemRow key={i}>
+              <ItemData>
+                <img src={item.imagePath} width="100px" alt="itme" />
+              </ItemData>
+              <ItemData>{item.name}</ItemData>
+              <ItemData>{item.price}円</ItemData>
+              <ItemData>
+                {changeItemAmount ? (
+                  <select
+                    defaultValue={item.amount}
+                    onChange={(event) => {
+                      addCarts(item.id, Number(event.target.value));
+                    }}
+                  >
+                    {[...Array(10)].map((_, i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}個
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  item.amount
+                )}
+              </ItemData>
+              <ItemData>{item.price * item.amount}円</ItemData>
+            </ItemRow>
+          );
+        })}
+        <tr>
+          <td colSpan={4}></td>
+          <TotalData>合計: {total}円</TotalData>
+        </tr>
+      </tbody>
+    </Table>
   );
 };
