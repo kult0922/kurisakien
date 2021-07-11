@@ -14,11 +14,7 @@ export const Cart: React.FC = () => {
       <br />
       <h2>カートの中身</h2>
       <br />
-      {carts.length ? (
-        <CartTable changeItemAmount={true} />
-      ) : (
-        'ショッピングカートに商品は入っていません。'
-      )}
+      {carts.length ? <CartTable changeItemAmount /> : 'ショッピングカートに商品は入っていません。'}
       <br />
       {carts.length ? <Link to={routing.checkout.root}>注文に進む</Link> : null}
       <br />
