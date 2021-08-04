@@ -12,7 +12,7 @@ export const Confirm: React.FC = () => {
   return (
     <Wrapper>
       <h1>注文確認</h1>
-      <CartTable changeItemAmount={false} />
+      <CartTable editable={false} />
       <br />
       <br />
       郵便番号: {customer.postalCode}

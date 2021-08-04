@@ -29,10 +29,10 @@ const TotalData = styled.td({
 });
 
 interface Props {
-  changeItemAmount: boolean;
+  editable: boolean;
 }
 
-export const CartTable: React.FC<Props> = ({ changeItemAmount }) => {
+export const CartTable: React.FC<Props> = ({ editable }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { carts, total, addCarts } = cartStore;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
@@ -55,7 +55,7 @@ export const CartTable: React.FC<Props> = ({ changeItemAmount }) => {
               <ItemData>{item.name}</ItemData>
               <ItemData>{item.price}円</ItemData>
               <ItemData>
-                {changeItemAmount ? (
+                {editable ? (
                   <select
                     defaultValue={item.amount}
                     onChange={(event) => {
