@@ -9,7 +9,7 @@ export const Item: React.FC<ItemProps> = ({ id }) => {
   if (!item) return null;
   return (
     <div>
-      <img src="http://placehold.jp/24/339933/223322/300x200.png?text=商品画像" alt="mercahndise" />
+      <img src={item.imagePath} alt="item" />
       <br />
       {item.name} <br />
       {item.price}円 <br />
