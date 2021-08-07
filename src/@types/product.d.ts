@@ -3,7 +3,7 @@ export interface Item {
   id: string;
   name: string;
   price: number;
-  discription: string;
+  description: string;
 }
 
 export interface CartItem extends Item {

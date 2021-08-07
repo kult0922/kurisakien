@@ -3,6 +3,7 @@ import { CartTable } from '../CartTable';
 import { GlobalStore } from '../../../store/Global';
 import { Link } from 'react-router-dom';
 import { routing } from '../../../constants/routing';
+import { SectionTitle } from '../../atoms/SectionTitle';
 
 export const Cart: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
@@ -11,8 +12,7 @@ export const Cart: React.FC = () => {
     <>
       <TabBar />
       <br />
-      <br />
-      <h2>カートの中身</h2>
+      <SectionTitle>カートの中身</SectionTitle>
       <br />
       {carts.length ? (
         <div>

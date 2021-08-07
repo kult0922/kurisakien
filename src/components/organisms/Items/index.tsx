@@ -1,22 +1,21 @@
-import { Link } from 'react-router-dom';
+import { ItemLink } from '../../atoms/ItemLink';
 import { itemList } from '../../../constants/store';
 import { Item } from '../../molecules/Item';
 import { TabBar } from '../../molecules/TabBar';
+import { SectionTitle } from '../../atoms/SectionTitle';
 
 export const Items: React.FC = () => {
   return (
     <>
       <TabBar />
-      <h1>注文ページ</h1>
+      <br />
+      <SectionTitle>商品一覧</SectionTitle>
+      <br />
       {itemList.map((item, i) => {
         return (
-          <div key={i}>
-            <Link to={'/items/' + item.id}>
-              <div>
-                <Item id={item.id} />
-              </div>
-            </Link>
-          </div>
+          <ItemLink to={'/items/' + item.id} key={i}>
+            <Item id={item.id} />
+          </ItemLink>
         );
       })}
     </>
