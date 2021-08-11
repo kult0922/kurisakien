@@ -18,11 +18,21 @@ export interface FlexProps {
   style?: React.CSSProperties;
 }
 
-export const Box = styled.div<BoxProps>((props) => ({
-  ...props.style,
+export const Box = styled.div<BoxProps>(({ m, mt, mr, mb, ml, style }) => ({
+  margin: m,
+  marginTop: mt,
+  marginRight: mr,
+  marginBottom: mb,
+  marginLeft: ml,
+  ...style,
 }));
 
-export const Flex = styled.div<FlexProps>((props) => ({
-  display: 'flex',
-  ...props.style,
-}));
+export const Flex = styled.div<FlexProps>(
+  ({ display, alignItems, justifyContent, flexWrap, style }) => ({
+    display: display || 'flex',
+    alignItems,
+    justifyContent,
+    flexWrap,
+    ...style,
+  }),
+);

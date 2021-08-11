@@ -7,7 +7,7 @@ import { CSSProperties, useState } from 'react';
 import { LinkButton } from '../../atoms/LinkButton';
 import { routing } from '../../../constants/routing';
 import { Item } from '../../../@types/product';
-import { MarginProps } from '../../../@types/emotion';
+import { Box, BoxProps } from '../../../lib/styled';
 
 type Props = RouteComponentProps<{ id: string }>;
 
@@ -34,26 +34,20 @@ const ItemMenuWrapper = styled.div({
   marginLeft: '20px',
 });
 
-const Description = styled.p<MarginProps>(({ margin }) => ({
-  margin,
+const Description = styled.p<BoxProps>({
   paddingBottom: '5px',
   whiteSpace: 'pre-wrap',
-}));
-
-const MarginWrapper = styled.p<MarginProps>(({ margin }) => ({
-  margin,
-}));
+});
 
 const Name = styled.div({
   fontSize: '1.5em',
 });
 
-const Price = styled.div<MarginProps>(({ margin }) => ({
-  margin,
+const Price = styled.div<BoxProps>({
   display: 'inline-block',
   color: '#909090',
   paddingBottom: '5px',
-}));
+});
 
 const ItemMenu: React.FC<MenuProps> = ({ item }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
@@ -62,8 +56,8 @@ const ItemMenu: React.FC<MenuProps> = ({ item }) => {
   return (
     <ItemMenuWrapper>
       <Name>{item.name}</Name>
-      <Price margin={5}>{item.price} 円</Price>
-      <Description margin={5}>{item.description}</Description>
+      <Price m={5}>{item.price} 円</Price>
+      <Description m={5}>{item.description}</Description>
       <div>数量</div>
       <select
         defaultValue={1}
@@ -77,7 +71,7 @@ const ItemMenu: React.FC<MenuProps> = ({ item }) => {
           </option>
         ))}
       </select>
-      <MarginWrapper margin={'50px 0px 0px'}>
+      <Box m={'50px 0px 0px'}>
         <LinkButton
           to={routing.cart.root}
           onClick={() => {
@@ -86,7 +80,7 @@ const ItemMenu: React.FC<MenuProps> = ({ item }) => {
         >
           カートに入れる
         </LinkButton>
-      </MarginWrapper>
+      </Box>
     </ItemMenuWrapper>
   );
 };
@@ -98,10 +92,10 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
   return (
     <>
       <TabBar />
-      <MarginWrapper margin={'50px 0px 0px'}>
+      <Box m={'50px 0px 0px'}>
         <Image src={item.imagePath} />
         <ItemMenu item={item} />
-      </MarginWrapper>
+      </Box>
     </>
   );
 };

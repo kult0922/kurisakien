@@ -1,7 +1,7 @@
 import { itemList } from '../../../constants/store';
 import styled from '@emotion/styled';
 import { CSSProperties } from 'react';
-import { MarginProps } from '../../../@types/emotion';
+import { Box } from '../../../lib/styled';
 
 interface ItemProps {
   id: string;
@@ -29,24 +29,23 @@ const Image = styled.img<ImageProps>(({ src }) => ({
   content: `url(${src})`,
 }));
 
-const Card = styled.div<MarginProps>(({ margin }) => ({
-  margin,
+const Wrapper = styled(Box)({
   width: '90%',
   cursor: 'pointer',
   borderRadius: '5px',
   backgroundColor: '#ededed',
-}));
+});
 
 export const Item: React.FC<ItemProps> = ({ id }) => {
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
   return (
-    <Card margin={18}>
+    <Wrapper m={18}>
       <Image src={item.imagePath}></Image>
       <Text fontSize="1em" margin={5}>
         {item.name}
       </Text>
       <Text fontSize="0.8em">{item.price}円</Text>
-    </Card>
+    </Wrapper>
   );
 };
