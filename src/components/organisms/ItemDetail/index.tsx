@@ -20,7 +20,7 @@ const Description = styled(Box)({
 });
 
 const Name = styled(Box)({
-  fontSize: '1.5rem',
+  fontSize: '24px',
 });
 
 const Price = styled(Box)({

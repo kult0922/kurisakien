@@ -1,15 +1,15 @@
-import { itemList } from '../../../constants/store';
 import styled from '@emotion/styled';
-import { Box } from '../../../lib/styled';
+import { Box, BoxProps } from '../../../lib/styled';
+import { Item } from '../../../@types/product';
+import { CSSProperties } from 'react';
 
-interface Props {
-  id: string;
-  width?: React.CSSProperties['width'];
-  m?: React.CSSProperties['margin'];
+interface Props extends BoxProps {
+  item: Item;
+  width: CSSProperties['width'];
 }
 
 const Price = styled(Box)({
-  fontSize: '0.8rem',
+  fontSize: '12px',
   paddingBottom: '5px',
 });
 
@@ -18,6 +18,7 @@ const Name = styled(Box)({
 });
 
 const Image = styled.img({
+  width: '100%',
   objectFit: 'cover',
   borderRadius: '5px 5px 0 0',
 });
@@ -28,12 +29,10 @@ const Wrapper = styled(Box)({
   backgroundColor: '#ededed',
 });
 
-export const Item: React.FC<Props> = ({ id, width, m }) => {
-  const item = itemList.find((item) => item.id === id);
-  if (!item) return null;
+export const ItemCard: React.FC<Props> = ({ item, width, m, style }) => {
   return (
-    <Wrapper m={m}>
-      <Image src={item.imagePath} width={width}></Image>
+    <Wrapper m={m} style={{ width, ...style }}>
+      <Image src={item.imagePath}></Image>
       <Name mt={5}>{item.name}</Name>
       <Price>{item.price}円</Price>
     </Wrapper>
