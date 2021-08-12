@@ -4,7 +4,7 @@ export const SectionTitle = styled.div({
   position: 'relative',
   display: 'inline-block',
   padding: '0 70px',
-  fontSize: '1.2em',
+  fontSize: '1.2rem',
   margin: '20px',
   '&:before': {
     content: '""',

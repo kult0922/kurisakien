@@ -13,8 +13,7 @@ const Price = styled(Box)({
   paddingBottom: '5px',
 });
 
-const Description = styled(Box)({
-  fontSize: '0.8rem',
+const Name = styled(Box)({
   paddingBottom: '5px',
 });
 
@@ -35,7 +34,7 @@ export const Item: React.FC<Props> = ({ id, width, m }) => {
   return (
     <Wrapper m={m}>
       <Image src={item.imagePath} width={width}></Image>
-      <Description mt={5}>{item.name}</Description>
+      <Name mt={5}>{item.name}</Name>
       <Price>{item.price}円</Price>
     </Wrapper>
   );
