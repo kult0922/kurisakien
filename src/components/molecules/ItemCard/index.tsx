@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 import { Box, BoxProps } from '../../../lib/styled';
 import { Item } from '../../../@types/product';
-import { CSSProperties } from 'react';
 
 interface Props extends BoxProps {
   item: Item;
-  width: CSSProperties['width'];
+  width: string | number;
 }
 
 const Price = styled(Box)({

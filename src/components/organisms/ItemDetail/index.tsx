@@ -10,7 +10,7 @@ import { Box, Flex } from '../../../lib/styled';
 
 type Props = RouteComponentProps<{ id: string }>;
 
-const Wrapper = styled(Flex)({
+const PurchaseWrapper = styled(Flex)({
   verticalAlign: 'top',
   textAlign: 'left',
 });
@@ -41,7 +41,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
         <Flex display={'inline-block'}>
           <img src={item.imagePath}></img>
         </Flex>
-        <Wrapper display={'inline-block'} ml={20}>
+        <PurchaseWrapper display={'inline-block'} ml={20}>
           <Name>{item.name}</Name>
           <Price mt={5}>{item.price} 円</Price>
           <Description mt={5}>{item.description}</Description>
@@ -68,7 +68,7 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
               カートに入れる
             </LinkButton>
           </Box>
-        </Wrapper>
+        </PurchaseWrapper>
       </Box>
     </>
   );
