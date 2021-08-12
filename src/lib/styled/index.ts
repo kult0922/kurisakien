@@ -15,6 +15,11 @@ export interface FlexProps {
   alignItems?: React.CSSProperties['alignItems'];
   justifyContent?: React.CSSProperties['justifyContent'];
   flexWrap?: React.CSSProperties['flexWrap'];
+  m?: React.CSSProperties['margin'];
+  mt?: React.CSSProperties['marginTop'];
+  mr?: React.CSSProperties['marginRight'];
+  mb?: React.CSSProperties['marginBottom'];
+  ml?: React.CSSProperties['marginLeft'];
   style?: React.CSSProperties;
 }
 
@@ -28,11 +33,16 @@ export const Box = styled.div<BoxProps>(({ m, mt, mr, mb, ml, style }) => ({
 }));
 
 export const Flex = styled.div<FlexProps>(
-  ({ display, alignItems, justifyContent, flexWrap, style }) => ({
+  ({ display, alignItems, justifyContent, flexWrap, m, mt, mr, mb, ml, style }) => ({
     display: display || 'flex',
     alignItems,
     justifyContent,
     flexWrap,
+    margin: m,
+    marginTop: mt,
+    marginRight: mr,
+    marginBottom: mb,
+    marginLeft: ml,
     ...style,
   }),
 );
