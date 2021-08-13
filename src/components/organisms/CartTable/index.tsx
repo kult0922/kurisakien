@@ -1,5 +1,6 @@
 import { GlobalStore } from '../../../store/Global';
 import styled from '@emotion/styled';
+import { Flex } from '../../../lib/styled';
 
 export const Table = styled.table({
   border: 'solid 2px #aaaaaa',
@@ -28,13 +29,17 @@ const TotalData = styled.td({
   fontSize: '1.5em',
 });
 
+const DeleteButton = styled.div({
+  color: 'red',
+});
+
 interface Props {
   editable: boolean;
 }
 
 export const CartTable: React.FC<Props> = ({ editable }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
-  const { carts, total, addCarts } = cartStore;
+  const { carts, total, addCarts, onDeleteCartItem } = cartStore;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
     <Table>
@@ -56,18 +61,27 @@ export const CartTable: React.FC<Props> = ({ editable }) => {
               <ItemData>{item.price}円</ItemData>
               <ItemData>
                 {editable ? (
-                  <select
-                    defaultValue={item.amount}
-                    onChange={(event) => {
-                      addCarts(item.id, Number(event.target.value));
-                    }}
-                  >
-                    {[...Array(10)].map((_, i) => (
-                      <option key={i} value={i + 1}>
-                        {i + 1}個
-                      </option>
-                    ))}
-                  </select>
+                  <Flex justifyContent="space-between" m={'0 25px'}>
+                    <select
+                      defaultValue={item.amount}
+                      onChange={(event) => {
+                        addCarts(item.id, Number(event.target.value));
+                      }}
+                    >
+                      {[...Array(10)].map((_, i) => (
+                        <option key={i} value={i + 1}>
+                          {i + 1}個
+                        </option>
+                      ))}
+                    </select>
+                    <DeleteButton
+                      onClick={() => {
+                        onDeleteCartItem(item.id);
+                      }}
+                    >
+                      削除
+                    </DeleteButton>
+                  </Flex>
                 ) : (
                   item.amount
                 )}

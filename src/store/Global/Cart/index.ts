@@ -19,6 +19,10 @@ export const useCart = () => {
     [carts],
   );
 
+  const onDeleteCartItem = useCallback((id: string) => {
+    setCarts((prev) => prev.filter((elem) => elem.id !== id));
+  }, []);
+
   useEffect(() => {
     const prices = carts.map((cart) => cart.amount * cart.price);
     setTotal(
@@ -26,5 +30,5 @@ export const useCart = () => {
     );
   }, [carts]);
 
-  return { carts, total, addCarts };
+  return { carts, total, addCarts, onDeleteCartItem };
 };
