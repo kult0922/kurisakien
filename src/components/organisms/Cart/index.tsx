@@ -3,6 +3,8 @@ import { CartTable } from '../CartTable';
 import { GlobalStore } from '../../../store/Global';
 import { Link } from 'react-router-dom';
 import { routing } from '../../../constants/routing';
+import { SectionTitle } from '../../atoms/SectionTitle';
+import { Box } from '../../../lib/styled';
 
 export const Cart: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
@@ -10,21 +12,20 @@ export const Cart: React.FC = () => {
   return (
     <>
       <TabBar />
-      <br />
-      <br />
-      <h2>カートの中身</h2>
-      <br />
-      {carts.length ? (
-        <div>
-          <CartTable editable />
-          <br />
-          <Link to={routing.checkout.root}>注文に進む</Link>
-        </div>
-      ) : (
-        'ショッピングカートに商品は入っていません。'
-      )}
+      <Box mt={10}>
+        <SectionTitle>カートの中身</SectionTitle>
+      </Box>
+      <Box mt={10}>
+        {carts.length ? (
+          <div>
+            <CartTable editable />
+            <Link to={routing.checkout.root}>注文に進む</Link>
+          </div>
+        ) : (
+          'ショッピングカートに商品は入っていません。'
+        )}
+      </Box>
 
-      <br />
       <Link to={routing.items.root}>買い物を続ける</Link>
     </>
   );

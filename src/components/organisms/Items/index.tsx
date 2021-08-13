@@ -1,22 +1,29 @@
-import { Link } from 'react-router-dom';
 import { itemList } from '../../../constants/store';
-import { Item } from '../../molecules/Item';
+import { ItemCard } from '../../molecules/ItemCard';
 import { TabBar } from '../../molecules/TabBar';
+import { SectionTitle } from '../../atoms/SectionTitle';
+import { Box } from '../../../lib/styled';
+import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+const ItemLink = styled(Link)({
+  color: '#1b1b1b',
+  textDecoration: 'none',
+  display: 'inline-block',
+});
 
 export const Items: React.FC = () => {
   return (
     <>
       <TabBar />
-      <h1>注文ページ</h1>
+      <Box mt={10}>
+        <SectionTitle>商品一覧</SectionTitle>
+      </Box>
       {itemList.map((item, i) => {
         return (
-          <div key={i}>
-            <Link to={'/items/' + item.id}>
-              <div>
-                <Item id={item.id} />
-              </div>
-            </Link>
-          </div>
+          <ItemLink to={'/items/' + item.id} key={i}>
+            <ItemCard item={item} m={10} width={300} />
+          </ItemLink>
         );
       })}
     </>
