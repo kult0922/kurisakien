@@ -34,17 +34,18 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
   const id = match.params.id;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
+  const { imagePath, name, price, description } = item;
   return (
     <>
       <TabBar />
       <Box mt={50}>
         <Flex display={'inline-block'}>
-          <img src={item.imagePath}></img>
+          <img src={imagePath}></img>
         </Flex>
         <PurchaseWrapper display={'inline-block'} ml={20}>
-          <Name>{item.name}</Name>
-          <Price mt={5}>{item.price} 円</Price>
-          <Description mt={5}>{item.description}</Description>
+          <Name>{name}</Name>
+          <Price mt={5}>{price} 円</Price>
+          <Description mt={5}>{description}</Description>
           <Box mt={30}>数量</Box>
           <select
             defaultValue={1}
