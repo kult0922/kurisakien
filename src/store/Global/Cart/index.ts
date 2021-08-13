@@ -25,10 +25,7 @@ export const useCart = () => {
   const total = useMemo(() => {
     if (!carts.length) return 0;
     const prices = carts.map((elem) => elem.amount * elem.price);
-    return prices.reduce(
-      (accumulator: number, currentValue: number) => accumulator + currentValue,
-      0,
-    );
+    return prices.reduce((acc: number, val: number) => acc + val, 0);
   }, [carts]);
 
   return { carts, total, addCarts, onDeleteCartItem };
