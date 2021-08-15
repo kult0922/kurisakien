@@ -1,7 +1,17 @@
-name: Hello world!
- on: push
- jobs:
-   Hello-world:
-     runs-on: ubuntu-latest
-     steps:
-       - run: echo "Hello world! 🎉"
+name: Hello, World!
+# 何をアクションとするか
+# この場合該当リポジトリにどのブランチでpushしても以下のjobが必ず実行される
+on: push
+
+jobs:
+  # jobのkey名
+  # 複数のjobを作成し他のjobから使用する際にはこのkey名を使用する
+  # もしこのjobのnameを指定しなかった場合は、このkey名がnameとして使われる
+  build:
+    # jobの名前
+    name: Greeting
+    # 使用するOperating System
+    runs-on: ubuntu-latest
+    # 実行する内容
+    steps:
+      - run: echo "Hello, World!"
