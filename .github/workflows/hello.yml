@@ -1,5 +1,5 @@
 name: Hello world!
- on: puth
+ on: push
  jobs:
    Hello-world:
      runs-on: ubuntu-latest
