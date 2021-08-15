@@ -12,6 +12,7 @@ const Title = styled(Box)({
 
 const Content = styled(Box)({
   whiteSpace: 'pre-wrap',
+  textAlign: 'center',
 });
 
 export const NewsDetail: React.FC<Props> = ({ match }) => {
@@ -24,7 +25,9 @@ export const NewsDetail: React.FC<Props> = ({ match }) => {
       <TabBar />
       <Box mt={50}>
         <Title>{title}</Title>
-        <Content mt={5}>{content}</Content>
+        <Content mr={'auto'} ml={'auto'} style={{ width: '70%' }}>
+          {content}
+        </Content>
       </Box>
     </>
   );
