@@ -20,7 +20,11 @@ const Table = styled.table({
 const TableHeader = styled.td({
   textAlign: 'left',
   paddingRight: '100px',
-  paddingLeft: '30px',
+  paddingLeft: '20px',
+  '@media (max-width: 767px)': {
+    display: 'block',
+    paddingTop: '20px',
+  },
 });
 
 const TableRow = styled.tr({
@@ -30,6 +34,9 @@ const TableRow = styled.tr({
 const TableData = styled.td({
   textAlign: 'left',
   padding: '20px',
+  '@media (max-width: 767px)': {
+    display: 'block',
+  },
 });
 
 const Title = styled(Box)({
@@ -72,7 +79,7 @@ export const CustomerForm: React.FC<Props> = ({ onChangeCutomer }) => {
                   onChange={(event) => {
                     onChangeCutomer(event.target.value, event.target.name);
                   }}
-                  width={500}
+                  width={300}
                 />
               </TableData>
             </TableRow>
