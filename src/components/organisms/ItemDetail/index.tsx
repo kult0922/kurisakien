@@ -1,6 +1,5 @@
 import { RouteComponentProps } from 'react-router-dom';
 import { itemList } from '../../../constants/store';
-import { TabBar } from '../../molecules/TabBar';
 import styled from '@emotion/styled';
 import { GlobalStore } from '../../../store/Global';
 import { useState } from 'react';
@@ -37,7 +36,6 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
   const { imagePath, name, price, description } = item;
   return (
     <>
-      <TabBar />
       <Box mt={50}>
         <Flex display={'inline-block'}>
           <img src={imagePath}></img>
