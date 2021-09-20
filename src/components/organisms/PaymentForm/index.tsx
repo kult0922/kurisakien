@@ -1,63 +1,87 @@
-import { FormTable } from '../../atoms/FormTable';
-import { FormTableHeader } from '../../atoms/FormTableHeader';
-import { FormTableRow } from '../../atoms/FormTableRow';
-import { FormTableData } from '../../atoms/FormTableData';
 import { PaymentType } from '../../../@types/order';
+import styled from '@emotion/styled';
+import { Box, Flex } from '../../../lib/styled';
 
 interface Props {
   paymentType: PaymentType;
   onChangePaymentType: (paymentType: PaymentType) => void;
 }
 
+const Title = styled(Box)({
+  fontSize: '28px',
+});
+
+const Table = styled.table({
+  border: 'solid 2px #aaaaaa',
+  borderCollapse: 'collapse',
+});
+
+const TableRow = styled.tr({
+  borderBottom: 'solid 1px #aaaaaa',
+});
+
+const TableData = styled.td({
+  textAlign: 'left',
+  padding: '20px',
+});
+
+const Wrapper = styled.div({
+  textAlign: 'center',
+});
+
 export const PaymentForm: React.FC<Props> = ({ paymentType, onChangePaymentType }) => {
   return (
-    <>
-      <h1>決済方法の選択</h1>
-      <FormTable>
-        <tbody>
-          <FormTableRow>
-            <FormTableHeader>
-              <input
-                type="radio"
-                value="postal"
-                onChange={(event) => {
-                  onChangePaymentType(event.target.value as PaymentType);
-                }}
-                checked={paymentType === 'postal'}
-              />
-            </FormTableHeader>
-            <FormTableData>郵便振り込み</FormTableData>
-          </FormTableRow>
+    <Wrapper>
+      <Box m={20}>
+        <Title>お支払い方法</Title>
+      </Box>
+      <Flex justifyContent={'center'}>
+        <Table>
+          <tbody>
+            <TableRow>
+              <TableData>
+                <input
+                  type="radio"
+                  value="postal"
+                  onChange={(event) => {
+                    onChangePaymentType(event.target.value as PaymentType);
+                  }}
+                  checked={paymentType === 'postal'}
+                />
+                郵便振り込み
+              </TableData>
+            </TableRow>
 
-          <FormTableRow>
-            <FormTableHeader>
-              <input
-                type="radio"
-                value="convenience"
-                onChange={(event) => {
-                  onChangePaymentType(event.target.value as PaymentType);
-                }}
-                checked={paymentType === 'convenience'}
-              />
-            </FormTableHeader>
-            <FormTableData>コンビニ決済</FormTableData>
-          </FormTableRow>
+            <TableRow>
+              <TableData>
+                <input
+                  type="radio"
+                  value="convenience"
+                  onChange={(event) => {
+                    onChangePaymentType(event.target.value as PaymentType);
+                  }}
+                  checked={paymentType === 'convenience'}
+                />
+                コンビニ決済
+              </TableData>
+            </TableRow>
 
-          <FormTableRow>
-            <FormTableHeader>
-              <input
-                type="radio"
-                value="bank"
-                onChange={(event) => {
-                  onChangePaymentType(event.target.value as PaymentType);
-                }}
-                checked={paymentType === 'bank'}
-              />
-            </FormTableHeader>
-            <FormTableData>銀行振り込み</FormTableData>
-          </FormTableRow>
-        </tbody>
-      </FormTable>
-    </>
+            <TableRow>
+              <TableData>
+                <input
+                  type="radio"
+                  value="bank"
+                  onChange={(event) => {
+                    onChangePaymentType(event.target.value as PaymentType);
+                  }}
+                  checked={paymentType === 'bank'}
+                />
+                銀行振り込み
+              </TableData>
+            </TableRow>
+          </tbody>
+        </Table>
+      </Flex>
+    </Wrapper>
   );
 };
