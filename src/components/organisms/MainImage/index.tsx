@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { bp } from '../../../constants/css';
 
 const MainText = styled.div({
   position: 'absolute',
@@ -8,7 +9,7 @@ const MainText = styled.div({
   top: '30px',
   right: 'calc(100% - 300px)',
   writingMode: 'vertical-rl',
-  '@media (max-width: 767px)': {
+  [bp.md]: {
     display: 'none',
   },
 });
@@ -22,7 +23,7 @@ const SubText = styled.div({
   top: '60px',
   right: 'calc(100% - 200px)',
   writingMode: 'vertical-rl',
-  '@media (max-width: 767px)': {
+  [bp.md]: {
     display: 'none',
   },
 });

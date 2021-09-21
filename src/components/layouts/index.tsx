@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { TabBar } from '../molecules/TabBar';
 import { Box } from '../../lib/styled';
 import { KurisakienLogo } from '../Icons/KurisakienLogo';
+import { bp } from '../../constants/css';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -10,7 +11,7 @@ const Wrapper = styled.div({
 export const Header = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  '@media (max-width: 767px)': {
+  [bp.md]: {
     display: 'block',
   },
 });
