@@ -9,7 +9,7 @@ const Wrapper = styled.div({
 
 export const Confirm: React.FC = () => {
   const { paymentType, customer, onClickConfirmButton } = useConfirm();
-  const [processing, setProcessing] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Wrapper>
@@ -30,9 +30,9 @@ export const Confirm: React.FC = () => {
       決済方法: {paymentType}
       <br />
       <button
-        disabled={processing}
+        disabled={disabled}
         onClick={async () => {
-          setProcessing(true);
+          setDisabled(true);
           await onClickConfirmButton();
         }}
       >
