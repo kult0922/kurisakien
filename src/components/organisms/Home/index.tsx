@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { newsList } from '../../../constants/news';
 import { Box, Flex } from '../../../lib/styled';
-import { MainImage } from '../MainImage';
+import { MainImage } from './MainImage';
+import { P } from '../../atoms/P';
 
 const NewsLink = styled(Link)({
   color: '#1b1b1b',
@@ -74,19 +75,12 @@ export const Home: React.FC = () => {
             <Box>
               <SubSection>豊かな自然の中で</SubSection>
               <Paragrapgh mt={30}>
-                とにかくね、僕はね、広いライ麦畑やなんかがあってさ、
-                <br />
-                そこで小さな子供たちがみんなでなんかのゲームをしてるところが目に見えるんだよ。
-                <br />
-                <br />
-                何千かっていう子供たちがいるんだ。
-                <br />
-                そしてあたりには誰もいない。
-                <br />
-                <br />
-                誰もって大人はだよ。僕の他にはね。
-                <br />
-                で、僕はあぶない崖のふちに立っているんだ。
+                <P>とにかくね、僕はね、広いライ麦畑やなんかがあってさ、</P>
+                <P>
+                  そこで小さな子供たちがみんなでなんかのゲームをしてるところが目に見えるんだよ。
+                </P>
+                <P mt={20}>何千かっていう子供たちがいるんだ そしてあたりには誰もいない。</P>
+                <P>誰もって大人はだよ。僕の他にはね。 で、僕はあぶない崖のふちに立っているんだ。</P>
               </Paragrapgh>
             </Box>
             <Box style={{ width: '40%' }}>
@@ -106,17 +100,15 @@ export const Home: React.FC = () => {
             <Box>
               <SubSection>香り</SubSection>
               <Paragrapgh mt={30}>
-                僕のやる仕事はね、誰でも崖から転がり落ちそうになったら、その子を捕まえることなんだ。
-                <br />
+                <P>
+                  僕のやる仕事はね、誰でも崖から転がり落ちそうになったら、その子を捕まえることなんだ。
+                </P>
                 つまり、子供たちは走っているときにどこを通ってるかなんて見やしないだろう。
-                <br />
-                <br />
-                そんなとき僕は、どっからか、さっさととび出して行って、そこ子をつかまえてやらなきゃいけないんだ。
-                <br />
-                一日じゅう、それだけをやればいいんだな。
-                <br />
-                <br />
-                ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。
+                <P mt={20}>
+                  そんなとき僕は、どっからか、さっさととび出して行って、そこ子をつかまえてやらなきゃいけないんだ。
+                </P>
+                <P>一日じゅう、それだけをやればいいんだな。</P>
+                <P>ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。</P>
               </Paragrapgh>
             </Box>
             <Box style={{ width: '40%' }}>
@@ -141,12 +133,9 @@ export const Home: React.FC = () => {
             <Box>
               <SubSection>土壌</SubSection>
               <Paragrapgh mt={30}>
-                馬鹿げていることは知っているよ。
-                <br />
-                でも、ほんとうになりたいものといったらそれしかないね。
-                <br />
-                <br />
-                馬鹿げていることは知っているけどさ。
+                <P>馬鹿げていることは知っているよ。</P>
+                <P>でも、ほんとうになりたいものといったらそれしかないね。</P>
+                <P>馬鹿げていることは知っているけどさ。</P>
               </Paragrapgh>
             </Box>
           </Flex>
