@@ -14,9 +14,47 @@ export const useOrder = () => {
     setCustomer((prev) => ({ ...prev, [key]: value }));
   }, []);
 
+  const isValid = useCallback(
+    (key: string) => {
+      if (key == 'postalCode') {
+        if (customer.postalCode.length == 0) return false;
+        const ptn = new RegExp('^[0-9]{3}-?[0-9]{4}$');
+        if (!ptn.test(customer.postalCode)) return false;
+      }
+
+      if (key == 'address') {
+        if (customer.address.length == 0) return false;
+      }
+
+      if (key == 'firstName') {
+        if (customer.firstName.length == 0) return false;
+      }
+
+      if (key == 'lastName') {
+        if (customer.lastName.length == 0) return false;
+      }
+
+      if (key == 'phone') {
+        if (customer.phone.length == 0) return false;
+        const ptn = new RegExp('^[0-9]{2,4}-?[0-9]{2,4}-?[0-9]{3,4}$');
+        if (!ptn.test(customer.phone)) return false;
+      }
+
+      if (key == 'email') {
+        if (customer.email.length == 0) return false;
+        const ptn = new RegExp('^.+@.+\\..+$');
+        if (!ptn.test(customer.email)) return false;
+      }
+
+      return true;
+    },
+    [customer],
+  );
+
   return {
     paymentType,
     customer,
+    isValid,
     onChangePaymentType,
     onChangeCutomer,
   };
