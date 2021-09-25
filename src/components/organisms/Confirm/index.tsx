@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useConfirm } from '../../../store/organisms/Confirm';
 import { CartTable } from '../CartTable';
+import { useState } from 'react';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -8,6 +9,7 @@ const Wrapper = styled.div({
 
 export const Confirm: React.FC = () => {
   const { paymentType, customer, onClickConfirmButton } = useConfirm();
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Wrapper>
@@ -27,7 +29,15 @@ export const Confirm: React.FC = () => {
       <br />
       決済方法: {paymentType}
       <br />
-      <button onClick={onClickConfirmButton}>注文確定</button>
+      <button
+        disabled={disabled}
+        onClick={async () => {
+          setDisabled(true);
+          await onClickConfirmButton();
+        }}
+      >
+        注文確定
+      </button>
     </Wrapper>
   );
 };
