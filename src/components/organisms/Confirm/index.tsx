@@ -7,7 +7,7 @@ const Wrapper = styled.div({
 });
 
 export const Confirm: React.FC = () => {
-  const { paymentType, customer, onClickConfirmButton } = useConfirm();
+  const { order, onClickConfirmButton } = useConfirm();
 
   return (
     <Wrapper>
@@ -15,17 +15,17 @@ export const Confirm: React.FC = () => {
       <CartTable editable={false} />
       <br />
       <br />
-      郵便番号: {customer.postalCode}
+      郵便番号: {order.postalCode}
       <br />
-      住所: {customer.address}
+      住所: {order.address}
       <br />
-      氏名: {customer.lastName} {customer.firstName}
+      氏名: {order.lastName} {order.firstName}
       <br />
-      メールアドレス: {customer.email}
+      メールアドレス: {order.email}
       <br />
-      電話番号: {customer.phone}
+      電話番号: {order.phone}
       <br />
-      決済方法: {paymentType}
+      決済方法: {order.paymentType}
       <br />
       <button onClick={onClickConfirmButton}>注文確定</button>
     </Wrapper>
