@@ -9,8 +9,7 @@ import { Box, Flex } from '../../../lib/styled';
 
 type Props = RouteComponentProps<{ id: string }>;
 
-const PurchaseWrapper = styled(Flex)({
-  verticalAlign: 'top',
+const PurchaseWrapper = styled(Box)({
   textAlign: 'left',
 });
 
@@ -37,37 +36,39 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
   return (
     <>
       <Box mt={50}>
-        <Flex display={'inline-block'}>
-          <img src={imagePath}></img>
-        </Flex>
-        <PurchaseWrapper display={'inline-block'} ml={20}>
-          <Name>{name}</Name>
-          <Price mt={5}>{price} 円</Price>
-          <Description mt={5}>{description}</Description>
-          <Box mt={30}>数量</Box>
-          <select
-            defaultValue={1}
-            onChange={(event) => {
-              setItemCount(Number(event.target.value));
-            }}
-          >
-            {[...Array(10)].map((_, i) => (
-              <option key={i} value={i + 1}>
-                {i + 1}
-              </option>
-            ))}
-          </select>
-          <Box mt={60}>
-            <LinkButton
-              to={routing.cart.root}
-              onClick={() => {
-                addCarts(item.id, itemCount);
+        <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
+          <Box style={{ width: '50%' }}>
+            <img src={imagePath} width="100%"></img>
+          </Box>
+          <PurchaseWrapper ml={30} mt={30}>
+            <Name>{name}</Name>
+            <Price mt={5}>{price} 円</Price>
+            <Description mt={5}>{description}</Description>
+            <Box mt={30}>数量</Box>
+            <select
+              defaultValue={1}
+              onChange={(event) => {
+                setItemCount(Number(event.target.value));
               }}
             >
-              カートに入れる
-            </LinkButton>
-          </Box>
-        </PurchaseWrapper>
+              {[...Array(10)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+            <Box mt={60}>
+              <LinkButton
+                to={routing.cart.root}
+                onClick={() => {
+                  addCarts(item.id, itemCount);
+                }}
+              >
+                カートに入れる
+              </LinkButton>
+            </Box>
+          </PurchaseWrapper>
+        </Flex>
       </Box>
     </>
   );

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Box } from '../../../lib/styled';
 import { useConfirm } from '../../../store/organisms/Confirm';
 import { CartTable } from '../CartTable';
+import { useState } from 'react';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -9,6 +10,7 @@ const Wrapper = styled.div({
 
 export const Confirm: React.FC = () => {
   const { paymentType, customer, onClickConfirmButton } = useConfirm();
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Wrapper>
