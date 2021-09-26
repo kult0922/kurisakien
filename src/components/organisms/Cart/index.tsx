@@ -1,4 +1,3 @@
-import { TabBar } from '../../molecules/TabBar';
 import { CartTable } from '../CartTable';
 import { GlobalStore } from '../../../store/Global';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,6 @@ export const Cart: React.FC = () => {
   const { carts } = cartStore;
   return (
     <>
-      <TabBar />
       <Box mt={10}>
         <SectionTitle>カートの中身</SectionTitle>
       </Box>

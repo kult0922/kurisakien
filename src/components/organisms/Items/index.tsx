@@ -1,6 +1,5 @@
 import { itemList } from '../../../constants/store';
 import { ItemCard } from '../../molecules/ItemCard';
-import { TabBar } from '../../molecules/TabBar';
 import { SectionTitle } from '../../atoms/SectionTitle';
 import { Box } from '../../../lib/styled';
 import { Link } from 'react-router-dom';
@@ -15,7 +14,6 @@ const ItemLink = styled(Link)({
 export const Items: React.FC = () => {
   return (
     <>
-      <TabBar />
       <Box mt={10}>
         <SectionTitle>商品一覧</SectionTitle>
       </Box>
