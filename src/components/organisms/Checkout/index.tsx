@@ -5,6 +5,7 @@ import { Order } from '../../../@types/order';
 import { routing } from '../../../constants/routing';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { GlobalStore } from '../../../store/Global';
+import { bp } from '../../../constants/css';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -26,7 +27,7 @@ const TableHeader = styled.td({
   textAlign: 'left',
   paddingRight: '100px',
   paddingLeft: '20px',
-  '@media (max-width: 767px)': {
+  [bp.md]: {
     display: 'block',
     paddingTop: '20px',
   },
@@ -39,7 +40,7 @@ const TableRow = styled.tr({
 const TableData = styled.td({
   textAlign: 'left',
   padding: '20px',
-  '@media (max-width: 767px)': {
+  [bp.md]: {
     display: 'block',
   },
 });
