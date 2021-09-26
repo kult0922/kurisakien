@@ -1,15 +1,11 @@
 type PaymentType = 'postal' | 'convenience' | 'bank';
 
-export interface Customer {
+export interface Order {
   postalCode: string;
   address: string;
   firstName: string;
   lastName: string;
   phone: string;
   email: string;
-}
-
-export interface Order {
-  customer: Customer;
-  paymentMethod: PaymentMethod;
+  paymentType: PaymentType;
 }

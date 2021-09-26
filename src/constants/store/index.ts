@@ -1,4 +1,4 @@
-import { Customer, PaymentType } from '../../@types/order';
+import { Order } from '../../@types/order';
 import { Item } from '../../@types/product';
 
 export const itemList: Item[] = [
@@ -114,13 +114,12 @@ export const itemList: Item[] = [
   },
 ];
 
-export const initialCustomer: Customer = {
+export const initialOrder: Order = {
   postalCode: '',
   address: '',
   firstName: '',
   lastName: '',
   phone: '',
   email: '',
+  paymentType: 'postal',
 };
-
-export const initialPaymentType: PaymentType = 'postal';

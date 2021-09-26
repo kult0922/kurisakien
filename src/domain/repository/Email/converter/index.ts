@@ -9,14 +9,14 @@ const createOrderText = (email: Email) => {
     items += '<br />';
   });
 
-  const { customer, paymentType, totalAmount } = email;
+  const { order, totalAmount } = email;
 
-  const body = `氏名: ${customer.lastName} ${customer.firstName}<br />
-                郵便番号: ${customer.postalCode}<br />
-                住所: ${customer.address}<br />
-                電話番号: ${customer.phone}<br />
-                メール: ${customer.email}<br />
-                支払い方法: ${paymentType}<br /><br />
+  const body = `氏名: ${order.lastName} ${order.firstName}<br />
+                郵便番号: ${order.postalCode}<br />
+                住所: ${order.address}<br />
+                電話番号: ${order.phone}<br />
+                メール: ${order.email}<br />
+                支払い方法: ${order.paymentType}<br /><br />
                 ＜注文内容＞<br />
                 ${items}
                 合計金額: ${totalAmount}
@@ -60,7 +60,7 @@ const createOwnerParameter = (email: Email): CreateEmailRequestParameter => {
 const createUserParameter = (email: Email): CreateEmailRequestParameter => {
   const params: CreateEmailRequestParameter = {
     emailBody: createUserEmailBody(email),
-    destinationEmail: email.customer.email,
+    destinationEmail: email.order.email,
     subject: 'ご注文ありがとうございます',
   };
   return params;
