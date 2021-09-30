@@ -10,6 +10,7 @@
 
 # production
 /build
+/out
 
 # misc
 .DS_Store
@@ -21,6 +22,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# firebase cache
+.firebase/
+
+# next
+.next
 
 # プロジェクトに関係するものを入れておく場所
 /other
