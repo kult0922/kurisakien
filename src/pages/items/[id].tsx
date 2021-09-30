@@ -1,13 +1,13 @@
-import { RouteComponentProps } from 'react-router-dom';
-import { itemList } from '../../../constants/store';
+import { itemList } from '../../constants/store';
 import styled from '@emotion/styled';
-import { GlobalStore } from '../../../store/Global';
+import { GlobalStore } from '../../store/Global';
 import { useState } from 'react';
-import { LinkButton } from '../../atoms/LinkButton';
-import { routing } from '../../../constants/routing';
-import { Box, Flex } from '../../../lib/styled';
-
-type Props = RouteComponentProps<{ id: string }>;
+import { LinkButton } from '../../components/atoms/LinkButton';
+import { Box, Flex } from '../../lib/styled';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { Header } from '../../components/organisms/Header';
+import { routing } from '../../constants/routing';
 
 const PurchaseWrapper = styled(Box)({
   textAlign: 'left',
@@ -25,16 +25,18 @@ const Price = styled(Box)({
   color: '#909090',
 });
 
-export const ItemDetail: React.FC<Props> = ({ match }) => {
+const ItemDetail: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
-  const id = match.params.id;
+  const router = useRouter();
+  const { id } = router.query;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
   const { imagePath, name, price, description } = item;
   return (
     <>
+      <Header />
       <Box mt={50}>
         <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
           <Box style={{ width: '50%' }}>
@@ -58,14 +60,15 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
               ))}
             </select>
             <Box mt={60}>
-              <LinkButton
-                to={routing.cart.root}
-                onClick={() => {
-                  addCarts(item.id, itemCount);
-                }}
-              >
-                カートに入れる
-              </LinkButton>
+              <Link href={routing.cart.root} passHref>
+                <LinkButton
+                  onClick={() => {
+                    addCarts(item.id, itemCount);
+                  }}
+                >
+                  カートに入れる
+                </LinkButton>
+              </Link>
             </Box>
           </PurchaseWrapper>
         </Flex>
@@ -73,3 +76,17 @@ export const ItemDetail: React.FC<Props> = ({ match }) => {
     </>
   );
 };
+
+// for SSG
+export const getStaticPaths = () => {
+  const paths = itemList.map((elem) => ({
+    params: { id: elem.id },
+  }));
+  return { paths, fallback: false };
+};
+
+export const getStaticProps = () => {
+  return { props: {} };
+};
+
+export default ItemDetail;

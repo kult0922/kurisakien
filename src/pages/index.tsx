@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
-import { newsList } from '../../../constants/news';
-import { Box, Flex } from '../../../lib/styled';
-import { MainImage } from './MainImage';
-import { P } from '../../atoms/P';
+import { newsList } from '../constants/news';
+import { Box, Flex } from '../lib/styled';
+import { bp } from '../constants/css';
+import { P } from '../components/atoms/P';
+import Link from 'next/link';
+import { Header } from '../components/organisms/Header';
+import { routing } from '../constants/routing';
 
-const NewsLink = styled(Link)({
+const News = styled.a({
   color: '#1b1b1b',
 });
 
@@ -43,11 +45,55 @@ const ContentWrapper = styled.div({
   margin: 'auto',
 });
 
-export const Home: React.FC = () => {
+const MainText = styled.div({
+  position: 'absolute',
+  fontSize: '24px',
+  background: 'white',
+  padding: '15px',
+  top: '30px',
+  right: 'calc(100% - 300px)',
+  writingMode: 'vertical-rl',
+  [bp.md]: {
+    display: 'none',
+  },
+});
+
+const SubText = styled.div({
+  textAlign: 'left',
+  position: 'absolute',
+  fontSize: '14px',
+  background: 'white',
+  padding: '15px',
+  top: '60px',
+  right: 'calc(100% - 200px)',
+  writingMode: 'vertical-rl',
+  [bp.md]: {
+    display: 'none',
+  },
+});
+
+const MainImage = styled.div({
+  position: 'relative',
+});
+
+const Home: React.FC = () => {
   return (
     <>
+      <Header />
       <Box mt={30}>
-        <MainImage />
+        <MainImage>
+          <img
+            src="http://placehold.jp/24/cc9999/993333/1200x400.png?text=メイン画像"
+            alt="栗崎園"
+            width="100%"
+          />
+          <MainText>メインテキスト</MainText>
+          <SubText>
+            <P m={3}>今の前の小説から。はいっ。</P>
+            <P m={3}>みんなまたはじめました。</P>
+            <P m={3}>ゴーシュも口をまげて一生懸命です。</P>
+          </SubText>
+        </MainImage>
       </Box>
       <ContentWrapper>
         <Box mt={40}>
@@ -59,7 +105,15 @@ export const Home: React.FC = () => {
                   <Flex flexWrap={'wrap'} key={i}>
                     <NewsDate mr={40}>{news.date}</NewsDate>
                     <Box>
-                      <NewsLink to={'/news/' + news.id}>{news.title}</NewsLink>
+                      <Link
+                        href={{
+                          pathname: routing.news.id,
+                          query: { id: news.id },
+                        }}
+                        passHref
+                      >
+                        <News>{news.title}</News>
+                      </Link>
                     </Box>
                   </Flex>
                 );
@@ -144,3 +198,5 @@ export const Home: React.FC = () => {
     </>
   );
 };
+
+export default Home;

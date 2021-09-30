@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { useHistory } from 'react-router';
-import { Box, Flex } from '../../../lib/styled';
-import { Order } from '../../../@types/order';
-import { routing } from '../../../constants/routing';
+import { Box, Flex } from '../../lib/styled';
+import { Order } from '../../@types/order';
+import { routing } from '../../constants/routing';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { GlobalStore } from '../../../store/Global';
-import { bp } from '../../../constants/css';
+import { GlobalStore } from '../../store/Global';
+import { bp } from '../../constants/css';
+import { useRouter } from 'next/router';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -54,10 +54,11 @@ const ErrorText = styled(Box)({
   color: 'red',
 });
 
-export const Checkout: React.FC = () => {
+const Checkout: React.FC = () => {
   const { order: orderContainer } = GlobalStore.useContainer();
   const { setOrder } = orderContainer;
-  const history = useHistory();
+  const router = useRouter();
+  // const history = useHistory();
 
   const {
     register,
@@ -71,7 +72,7 @@ export const Checkout: React.FC = () => {
 
   const onSubmit: SubmitHandler<Order> = (data) => {
     setOrder(data);
-    history.push(routing.checkout.confirm);
+    router.push(routing.checkout.confirm);
   };
 
   return (
@@ -235,3 +236,5 @@ export const Checkout: React.FC = () => {
     </Wrapper>
   );
 };
+
+export default Checkout;
