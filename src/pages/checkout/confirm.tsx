@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { Box } from '../../../lib/styled';
-import { useConfirm } from '../../../store/organisms/Confirm';
-import { CartTable } from '../CartTable';
+import { Box } from '../../lib/styled';
+import { useConfirm } from '../../store/organisms/Confirm';
+import { CartTable } from '../../components/organisms/CartTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',
 });
 
-export const Confirm: React.FC = () => {
+const Confirm: React.FC = () => {
   const { order, onClickConfirmButton } = useConfirm();
   const [disabled, setDisabled] = useState(false);
 
@@ -36,3 +36,5 @@ export const Confirm: React.FC = () => {
     </Wrapper>
   );
 };
+
+export default Confirm;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 
-export const Tab = styled(Link)<{ bottom?: number | string }>(({ bottom = -4 }) => ({
+export const Tab = styled.a<{ bottom?: number | string }>(({ bottom = -4 }) => ({
+  textAlign: 'center',
   position: 'relative',
   display: 'inline-block',
   color: '#1b1b1b',

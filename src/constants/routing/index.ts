@@ -7,11 +7,11 @@ export const routing = {
   root: '/',
   items: {
     root: items,
-    itemId: items + '/:id',
+    id: items + '/[id]',
   },
   news: {
     root: news,
-    newsId: news + '/:id',
+    id: news + '/[id]',
   },
   cart: {
     root: cart,
