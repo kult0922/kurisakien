@@ -28,6 +28,13 @@ export const useCart = () => {
     return prices.reduce((acc: number, val: number) => acc + val, 0);
   }, [carts]);
 
+  // localstrageに保存されているデータでカートを初期化
+  useEffect(() => {
+    const storedCarts = JSON.parse(localStorage.getItem('carts')) as CartItem[];
+    setCarts(storedCarts);
+  }, []);
+
+  // localstrageに保存
   useEffect(() => {
     localStorage.setItem('carts', JSON.stringify(carts));
   }, [carts]);
