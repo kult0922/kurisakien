@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { CartItem } from '../../../@types/product';
 import { itemList } from '../../../constants/store';
 
@@ -26,6 +26,17 @@ export const useCart = () => {
     if (!carts.length) return 0;
     const prices = carts.map((elem) => elem.amount * elem.price);
     return prices.reduce((acc: number, val: number) => acc + val, 0);
+  }, [carts]);
+
+  // localstrageに保存されているデータでカートを初期化
+  useEffect(() => {
+    const storedCarts = JSON.parse(localStorage.getItem('carts')) as CartItem[];
+    setCarts(storedCarts);
+  }, []);
+
+  // localstrageに保存
+  useEffect(() => {
+    localStorage.setItem('carts', JSON.stringify(carts));
   }, [carts]);
 
   return { carts, total, addCarts, onDeleteCartItem };
