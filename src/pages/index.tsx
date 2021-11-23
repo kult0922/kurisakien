@@ -72,8 +72,32 @@ const SubText = styled.div({
   },
 });
 
-const MainImage = styled.div({
+const Top = styled.div({
   position: 'relative',
+});
+
+const MainImage = styled.img({
+  width: '100%',
+  height: '600px',
+  objectFit: 'cover',
+  objectPosition: '50% 40%',
+  [bp.md]: {
+    height: '300px',
+  },
+});
+
+const SubImage = styled.img({
+  width: '100%',
+  height: '430px',
+  objectFit: 'cover',
+});
+
+const SectionFlex = styled(Flex)({
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  [bp.md]: {
+    justifyContent: 'center',
+  },
 });
 
 const Home: React.FC = () => {
@@ -81,19 +105,14 @@ const Home: React.FC = () => {
     <>
       <Header />
       <Box mt={30}>
-        <MainImage>
-          <img
-            src="http://placehold.jp/24/cc9999/993333/1200x400.png?text=メイン画像"
-            alt="栗崎園"
-            width="100%"
-          />
-          <MainText>メインテキスト</MainText>
+        <Top>
+          <MainImage src="/image/main/home.JPG" alt="栗崎園" />
+          <MainText>霧の里、春野町のお茶農家</MainText>
           <SubText>
-            <P m={3}>今の前の小説から。はいっ。</P>
-            <P m={3}>みんなまたはじめました。</P>
-            <P m={3}>ゴーシュも口をまげて一生懸命です。</P>
+            <P m={3}>ちいさいながらも、</P>
+            <P m={3}>自然と共に日々お茶づくりに励んでいます。</P>
           </SubText>
-        </MainImage>
+        </Top>
       </Box>
       <ContentWrapper>
         <Box mt={40}>
@@ -125,74 +144,61 @@ const Home: React.FC = () => {
         <SmallSection mt={20}>栗崎園のお茶</SmallSection>
 
         <Box mt={100}>
-          <Flex justifyContent={'space-between'} alignItems={'center'} flexWrap={'wrap'}>
+          <SectionFlex flexWrap="wrap">
             <Box>
-              <SubSection>豊かな自然の中で</SubSection>
+              <SubSection>地の利・茶畑</SubSection>
               <Paragrapgh mt={30}>
-                <P>とにかくね、僕はね、広いライ麦畑やなんかがあってさ、</P>
-                <P>
-                  そこで小さな子供たちがみんなでなんかのゲームをしてるところが目に見えるんだよ。
+                <P>春野町は、天竜川の支流・気田川が流れる静かな山あいの里です。</P>
+                <P>標高350ｍ、川を見下ろす茶畑には度々霧が立ち込め、</P>
+                <P>辺り一面柔らかい日差しと穏やかな風に包まれます</P>
+                <P mt={20}>
+                  先人からの知恵、気象、茶の木の生育状況、さらに年2回の土壌分析結果を吟味し、
                 </P>
-                <P mt={20}>何千かっていう子供たちがいるんだ そしてあたりには誰もいない。</P>
-                <P>誰もって大人はだよ。僕の他にはね。 で、僕はあぶない崖のふちに立っているんだ。</P>
+                適切な施肥、減農薬を心がけ、茶の木にストレスを与えない管理、収穫をしています。
+                <P>小さな茶園の造成、小型立ち乗り摘採機の導入など品質向上の工夫もしています。</P>
+                <P>自然・ヒト・茶の木に優しい農業、そして飲んでくださる皆さまにも優しく響く、</P>
+                <P>そんなお茶作りを目指しています。</P>
               </Paragrapgh>
             </Box>
-            <Box style={{ width: '40%' }}>
-              <img
-                src="http://placehold.jp/24/99cc99/993333/500x500.png?text=image"
-                width="100%"
-                alt="栗崎園"
-              />
+            <Box>
+              <SubImage src="/image/main/sub1.JPG" alt="栗崎園" />
             </Box>
-          </Flex>
+          </SectionFlex>
         </Box>
         <Section mt={100}>Feature</Section>
         <SmallSection mt={20}>特徴</SmallSection>
 
         <Box mt={100}>
-          <Flex justifyContent={'space-between'} alignItems={'center'} flexWrap={'wrap'}>
+          <SectionFlex flexWrap="wrap">
             <Box>
-              <SubSection>香り</SubSection>
+              <SubSection>人の利・茶工場</SubSection>
               <Paragrapgh mt={30}>
-                <P>
-                  僕のやる仕事はね、誰でも崖から転がり落ちそうになったら、その子を捕まえることなんだ。
-                </P>
-                つまり、子供たちは走っているときにどこを通ってるかなんて見やしないだろう。
-                <P mt={20}>
-                  そんなとき僕は、どっからか、さっさととび出して行って、そこ子をつかまえてやらなきゃいけないんだ。
-                </P>
-                <P>一日じゅう、それだけをやればいいんだな。</P>
-                <P>ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。</P>
+                <P>朝涼しいうちに収穫し、住まいに隣接する茶工場ですぐさま製茶します。</P>
+                小さい茶工場ですので機械任せにできませんが、
+                <P>その分一つ一つの工程を大切にしています。</P>
+                <P mt={20}>見て、触って、香って、充実した新芽を香味豊かな茶葉に仕上げます。</P>
+                <P>これからも経験を重ね、より上質なお茶、一味違うお茶作りに励んでいきます。</P>
               </Paragrapgh>
             </Box>
-            <Box style={{ width: '40%' }}>
-              <img
-                src="http://placehold.jp/24/99cc99/993333/500x500.png?text=image"
-                width="100%"
-                alt="栗崎園"
-              />
+            <Box>
+              <SubImage src="/image/main/sub2.JPG" width="100%" alt="栗崎園" />
             </Box>
-          </Flex>
+          </SectionFlex>
         </Box>
 
         <Box mt={100}>
-          <Flex justifyContent={'space-between'} alignItems={'center'} flexWrap={'wrap-reverse'}>
-            <Box style={{ width: '40%' }}>
-              <img
-                src="http://placehold.jp/24/99cc99/993333/500x500.png?text=image"
-                width="100%"
-                alt="栗崎園"
-              />
+          <SectionFlex flexWrap="wrap-reverse">
+            <Box>
+              <SubImage src="/image/main/sub3.JPG" width="100%" alt="栗崎園" />
             </Box>
             <Box>
-              <SubSection>土壌</SubSection>
+              <SubSection>茶縁・皆さまへ</SubSection>
               <Paragrapgh mt={30}>
-                <P>馬鹿げていることは知っているよ。</P>
-                <P>でも、ほんとうになりたいものといったらそれしかないね。</P>
-                <P>馬鹿げていることは知っているけどさ。</P>
+                <P>春の息吹と共に揉み上げられた我が家のお茶を「春野の精」と名付けました。</P>
+                <P>皆さまが、お茶と共に日々健やかに安らかに過ごせますようにと願っています。</P>
               </Paragrapgh>
             </Box>
-          </Flex>
+          </SectionFlex>
         </Box>
       </ContentWrapper>
     </>

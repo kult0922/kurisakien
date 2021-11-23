@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Header } from '../../components/organisms/Header';
 import { routing } from '../../constants/routing';
+import { bp } from '../../constants/css';
 
 const PurchaseWrapper = styled(Box)({
   textAlign: 'left',
@@ -25,6 +26,17 @@ const Price = styled(Box)({
   color: '#909090',
 });
 
+const Amount = styled(Box)({
+  color: '#909090',
+});
+
+const ItemImage = styled.img({
+  width: '45%',
+  [bp.md]: {
+    width: '100%',
+  },
+});
+
 const ItemDetail: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
@@ -33,18 +45,17 @@ const ItemDetail: React.FC = () => {
   const { id } = router.query;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
-  const { imagePath, name, price, description } = item;
+  const { imagePath, name, price, amount, description } = item;
   return (
     <>
       <Header />
       <Box mt={50}>
         <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-          <Box style={{ width: '50%' }}>
-            <img src={imagePath} width="100%"></img>
-          </Box>
+          <ItemImage src={imagePath} />
           <PurchaseWrapper ml={30} mt={30}>
             <Name>{name}</Name>
             <Price mt={5}>{price} 円</Price>
+            <Amount mt={5}>{amount}</Amount>
             <Description mt={5}>{description}</Description>
             <Box mt={30}>数量</Box>
             <select
