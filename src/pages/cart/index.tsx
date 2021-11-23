@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
         <Box mt={10}>
           {carts.length ? (
             <div>
-              <CartTable editable />
+              <CartTable editable showTotal />
               <Link href={routing.checkout.root}>
                 <a>注文に進む</a>
               </Link>

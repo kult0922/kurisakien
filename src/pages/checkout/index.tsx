@@ -118,6 +118,35 @@ const Checkout: React.FC = () => {
               </TableRow>
 
               <TableRow>
+                <TableHeader>配送地域</TableHeader>
+                <TableData>
+                  <div>
+                    <input
+                      type="radio"
+                      {...register('area', { required: true })}
+                      value="shizuoka"
+                    />
+                    静岡県内
+                  </div>
+                  <div>
+                    <input type="radio" {...register('area', { required: true })} value="near" />
+                    関東、北陸、中部、関西
+                  </div>
+                  <div>
+                    <input type="radio" {...register('area', { required: true })} value="middle" />
+                    東北、中国、四国
+                  </div>
+                  <div>
+                    <input type="radio" {...register('area', { required: true })} value="far" />
+                    九州、沖縄、北海道
+                  </div>
+                  <ErrorText>
+                    {errors.area?.types?.required && '配送地域を選択してください'}
+                  </ErrorText>
+                </TableData>
+              </TableRow>
+
+              <TableRow>
                 <TableHeader>氏名</TableHeader>
                 <TableData>
                   <Flex>
@@ -221,6 +250,17 @@ const Checkout: React.FC = () => {
                     value="bank"
                   />
                   銀行振り込み
+                </TableData>
+              </TableRow>
+
+              <TableRow>
+                <TableData>
+                  <input
+                    type="radio"
+                    {...register('paymentType', { required: true })}
+                    value="delivery"
+                  />
+                  代金引換払い
                 </TableData>
               </TableRow>
             </tbody>
