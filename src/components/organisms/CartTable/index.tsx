@@ -35,9 +35,10 @@ const DeleteButton = styled.div({
 
 interface Props {
   editable: boolean;
+  showTotal: boolean;
 }
 
-export const CartTable: React.FC<Props> = ({ editable }) => {
+export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { carts, total, addCarts, onDeleteCartItem } = cartStore;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
@@ -90,10 +91,14 @@ export const CartTable: React.FC<Props> = ({ editable }) => {
             </ItemRow>
           );
         })}
-        <tr>
-          <td colSpan={4}></td>
-          <TotalData>合計: {total}円</TotalData>
-        </tr>
+        {showTotal ? (
+          <tr>
+            <td colSpan={4}></td>
+            <TotalData>合計: {total}円</TotalData>
+          </tr>
+        ) : (
+          <tr />
+        )}
       </tbody>
     </Table>
   );

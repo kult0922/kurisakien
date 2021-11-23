@@ -1,4 +1,5 @@
-type PaymentType = 'postal' | 'convenience' | 'bank';
+type PaymentType = 'postal' | 'convenience' | 'bank' | 'delivery';
+type Area = 'shizuoka' | 'near' | 'middle' | 'far';
 
 export interface Order {
   postalCode: string;
@@ -7,5 +8,6 @@ export interface Order {
   lastName: string;
   phone: string;
   email: string;
+  area: Area;
   paymentType: PaymentType;
 }
