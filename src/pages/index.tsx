@@ -5,6 +5,7 @@ import { bp } from '../constants/css';
 import { P } from '../components/atoms/P';
 import Link from 'next/link';
 import { Header } from '../components/organisms/Header';
+import { Footer } from '../components/organisms/Footer';
 import { routing } from '../constants/routing';
 
 const News = styled.a({
@@ -201,6 +202,7 @@ const Home: React.FC = () => {
           </SectionFlex>
         </Box>
       </ContentWrapper>
+      <Footer />
     </>
   );
 };
