@@ -426,14 +426,6 @@ export const itemList: Item[] = [
     `,
   },
   {
-    id: 'a28',
-    imagePath: '/image/items/genmai.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
     id: 'a29',
     imagePath: '/image/items/tokujosetx2.JPG',
     name: 'サンプル１２',
