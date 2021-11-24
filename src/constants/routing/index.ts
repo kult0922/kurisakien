@@ -2,6 +2,7 @@ const items = '/items';
 const news = '/news';
 const cart = '/cart';
 const checkout = '/checkout';
+const docs = '/docs';
 
 export const routing = {
   root: '/',
@@ -21,5 +22,9 @@ export const routing = {
     confirm: checkout + '/confirm',
     complete: checkout + '/complete',
     error: checkout + '/error',
+  },
+  docs: {
+    privacy: docs + '/privacy',
+    low: docs + '/low',
   },
 };
