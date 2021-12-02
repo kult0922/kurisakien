@@ -5,6 +5,7 @@ import { useConfirm } from '../../store/organisms/Confirm';
 import { CartTable } from '../../components/organisms/CartTable';
 import { Area, PaymentType } from '../../@types/order';
 import { GlobalStore } from '../../store/Global';
+import { bp } from '../../constants/css';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -12,6 +13,41 @@ const Wrapper = styled.div({
 
 const TotalPrice = styled.div({
   fontSize: '24px',
+});
+
+const Table = styled.table({
+  borderCollapse: 'collapse',
+  marginRight: 'auto',
+  marginLeft: 'auto',
+});
+
+const TableHeader = styled.td({
+  textAlign: 'left',
+  paddingRight: '50px',
+  paddingLeft: '20px',
+  [bp.md]: {
+    display: 'block',
+    paddingTop: '10px',
+  },
+});
+
+const TablePriceRow = styled.tr({
+  borderTop: 'solid 2px #aaaaaa',
+});
+
+const TableData = styled.td({
+  textAlign: 'left',
+  paddingLeft: '20px',
+  [bp.md]: {
+    display: 'block',
+  },
+});
+
+const TablePriceData = styled.td({
+  textAlign: 'right',
+  [bp.md]: {
+    display: 'block',
+  },
 });
 
 const getPostage = (itemsPrice: number, area: Area): number => {
@@ -58,19 +94,72 @@ const Confirm: React.FC = () => {
     <Wrapper>
       <h1>注文確認</h1>
       <CartTable editable={false} showTotal={false} />
-      <Box mt={30}>商品小計: {total}円</Box>
-      <Box>送料: {postage}円</Box>
-      <Box>手数料: {commission}円</Box>
-      <TotalPrice>請求金額: {finalPrice}円</TotalPrice>
-      <Box mt={30}>お客様情報</Box>
-      <Box>郵便番号: {order.postalCode}</Box>
-      <Box>住所: {order.address}</Box>
-      <Box>
-        氏名: {order.lastName} {order.firstName}
+      <Box mt={30}>
+        <Table>
+          <tbody>
+            <tr>
+              <TableHeader>商品小計: </TableHeader>
+              <TablePriceData>{total} 円</TablePriceData>
+            </tr>
+
+            <tr>
+              <TableHeader>送料</TableHeader>
+              <TablePriceData>{postage}円</TablePriceData>
+            </tr>
+
+            <tr>
+              <TableHeader>手数料</TableHeader>
+              <TablePriceData>{commission}円</TablePriceData>
+            </tr>
+
+            <TablePriceRow>
+              <TableHeader>請求合計</TableHeader>
+              <TablePriceData>
+                <TotalPrice>{finalPrice}円</TotalPrice>
+              </TablePriceData>
+            </TablePriceRow>
+          </tbody>
+        </Table>
       </Box>
-      <Box>メールアドレス: {order.email}</Box>
-      <Box>電話番号: {order.phone}</Box>
-      <Box>決済方法: {getPaymentTypeName(order.paymentType)}</Box>
+      <Box mt={20} mb={10}>
+        お客様情報
+      </Box>
+      <Table>
+        <tbody>
+          <tr>
+            <TableHeader>郵便番号</TableHeader>
+
+            <TableData>{order.postalCode}</TableData>
+          </tr>
+
+          <tr>
+            <TableHeader>住所</TableHeader>
+            <TableData>{order.address}</TableData>
+          </tr>
+
+          <tr>
+            <TableHeader>お名前</TableHeader>
+            <TableData>
+              {order.lastName} {order.firstName}
+            </TableData>
+          </tr>
+
+          <tr>
+            <TableHeader>メールアドレス</TableHeader>
+            <TableData>{order.email}</TableData>
+          </tr>
+
+          <tr>
+            <TableHeader>電話番号</TableHeader>
+            <TableData>{order.phone}</TableData>
+          </tr>
+
+          <tr>
+            <TableHeader>お支払い方法</TableHeader>
+            <TableData>{getPaymentTypeName(order.paymentType)}</TableData>
+          </tr>
+        </tbody>
+      </Table>
       <Box m={20}>
         以下のボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。

@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { GlobalStore } from '../../store/Global';
 import { bp } from '../../constants/css';
 import { useRouter } from 'next/router';
+import PostageTable from '../../components/organisms/PostageTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -227,7 +228,7 @@ const Checkout: React.FC = () => {
                     {...register('paymentType', { required: true })}
                     value="postal"
                   />
-                  郵便振り込み
+                  郵便振り込み (手数料無料)
                 </TableData>
               </TableRow>
 
@@ -238,7 +239,7 @@ const Checkout: React.FC = () => {
                     {...register('paymentType', { required: true })}
                     value="convenience"
                   />
-                  コンビニ決済
+                  コンビニ決済 (手数料 200円)
                 </TableData>
               </TableRow>
 
@@ -249,7 +250,7 @@ const Checkout: React.FC = () => {
                     {...register('paymentType', { required: true })}
                     value="bank"
                   />
-                  銀行振り込み
+                  銀行振り込み (振り込み手数料がかかります)
                 </TableData>
               </TableRow>
 
@@ -260,7 +261,7 @@ const Checkout: React.FC = () => {
                     {...register('paymentType', { required: true })}
                     value="delivery"
                   />
-                  代金引換払い
+                  代金引換払い (手数料 450円)
                 </TableData>
               </TableRow>
             </tbody>
@@ -273,6 +274,8 @@ const Checkout: React.FC = () => {
           <input type="submit" value="注文内容確認へ" />
         </Box>
       </form>
+      <Box mb={5}>※送料について</Box>
+      <PostageTable />
     </Wrapper>
   );
 };

@@ -498,5 +498,6 @@ export const initialOrder: Order = {
   lastName: '',
   phone: '',
   email: '',
+  area: 'shizuoka',
   paymentType: 'postal',
 };
