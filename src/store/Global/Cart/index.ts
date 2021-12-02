@@ -39,5 +39,9 @@ export const useCart = () => {
     localStorage.setItem('carts', JSON.stringify(carts));
   }, [carts]);
 
-  return { carts, total, addCarts, onDeleteCartItem };
+  const clearCart = useCallback(() => {
+    setCarts([]);
+  }, []);
+
+  return { carts, total, addCarts, onDeleteCartItem, clearCart };
 };

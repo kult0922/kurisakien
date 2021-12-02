@@ -6,7 +6,7 @@ import { GlobalStore } from '../../Global';
 
 export const useConfirm = () => {
   const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
-  const { carts, total } = cartStore;
+  const { carts, total, clearCart } = cartStore;
   const { order } = orderStore;
   const router = useRouter();
 
@@ -15,11 +15,13 @@ export const useConfirm = () => {
       .email.createEmail({ order, totalAmount: total, carts })
       .then(() => {
         router.push(routing.checkout.complete);
+        // 注文確定後にlocal strageのカートデータを削除
+        clearCart();
       })
       .catch(() => {
         router.push(routing.checkout.error);
       });
-  }, [carts, order, total, router]);
+  }, [order, total, carts, router, clearCart]);
 
   return { carts, total, order, onClickConfirmButton };
 };
