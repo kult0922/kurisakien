@@ -7,6 +7,7 @@ import { GlobalStore } from '../../store/Global';
 import { bp } from '../../constants/css';
 import { useRouter } from 'next/router';
 import PostageTable from '../../components/organisms/PostageTable';
+import PaymentTable from '../../components/organisms/PaymentTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -276,6 +277,10 @@ const Checkout: React.FC = () => {
       </form>
       <Box mb={5}>※送料について</Box>
       <PostageTable />
+      <Box mb={5} mt={20}>
+        ※支払い方法の詳細
+      </Box>
+      <PaymentTable />
     </Wrapper>
   );
 };
