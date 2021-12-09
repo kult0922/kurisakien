@@ -89,7 +89,6 @@ const GiftDetail: React.FC = () => {
               />
               特上煎茶 {itemPack[1].price}円
             </div>
-            <p>選択値：{idx}</p>
 
             <Box mt={60}>
               <Link href={routing.cart.root} passHref>
