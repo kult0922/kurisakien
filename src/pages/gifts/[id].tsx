@@ -1,4 +1,4 @@
-import { itemList } from '../../constants/store/itemList';
+import { giftList } from '../../constants/store/giftList';
 import styled from '@emotion/styled';
 import { GlobalStore } from '../../store/Global';
 import { useState } from 'react';
@@ -37,27 +37,26 @@ const ItemImage = styled.img({
   },
 });
 
-const ItemDetail: React.FC = () => {
-  console.log('idetail');
+const GiftDetail: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
+  const [idx, setIdx] = useState(0);
   const router = useRouter();
-  const { id } = router.query;
-  const item = itemList.find((item) => item.id === id);
-  if (!item) return null;
-  const { imagePath, name, price, amount, description } = item;
+  const id = router.query.id as string;
+  const itemPack = giftList.get(id);
+  if (!itemPack) return null;
   return (
     <>
       <Header />
       <Box mt={50}>
         <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-          <ItemImage src={imagePath} />
+          <ItemImage src={itemPack[idx].imagePath} />
           <PurchaseWrapper ml={30} mt={30}>
-            <Name>{name}</Name>
-            <Price mt={5}>{price} 円</Price>
-            <Amount mt={5}>{amount}</Amount>
-            <Description mt={5}>{description}</Description>
+            <Name>{itemPack[idx].name}</Name>
+            <Price mt={5}>{itemPack[idx].price} 円</Price>
+            <Amount mt={5}>{itemPack[idx].amount}</Amount>
+            <Description mt={5}>{itemPack[idx].description}</Description>
             <Box mt={30}>数量</Box>
             <select
               defaultValue={1}
@@ -71,11 +70,32 @@ const ItemDetail: React.FC = () => {
                 </option>
               ))}
             </select>
+
+            <Box mt={30} mb={10}>
+              茶葉を選択して下さい
+            </Box>
+            <div>
+              <input type="radio" value="cat" onChange={() => setIdx(0)} checked={idx === 0} />
+              高級煎茶 {itemPack[0].price}円
+            </div>
+            <div>
+              <input
+                type="radio"
+                value="dog"
+                onChange={() => {
+                  setIdx(1);
+                }}
+                checked={idx === 1}
+              />
+              特上煎茶 {itemPack[1].price}円
+            </div>
+            <p>選択値：{idx}</p>
+
             <Box mt={60}>
               <Link href={routing.cart.root} passHref>
                 <LinkButton
                   onClick={() => {
-                    addCarts(item, itemCount);
+                    addCarts(itemPack[idx], itemCount);
                   }}
                 >
                   カートに入れる
@@ -91,10 +111,9 @@ const ItemDetail: React.FC = () => {
 
 // for SSG
 export const getStaticPaths = () => {
-  const paths = itemList.map((elem) => ({
-    params: { id: elem.id },
+  const paths = Array.from(giftList.keys()).map((elem) => ({
+    params: { id: elem },
   }));
-  console.log(paths);
   return { paths, fallback: false };
 };
 
@@ -102,4 +121,4 @@ export const getStaticProps = () => {
   return { props: {} };
 };
 
-export default ItemDetail;
+export default GiftDetail;

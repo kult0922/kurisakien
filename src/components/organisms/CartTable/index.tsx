@@ -40,7 +40,7 @@ interface Props {
 
 export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
-  const { carts, total, addCarts, onDeleteCartItem } = cartStore;
+  const { carts, total, onDeleteCartItem, onChangeCartItemAmount } = cartStore;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
     <Table>
@@ -66,7 +66,7 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
                     <select
                       defaultValue={item.amount}
                       onChange={(event) => {
-                        addCarts(item.id, Number(event.target.value));
+                        onChangeCartItemAmount(item.id, Number(event.target.value));
                       }}
                     >
                       {[...Array(10)].map((_, i) => (

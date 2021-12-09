@@ -1,4 +1,5 @@
 const items = '/items';
+const gifts = '/gifts';
 const news = '/news';
 const cart = '/cart';
 const checkout = '/checkout';
@@ -9,6 +10,10 @@ export const routing = {
   items: {
     root: items,
     id: items + '/[id]',
+  },
+  gifts: {
+    root: gifts,
+    id: gifts + '/[id]',
   },
   news: {
     root: news,

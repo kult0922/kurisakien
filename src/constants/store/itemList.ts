@@ -1,4 +1,3 @@
-import { Order } from '../../@types/order';
 import { Item } from '../../@types/product';
 
 export const itemList: Item[] = [
@@ -425,79 +424,4 @@ export const itemList: Item[] = [
 お茶の味強めなのが意外にも好評でリピーターさんが多い商品です。
     `,
   },
-  {
-    id: 'a29',
-    imagePath: '/image/items/tokujosetx2.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a30',
-    imagePath: '/image/items/tokujosetx3.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a30',
-    imagePath: '/image/items/minikan1.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a31',
-    imagePath: '/image/items/minikan2.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a32',
-    imagePath: '/image/items/kan1.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a33',
-    imagePath: '/image/items/kan1x2.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a34',
-    imagePath: '/image/items/kan2.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
-  {
-    id: 'a35',
-    imagePath: '/image/items/kan2x2.JPG',
-    name: 'サンプル１２',
-    price: 1000,
-    amount: '200g',
-    description: 'this is sample',
-  },
 ];
-
-export const initialOrder: Order = {
-  postalCode: '',
-  address: '',
-  firstName: '',
-  lastName: '',
-  phone: '',
-  email: '',
-  area: 'shizuoka',
-  paymentType: 'postal',
-};
