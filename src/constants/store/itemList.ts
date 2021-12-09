@@ -24,7 +24,7 @@ export const itemList: Item[] = [
     id: 'a02',
     imagePath: '/image/items/tokuyo.JPG',
     name: '徳用煎茶',
-    price: 2000,
+    price: 1080,
     amount: '334g',
     description: `
 二番茶ならではの、たっぷりサイズでお手頃価格のお茶です。
