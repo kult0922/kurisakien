@@ -1,22 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { CartItem } from '../../../@types/product';
-import { itemList } from '../../../constants/store';
+import { CartItem, Item } from '../../../@types/product';
 
 export const useCart = () => {
   const [carts, setCarts] = useState<CartItem[]>([]);
 
-  const addCarts = useCallback(
-    (id: string, amount: number) => {
-      const existCheck = carts.find((elem) => elem.id === id);
-      const cartItem = itemList.find((elem) => elem.id === id);
-      setCarts(
-        !existCheck && cartItem
-          ? (prev) => [...prev, { ...cartItem, amount }]
-          : (prev) => prev.map((elem) => (elem.id === id ? { ...elem, amount } : { ...elem })),
-      );
-    },
-    [carts],
-  );
+  const addCarts = useCallback((item: Item, amount: number) => {
+    setCarts((prev) => [...prev, { ...item, amount }]);
+  }, []);
+
+  const onChangeCartItemAmount = useCallback((id: string, amount: number) => {
+    setCarts((prev) =>
+      prev.map(function (elm) {
+        if (elm.id === id) {
+          elm.amount = amount;
+          return elm;
+        } else {
+          return elm;
+        }
+      }),
+    );
+  }, []);
 
   const onDeleteCartItem = useCallback((id: string) => {
     setCarts((prev) => prev.filter((elem) => elem.id !== id));
@@ -43,5 +46,5 @@ export const useCart = () => {
     setCarts([]);
   }, []);
 
-  return { carts, total, addCarts, onDeleteCartItem, clearCart };
+  return { carts, total, addCarts, onDeleteCartItem, onChangeCartItemAmount, clearCart };
 };
