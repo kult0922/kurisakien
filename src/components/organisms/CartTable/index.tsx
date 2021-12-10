@@ -56,7 +56,7 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
           return (
             <ItemRow key={i}>
               <ItemData>
-                <img src={item.imagePath} width="100px" alt="itme" />
+                <img src={item.imagePaths[0]} width="100px" alt="itme" />
               </ItemData>
               <ItemData>{item.name}</ItemData>
               <ItemData>{item.price}円</ItemData>

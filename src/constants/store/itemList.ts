@@ -3,7 +3,7 @@ import { Item } from '../../@types/product';
 export const itemList: Item[] = [
   {
     id: 'a01',
-    imagePath: '/image/items/hutsu.JPG',
+    imagePaths: ['/image/items/hutsu.JPG', '/image/items/hutsu_leaf.JPG'],
     name: '普通煎茶',
     price: 1080,
     amount: '200g',
@@ -22,7 +22,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a02',
-    imagePath: '/image/items/tokuyo.JPG',
+    imagePaths: ['/image/items/tokuyo.JPG', '/image/items/tokuyo_leaf.JPG'],
     name: '徳用煎茶',
     price: 1080,
     amount: '334g',
@@ -39,7 +39,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a03',
-    imagePath: '/image/items/hukamushi100g.JPG',
+    imagePaths: ['/image/items/hukamushi100g.JPG', '/image/items/hukamushi100g_leaf.JPG'],
     name: '深蒸し煎茶',
     price: 1080,
     amount: '100g',
@@ -55,7 +55,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a04',
-    imagePath: '/image/items/hukamushi200g.JPG',
+    imagePaths: ['/image/items/hukamushi200g.JPG', '/image/items/hukamushi200g_leaf.JPG'],
     name: '深蒸し茶',
     price: 1300,
     amount: '200g',
@@ -74,7 +74,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a05',
-    imagePath: '/image/items/kokyusentya.JPG',
+    imagePaths: ['/image/items/kokyusentya.JPG', '/image/items/kokyusentya_leaf.JPG'],
     name: '高級煎茶',
     price: 1080,
     amount: '100g',
@@ -92,7 +92,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a06',
-    imagePath: '/image/items/tokujosentya.JPG',
+    imagePaths: ['/image/items/tokujosentya.JPG', '/image/items/tokujosentya_leaf.JPG'],
     name: '特上煎茶',
     price: 1620,
     amount: '100g',
@@ -109,7 +109,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a07',
-    imagePath: '/image/items/hoji.JPG',
+    imagePaths: ['/image/items/hoji.JPG', '/image/items/hoji_leaf.JPG'],
     name: 'ほうじ茶',
     price: 1080,
     amount: '200g',
@@ -124,7 +124,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a08',
-    imagePath: '/image/items/kuki200g.JPG',
+    imagePaths: ['/image/items/kuki200g.JPG', '/image/items/kuki200g_leaf.JPG'],
     name: 'くき茶',
     price: 1080,
     amount: '200g',
@@ -143,7 +143,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a09',
-    imagePath: '/image/items/mattyagenmaitya.JPG',
+    imagePaths: ['/image/items/mattyagenmaitya.JPG', '/image/items/mattyagenmaitya_leaf.JPG'],
     name: '抹茶入り玄米茶',
     price: 1080,
     amount: '300g',
@@ -164,7 +164,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a10',
-    imagePath: '/image/items/kotya.JPG',
+    imagePaths: ['/image/items/kotya.JPG', '/image/items/kotya_leaf.JPG'],
     name: '春野の紅茶リーフ',
     price: 540,
     amount: '80g',
@@ -177,7 +177,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a11',
-    imagePath: '/image/items/benihukikotya.JPG',
+    imagePaths: ['/image/items/benihukikotya.JPG', '/image/items/benihukikotya_leaf.JPG'],
     name: 'べにふうき紅茶',
     price: 540,
     amount: '50g',
@@ -192,7 +192,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a12',
-    imagePath: '/image/items/benihukigreen.JPG',
+    imagePaths: ['/image/items/benihukigreen.JPG', '/image/items/benihukigreen_leaf.JPG'],
     name: 'べにふうき緑茶リーフ',
     price: 870,
     amount: '100g',
@@ -208,7 +208,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a13',
-    imagePath: '/image/items/ryokutyabag.JPG',
+    imagePaths: ['/image/items/ryokutyabag.JPG', '/image/items/ryokutyabag_leaf.JPG'],
     name: '緑茶ティーバッグ(紐付き)',
     price: 540,
     amount: '3g x 15',
@@ -222,7 +222,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a14',
-    imagePath: '/image/items/mattyagenmaityabag.JPG',
+    imagePaths: ['/image/items/mattyagenmaityabag.JPG', '/image/items/mattyagenmaityabag_leaf.JPG'],
     name: '抹茶入り玄米茶ティーバッグ(紐付き)',
     price: 540,
     amount: '3g x 20',
@@ -237,7 +237,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a15',
-    imagePath: '/image/items/hojibag.JPG',
+    imagePaths: ['/image/items/hojibag.JPG', '/image/items/hojibag_leaf.JPG'],
     name: 'ほうじ茶ティーバッグ(紐付き)',
     price: 540,
     amount: '3g x 15',
@@ -251,7 +251,10 @@ export const itemList: Item[] = [
   },
   {
     id: 'a17',
-    imagePath: '/image/items/himonashiryokutyabag.JPG',
+    imagePaths: [
+      '/image/items/himonashiryokutyabag.JPG',
+      '/image/items/himonashiryokutyabag_leaf.JPG',
+    ],
     name: '緑茶ティーバッグ',
     price: 540,
     amount: '5g x 20',
@@ -269,7 +272,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a18',
-    imagePath: '/image/items/kotyabag.JPG',
+    imagePaths: ['/image/items/kotyabag.JPG', '/image/items/kotyabag_leaf.JPG'],
     name: '春野の紅茶ティーバッグ',
     price: 540,
     amount: '3g x 15',
@@ -283,7 +286,10 @@ export const itemList: Item[] = [
   },
   {
     id: 'a19',
-    imagePath: '/image/items/benihukihunmatsu40g.JPG',
+    imagePaths: [
+      '/image/items/benihukihunmatsu40g.JPG',
+      '/image/items/benihukihunmatsu40g_leaf.JPG',
+    ],
     name: 'べにふうき粉末茶',
     price: 650,
     amount: '40g',
@@ -297,7 +303,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a20',
-    imagePath: '/image/items/benihukistick.JPG',
+    imagePaths: ['/image/items/benihukistick.JPG', '/image/items/benihukistick_leaf.JPG'],
     name: 'べにふうき粉末茶スティックタイプ',
     price: 870,
     amount: '1g x 30',
@@ -310,7 +316,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a21',
-    imagePath: '/image/items/bihunmatsu.JPG',
+    imagePaths: ['/image/items/bihunmatsu.JPG', '/image/items/bihunmatsu_leaf.JPG'],
     name: '微粉末緑茶',
     price: 540,
     amount: '50g',
@@ -337,7 +343,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a22',
-    imagePath: '/image/items/bihunmatsustick.JPG',
+    imagePaths: ['/image/items/bihunmatsustick.JPG', '/image/items/bihunmatsustick_leaf.JPG'],
     name: '微粉末緑茶スティックタイプ',
     price: 540,
     amount: '1g x 30',
@@ -354,7 +360,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a23',
-    imagePath: '/image/items/genmaitya.JPG',
+    imagePaths: ['/image/items/genmaimattya.JPG', '/image/items/genmaimattya_leaf.JPG'],
     name: '抹茶入り玄米茶',
     price: 540,
     amount: '35g',
@@ -369,7 +375,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a24',
-    imagePath: '/image/items/genmaityastick.JPG',
+    imagePaths: ['/image/items/genmaityastick.JPG', '/image/items/genmaityastick_leaf.JPG'],
     name: '抹茶入り玄米茶スティックタイプ',
     price: 540,
     amount: '1g x 25',
@@ -384,7 +390,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a25',
-    imagePath: '/image/items/mattyastick.JPG',
+    imagePaths: ['/image/items/mattyastick.JPG', '/image/items/mattyastick_leaf.JPG'],
     name: '抹茶スティックタイプ',
     price: 540,
     amount: '1g x 20',
@@ -398,7 +404,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a26',
-    imagePath: '/image/items/tokujomattay.JPG',
+    imagePaths: ['/image/items/tokujomattya.JPG', '/image/items/tokujomattya_leaf.JPG'],
     name: '特上抹茶',
     price: 650,
     amount: '20g',
@@ -413,7 +419,7 @@ export const itemList: Item[] = [
   },
   {
     id: 'a27',
-    imagePath: '/image/items/benihukiame.JPG',
+    imagePaths: ['/image/items/benihukiame.JPG', '/image/items/benihukiame_leaf.JPG'],
     name: 'べにふうき茶あめ',
     price: 540,
     amount: '100g (約 20個)',

@@ -29,10 +29,10 @@ const Wrapper = styled(Box)({
 });
 
 export const ItemCard: React.FC<Props> = ({ item, width, m, style }) => {
-  const { name, imagePath, price } = item;
+  const { name, imagePaths, price } = item;
   return (
     <Wrapper m={m} style={{ width, ...style }}>
-      <Image src={imagePath}></Image>
+      <Image src={imagePaths[0]}></Image>
       <Name mt={5}>{name}</Name>
       <Price>{price}円</Price>
     </Wrapper>
