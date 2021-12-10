@@ -30,29 +30,61 @@ const Amount = styled(Box)({
   color: '#909090',
 });
 
-const ItemImage = styled.img({
-  width: '45%',
+const FocusImage = styled.img({
+  width: '600px',
   [bp.md]: {
     width: '100%',
   },
 });
 
+const ThumbnailImage = styled.img<{ border: string }>(({ border = 'none' }) => ({
+  width: '100px',
+  color: '#8ab252',
+  boxSizing: 'border-box',
+  border: border,
+  borderWidth: '4px',
+  [bp.md]: {
+    width: '80px',
+  },
+}));
+
 const ItemDetail: React.FC = () => {
-  console.log('idetail');
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
+  const [focusIdx, setFocusIdx] = useState(0);
   const router = useRouter();
   const { id } = router.query;
   const item = itemList.find((item) => item.id === id);
   if (!item) return null;
-  const { imagePath, name, price, amount, description } = item;
+  const { imagePaths, name, price, amount, description } = item;
   return (
     <>
       <Header />
       <Box mt={50}>
         <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-          <ItemImage src={imagePath} />
+          <div>
+            <div>
+              <FocusImage src={imagePaths[focusIdx]} />
+            </div>
+
+            <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
+              {imagePaths.map((imagePath, idx) => {
+                return (
+                  <Box key={idx} mt={8} mr={6} ml={6}>
+                    <a href="#" onClick={() => setFocusIdx(idx)} key={idx}>
+                      {focusIdx === idx ? (
+                        <ThumbnailImage border={'solid'} src={imagePath} />
+                      ) : (
+                        <ThumbnailImage border={'none'} src={imagePath} />
+                      )}
+                    </a>
+                  </Box>
+                );
+              })}
+            </Flex>
+          </div>
+
           <PurchaseWrapper ml={30} mt={30}>
             <Name>{name}</Name>
             <Price mt={5}>{price} 円</Price>

@@ -29,10 +29,10 @@ const Wrapper = styled(Box)({
 });
 
 export const GiftCard: React.FC<Props> = ({ item, width, m, style }) => {
-  const { name, imagePath, price } = item;
+  const { name, imagePaths, price } = item;
   return (
     <Wrapper m={m} style={{ width, ...style }}>
-      <Image src={imagePath}></Image>
+      <Image src={imagePaths[0]}></Image>
       <Name mt={5}>{name.split(' ')[0]}</Name>
       <Price>{price}円〜</Price>
     </Wrapper>

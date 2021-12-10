@@ -51,7 +51,7 @@ const GiftDetail: React.FC = () => {
       <Header />
       <Box mt={50}>
         <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-          <ItemImage src={itemPack[idx].imagePath} />
+          <ItemImage src={itemPack[idx].imagePaths[0]} />
           <PurchaseWrapper ml={30} mt={30}>
             <Name>{itemPack[idx].name}</Name>
             <Price mt={5}>{itemPack[idx].price} 円</Price>
