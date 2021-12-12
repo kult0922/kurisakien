@@ -29,6 +29,9 @@ const Items: React.FC = () => {
         <Box>
           <Link href={routing.gifts.root}>贈答品の注文</Link>
         </Box>
+        <Box>
+          <Link href={routing.docs.fax}>Faxで個注文を希望の方はこちらから</Link>
+        </Box>
         {itemList.map((item, i) => {
           return (
             <Link key={i} href={`/items/${encodeURIComponent(item.id)}`} passHref>
