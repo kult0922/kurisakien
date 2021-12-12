@@ -9,18 +9,20 @@ const createOrderText = (email: Email) => {
     items += '<br />';
   });
 
-  const { order, totalAmount } = email;
+  const { order, postage, paymentTypeName, commission, itemSubTotal, total } = email;
 
   const body = `氏名: ${order.lastName} ${order.firstName}<br />
                 郵便番号: ${order.postalCode}<br />
                 住所: ${order.address}<br />
                 電話番号: ${order.phone}<br />
                 メール: ${order.email}<br />
-                支払い方法: ${order.paymentType}<br /><br />
+                支払い方法: ${paymentTypeName}<br /><br />
                 ＜注文内容＞<br />
                 ${items}
-                合計金額: ${totalAmount}
-                円
+                商品小計: ${itemSubTotal}円<br />
+                送料: ${postage}円<br />
+                手数料: ${commission}円<br />
+                合計: ${total}円<br />
                 `;
   return body;
 };
@@ -35,12 +37,17 @@ const createOwnerEmailBody = (email: Email) => {
 const createUserEmailBody = (email: Email) => {
   const orderText = createOrderText(email);
 
-  const preface = `ご注文ありがとうございます！<br />
-                   以下の内容でご注文を承りました。<br />
-                   担当者が確認次第、再度メールにてご連絡いたします。<br />
+  const preface = `ご注文ありがとうございます。<br />
+                   以下の内容でご注文を承りました。<br /><br />
+                   担当者が確認次第、お支払い方法についての詳細メールをお送りします。<br />
                    しばらくお待ち下さい。<br /><br />`;
 
-  return preface + orderText;
+  const footer = `<br />========================<br />
+                  栗崎園<br />
+                  〒437-0604<br />
+                  静岡県浜松市天竜区春野町宮川537<br />`;
+
+  return preface + orderText + footer;
 };
 
 interface CreateEmailRequestParameter {

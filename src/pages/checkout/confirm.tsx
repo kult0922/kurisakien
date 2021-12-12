@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Box } from '../../lib/styled';
 import { useConfirm } from '../../store/organisms/Confirm';
 import { CartTable } from '../../components/organisms/CartTable';
-import { Area, PaymentType } from '../../@types/order';
 import { GlobalStore } from '../../store/Global';
 import { bp } from '../../constants/css';
 
@@ -50,45 +49,13 @@ const TablePriceData = styled.td({
   },
 });
 
-const getPostage = (itemsPrice: number, area: Area): number => {
-  if (itemsPrice >= 10000) return 0;
-
-  if (itemsPrice >= 5000) {
-    if (area === 'shizuoka') return 300;
-    if (area === 'near') return 400;
-    if (area === 'middle') return 500;
-    if (area === 'far') return 600;
-  } else {
-    if (area === 'shizuoka') return 650;
-    if (area === 'near') return 750;
-    if (area === 'middle') return 950;
-    if (area === 'far') return 1200;
-  }
-};
-
-const getCommission = (paymentType: PaymentType): number => {
-  if (paymentType === 'postal') return 0;
-  if (paymentType === 'bank') return 0;
-  if (paymentType === 'convenience') return 200;
-  if (paymentType === 'delivery') return 450;
-};
-
-const getPaymentTypeName = (paymentType: PaymentType): string => {
-  if (paymentType === 'postal') return '郵便振替';
-  if (paymentType === 'bank') return '銀行振り込み';
-  if (paymentType === 'convenience') return 'コンビニ払い';
-  if (paymentType === 'delivery') return '代引き払い';
-};
-
 const Confirm: React.FC = () => {
-  const { order, onClickConfirmButton } = useConfirm();
+  const { order, postage, commission, getPaymentTypeName, onClickConfirmButton } = useConfirm();
   const [disabled, setDisabled] = useState(false);
   const { cart: cartStore } = GlobalStore.useContainer();
-  const { total } = cartStore;
+  const itemSubTotal = cartStore.total;
 
-  const postage = getPostage(total, order.area);
-  const commission = getCommission(order.paymentType);
-  const finalPrice = total + postage + commission;
+  const totalPrice = itemSubTotal + postage + commission;
 
   return (
     <Wrapper>
@@ -99,7 +66,7 @@ const Confirm: React.FC = () => {
           <tbody>
             <tr>
               <TableHeader>商品小計: </TableHeader>
-              <TablePriceData>{total} 円</TablePriceData>
+              <TablePriceData>{itemSubTotal} 円</TablePriceData>
             </tr>
 
             <tr>
@@ -115,7 +82,7 @@ const Confirm: React.FC = () => {
             <TablePriceRow>
               <TableHeader>請求合計</TableHeader>
               <TablePriceData>
-                <TotalPrice>{finalPrice}円</TotalPrice>
+                <TotalPrice>{totalPrice}円</TotalPrice>
               </TablePriceData>
             </TablePriceRow>
           </tbody>
