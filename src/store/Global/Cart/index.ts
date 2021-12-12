@@ -4,9 +4,26 @@ import { CartItem, Item } from '../../../@types/product';
 export const useCart = () => {
   const [carts, setCarts] = useState<CartItem[]>([]);
 
-  const addCarts = useCallback((item: Item, amount: number) => {
-    setCarts((prev) => [...prev, { ...item, amount }]);
-  }, []);
+  const addCarts = useCallback(
+    (item: Item, amount: number) => {
+      const isExist = carts.find((elm) => elm.id === item.id);
+      if (isExist) {
+        setCarts((prev) =>
+          prev.map(function (elm) {
+            if (elm.id === item.id) {
+              elm.amount += amount;
+              return elm;
+            } else {
+              return elm;
+            }
+          }),
+        );
+      } else {
+        setCarts((prev) => [...prev, { ...item, amount }]);
+      }
+    },
+    [carts],
+  );
 
   const onChangeCartItemAmount = useCallback((id: string, amount: number) => {
     setCarts((prev) =>
