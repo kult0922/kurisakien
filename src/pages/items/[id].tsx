@@ -72,7 +72,7 @@ const ItemDetail: React.FC = () => {
               {imagePaths.map((imagePath, idx) => {
                 return (
                   <Box key={idx} mt={8} mr={6} ml={6}>
-                    <a href="#" onClick={() => setFocusIdx(idx)} key={idx}>
+                    <a href="#!" onClick={() => setFocusIdx(idx)} key={idx}>
                       {focusIdx === idx ? (
                         <ThumbnailImage border={'solid'} src={imagePath} />
                       ) : (
