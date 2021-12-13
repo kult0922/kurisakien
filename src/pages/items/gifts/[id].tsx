@@ -1,14 +1,14 @@
-import { giftList } from '../../constants/store/giftList';
+import { giftList } from '../../../constants/store/giftList';
 import styled from '@emotion/styled';
-import { GlobalStore } from '../../store/Global';
+import { GlobalStore } from '../../../store/Global';
 import { useState } from 'react';
-import { LinkButton } from '../../components/atoms/LinkButton';
-import { Box, Flex } from '../../lib/styled';
+import { LinkButton } from '../../../components/atoms/LinkButton';
+import { Box, Flex } from '../../../lib/styled';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Header } from '../../components/organisms/Header';
-import { routing } from '../../constants/routing';
-import { bp } from '../../constants/css';
+import { Header } from '../../../components/organisms/Header';
+import { routing } from '../../../constants/routing';
+import { bp } from '../../../constants/css';
 
 const PurchaseWrapper = styled(Box)({
   textAlign: 'left',
