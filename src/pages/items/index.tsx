@@ -68,7 +68,7 @@ const Items: React.FC = () => {
               return (
                 <Link key={i} href={`/items/${encodeURIComponent(item.id)}`} passHref>
                   <ItemLink>
-                    <ItemCard item={item} m={10} width={300} />
+                    <ItemCard item={item} m={8} />
                   </ItemLink>
                 </Link>
               );
@@ -77,7 +77,7 @@ const Items: React.FC = () => {
               return (
                 <Link key={giftId} href={`/items/gifts/${encodeURIComponent(giftId)}`} passHref>
                   <ItemLink>
-                    <GiftCard item={giftList.get(giftId)[0]} m={10} width={300} />
+                    <GiftCard item={giftList.get(giftId)[0]} m={8} />
                   </ItemLink>
                 </Link>
               );
