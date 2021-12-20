@@ -37,6 +37,7 @@ const TablePriceRow = styled.tr({
 const TableData = styled.td({
   textAlign: 'left',
   paddingLeft: '20px',
+  borderBottom: '1px solid #aaaaaa',
   [bp.md]: {
     display: 'block',
   },
