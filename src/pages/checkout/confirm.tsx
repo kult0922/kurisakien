@@ -108,8 +108,8 @@ const Confirm: React.FC = () => {
           </tbody>
         </Table>
       </Box>
-      <Box mt={20} mb={10}>
-        お客様情報
+      <Box mt={50} mb={5}>
+        <h3>お客様情報</h3>
       </Box>
       <Table>
         <tbody>
@@ -148,7 +148,7 @@ const Confirm: React.FC = () => {
         </tbody>
       </Table>
       <Box m={20}>
-        以下のボタンを押すと注文が確定されます。
+        ※以下のボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。
       </Box>
       <Button

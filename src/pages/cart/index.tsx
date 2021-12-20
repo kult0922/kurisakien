@@ -77,7 +77,7 @@ const Cart: React.FC = () => {
             'ショッピングカートに商品は入っていません。'
           )}
         </Box>
-        <Box mt={10}>
+        <Box mt={20}>
           <BasicLink path={routing.items.root} text={'買い物を続ける'}></BasicLink>
         </Box>
       </Wrapper>

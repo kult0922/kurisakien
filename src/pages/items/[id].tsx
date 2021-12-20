@@ -23,7 +23,7 @@ const Name = styled(Box)({
 });
 
 const Price = styled(Box)({
-  color: '#909090',
+  fontSize: '20px',
 });
 
 const Amount = styled(Box)({
