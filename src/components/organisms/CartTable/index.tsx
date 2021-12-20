@@ -51,8 +51,8 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
         <tbody>
           <tr>
             <th></th>
-            <th>商品名</th>
-            <th>値段 個数</th>
+            <th></th>
+            <th></th>
             <th>小計</th>
           </tr>
           {carts.map((item, i) => {
@@ -88,7 +88,7 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
                         </DeleteButton>
                       </div>
                     ) : (
-                      item.amount
+                      <div>{item.amount} 個</div>
                     )}
                   </div>
                 </ItemData>
