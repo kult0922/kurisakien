@@ -60,6 +60,7 @@ const MainText = styled.div({
   top: '30px',
   right: 'calc(100% - 300px)',
   writingMode: 'vertical-rl',
+  opacity: '0.9',
   [bp.md]: {
     display: 'none',
   },
@@ -74,6 +75,7 @@ const SubText = styled.div({
   top: '60px',
   right: 'calc(100% - 200px)',
   writingMode: 'vertical-rl',
+  opacity: '0.9',
   [bp.md]: {
     display: 'none',
   },
