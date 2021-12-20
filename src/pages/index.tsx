@@ -191,7 +191,7 @@ const Home: React.FC = () => {
               </Paragrapgh>
             </Box>
             <Box>
-              <SubImage src="/image/main/sub2.JPG" width="100%" alt="栗崎園" />
+              <SubImage src="/image/main/sub2.JPG" alt="栗崎園" />
             </Box>
           </SectionFlex>
         </Box>
@@ -199,7 +199,7 @@ const Home: React.FC = () => {
         <Box mt={100}>
           <SectionFlex flexWrap="wrap-reverse">
             <Box>
-              <SubImage src="/image/main/sub3.JPG" width="100%" alt="栗崎園" />
+              <SubImage src="/image/main/sub3.JPG" alt="栗崎園" />
             </Box>
             <Box>
               <SubSection>茶縁・皆さまへ</SubSection>
