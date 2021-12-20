@@ -36,6 +36,7 @@ const Wrapper = styled(Box)({
   cursor: 'pointer',
   overflow: 'hidden',
   borderRadius: '5px',
+  width: '300px',
   backgroundColor: '#ededed',
   [bp.md]: {
     width: '150px',

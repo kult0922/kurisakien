@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Box } from '../../lib/styled';
-import Link from 'next/link';
 import { routing } from '../../constants/routing';
+import { BasicLink } from '../../components/atoms/BasicLink';
 const Wrapper = styled.div({
   textAlign: 'center',
 });
@@ -23,8 +23,8 @@ const Privacy: React.FC = () => {
           注文表
         </PdfLink>
       </Box>
-      <Box>
-        <Link href={routing.root}>Topへもどる</Link>
+      <Box mt={30}>
+        <BasicLink path={routing.root} text={'Topページへ戻る'}></BasicLink>
       </Box>
     </Wrapper>
   );

@@ -49,6 +49,26 @@ const TablePriceData = styled.td({
   },
 });
 
+const Button = styled.button({
+  background: '#e53a36',
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  display: 'block',
+  border: '0px',
+  color: '#fff',
+  fontWeight: 'bold',
+  padding: '0.5em 2em 0.5em 1em',
+  lineHeight: '1.4',
+  maxWidth: '200px',
+  width: '100%',
+  margin: '0 auto',
+  cursor: 'pointer',
+  '&:hover': {
+    backgroundColor: '#f55a56',
+    color: '#fff',
+  },
+});
+
 const Confirm: React.FC = () => {
   const { order, postage, commission, getPaymentTypeName, onClickConfirmButton } = useConfirm();
   const [disabled, setDisabled] = useState(false);
@@ -131,7 +151,7 @@ const Confirm: React.FC = () => {
         以下のボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。
       </Box>
-      <button
+      <Button
         disabled={disabled}
         onClick={async () => {
           setDisabled(true);
@@ -139,7 +159,7 @@ const Confirm: React.FC = () => {
         }}
       >
         注文確定
-      </button>
+      </Button>
     </Wrapper>
   );
 };
