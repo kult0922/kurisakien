@@ -18,7 +18,10 @@ const NewsDate = styled(Box)({
 
 const NewsTitle = styled(Box)({
   fontSize: '24px',
-  textAlign: 'center',
+  [bp.md]: {
+    paddingRight: '240px',
+    fontSize: '18px',
+  },
 });
 
 const Paragrapgh = styled(Box)({
@@ -28,6 +31,8 @@ const Paragrapgh = styled(Box)({
 const Section = styled(Box)({
   fontSize: '32px',
   textAlign: 'left',
+  borderBottom: '4px solid #67ce9a',
+  width: '90px',
 });
 
 const SmallSection = styled(Box)({
@@ -39,6 +44,7 @@ const SmallSection = styled(Box)({
 const SubSection = styled(Box)({
   fontSize: '24px',
   textAlign: 'left',
+  borderBottom: '2px solid #bbbbbb',
 });
 
 const ContentWrapper = styled.div({
@@ -91,6 +97,9 @@ const SubImage = styled.img({
   width: '100%',
   height: '430px',
   objectFit: 'cover',
+  [bp.md]: {
+    height: '300px',
+  },
 });
 
 const SectionFlex = styled(Flex)({
@@ -118,7 +127,7 @@ const Home: React.FC = () => {
       <ContentWrapper>
         <Box mt={40}>
           <Flex justifyContent={'center'} flexWrap={'wrap'}>
-            <NewsTitle mr={80}>News</NewsTitle>
+            <NewsTitle mr={30}>News</NewsTitle>
             <Box>
               {newsList.map((news, i) => {
                 return (
@@ -151,12 +160,10 @@ const Home: React.FC = () => {
               <Paragrapgh mt={30}>
                 <P>春野町は、天竜川の支流・気田川が流れる静かな山あいの里です。</P>
                 <P>標高350ｍ、川を見下ろす茶畑には度々霧が立ち込め、</P>
-                <P>辺り一面柔らかい日差しと穏やかな風に包まれます</P>
+                <P>辺り一面柔らかい日差しと穏やかな風に包まれます。</P>
                 <P mt={20}>
-                  先人からの知恵、気象、茶の木の生育状況、さらに年2回の土壌分析結果を吟味し、
+                  適切な施肥、減農薬を心がけ、茶の木にストレスを与えない管理、収穫をしています。
                 </P>
-                適切な施肥、減農薬を心がけ、茶の木にストレスを与えない管理、収穫をしています。
-                <P>小さな茶園の造成、小型立ち乗り摘採機の導入など品質向上の工夫もしています。</P>
                 <P>自然・ヒト・茶の木に優しい農業、そして飲んでくださる皆さまにも優しく響く、</P>
                 <P>そんなお茶作りを目指しています。</P>
               </Paragrapgh>
@@ -174,7 +181,7 @@ const Home: React.FC = () => {
             <Box>
               <SubSection>人の利・茶工場</SubSection>
               <Paragrapgh mt={30}>
-                <P>朝涼しいうちに収穫し、住まいに隣接する茶工場ですぐさま製茶します。</P>
+                <P>朝涼しいうちに収穫し、住まいに隣接する茶工場ですぐに製茶します。</P>
                 小さい茶工場ですので機械任せにできませんが、
                 <P>その分一つ一つの工程を大切にしています。</P>
                 <P mt={20}>見て、触って、香って、充実した新芽を香味豊かな茶葉に仕上げます。</P>
