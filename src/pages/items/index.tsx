@@ -9,6 +9,7 @@ import { Header } from '../../components/organisms/Header';
 import { routing } from '../../constants/routing';
 import { GiftCard } from '../../components/molecules/giftCard';
 import { giftList } from '../../constants/store/giftList';
+import { BasicLink } from '../../components/atoms/BasicLink';
 
 const ItemLink = styled.a({
   color: '#1b1b1b',
@@ -83,7 +84,7 @@ const Items: React.FC = () => {
               );
             })}
         <Box>
-          <Link href={routing.docs.fax}>Faxで個注文を希望の方はこちらから</Link>
+          <BasicLink path={routing.docs.fax} text={'Faxで個注文を希望の方はこちらから'}></BasicLink>
         </Box>
       </Wrapper>
     </>
