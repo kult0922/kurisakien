@@ -22,8 +22,8 @@ const Block = styled(Box)({
 export const Footer: React.FC = () => {
   return (
     <Block>
-      <Flex justifyContent={'center'}>
-        <Box m={20}>
+      <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20} mt={20}>
+        <Box mr={10}>
           <Link
             href={{
               pathname: routing.docs.privacy,
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
           </Link>
         </Box>
 
-        <Box m={20}>
+        <Box>
           <Link
             href={{
               pathname: routing.docs.low,
@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
           </Link>
         </Box>
       </Flex>
-      <Flex justifyContent={'center'}>
+      <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20}>
         <Text>developed by</Text>
         <LinkText href="https://twitter.com/KK_sep_TT">@KK_sep_TT</LinkText>
         <Text>and</Text>
