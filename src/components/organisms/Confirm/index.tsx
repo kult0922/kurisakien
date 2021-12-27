@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { bp } from '../../../constants/css';
 import { Box } from '../../../lib/styled';
-import { GlobalStore } from '../../../store/Global';
 import { useConfirm } from '../../../store/organisms/Confirm';
 import { CartTable } from '../../molecules/CartTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',
+  paddingBottom: 20,
 });
 
 const TotalPrice = styled.div({
@@ -58,7 +58,7 @@ const Button = styled.button({
   border: '0px',
   color: '#fff',
   fontWeight: 'bold',
-  padding: '0.5em 2em 0.5em 1em',
+  padding: '7px 5px',
   lineHeight: '1.4',
   maxWidth: '200px',
   width: '100%',
@@ -71,12 +71,16 @@ const Button = styled.button({
 });
 
 export const Confirm: React.FC = () => {
-  const { order, postage, commission, getPaymentTypeName, onClickConfirmButton } = useConfirm();
+  const {
+    itemSubTotal,
+    order,
+    postage,
+    commission,
+    total,
+    getPaymentTypeName,
+    onClickConfirmButton,
+  } = useConfirm();
   const [disabled, setDisabled] = useState(false);
-  const { cart: cartStore } = GlobalStore.useContainer();
-  const itemSubTotal = cartStore.total;
-
-  const totalPrice = itemSubTotal + postage + commission;
 
   return (
     <Wrapper>
@@ -103,7 +107,7 @@ export const Confirm: React.FC = () => {
             <TablePriceRow>
               <TableHeader>請求合計</TableHeader>
               <TablePriceData>
-                <TotalPrice>{totalPrice}円</TotalPrice>
+                <TotalPrice>{total}円</TotalPrice>
               </TablePriceData>
             </TablePriceRow>
           </tbody>
