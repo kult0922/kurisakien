@@ -42,8 +42,12 @@ interface Props {
 }
 
 export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
-  const { cart: cartStore } = GlobalStore.useContainer();
-  const { carts, total, onDeleteCartItem, onChangeCartItemAmount } = cartStore;
+  const {
+    carts,
+    total,
+    onDeleteCartItem,
+    onChangeCartItemAmount,
+  } = GlobalStore.useContainer().cart;
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
     <div>
