@@ -7,6 +7,7 @@ import { NextButton } from '../../atoms/Buttons/next';
 import { useCheckout } from '../../../store/organisms/Checkout';
 
 const Wrapper = styled.div({
+  paddingBottom: 20,
   textAlign: 'center',
 });
 
