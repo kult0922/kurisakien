@@ -4,7 +4,7 @@ import { bp } from '../../../constants/css';
 import { Box } from '../../../lib/styled';
 import { GlobalStore } from '../../../store/Global';
 import { useConfirm } from '../../../store/organisms/Confirm';
-import { CartTable } from '../CartTable';
+import { CartTable } from '../../molecules/CartTable';
 
 const Wrapper = styled.div({
   textAlign: 'center',

@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import { GlobalStore } from '../../../store/Global';
-import { Order } from '../../../@types/order';
-import { routing } from '../../../constants/routing';
 import { Box, Flex } from '../../../lib/styled';
 import PostageTable from '../PostageTable';
 import PaymentTable from '../PaymentTable';
 import { bp } from '../../../constants/css';
+import { NextButton } from '../../atoms/Buttons/next';
+import { useCheckout } from '../../../store/organisms/Checkout';
 
 const Wrapper = styled.div({
   textAlign: 'center',
@@ -56,67 +53,8 @@ const ErrorText = styled(Box)({
   color: 'red',
 });
 
-const Button = styled.button({
-  background: '#67ce9a',
-  textAlign: 'center',
-  boxSizing: 'border-box',
-  display: 'block',
-  border: '2px solid #67ce9a',
-  color: '#fff',
-  fontWeight: 'bold',
-  padding: '10px',
-  lineHeight: '1.4',
-  maxWidth: '300px',
-  width: '100%',
-  margin: '0 auto',
-  position: 'relative',
-  cursor: 'pointer',
-  '&::after': {
-    content: '""',
-    width: '10px',
-    height: '10px',
-    display: 'block',
-    position: 'absolute',
-    top: '50%',
-    right: '24px',
-    marginTop: '-6px',
-    transform: 'rotate(45deg)',
-    borderTop: '2px solid #fff',
-    borderRight: '2px solid #fff',
-    transition: 'right 0.3s',
-  },
-  '&:hover': {
-    background: '#67ce9a',
-    color: '#fff',
-    '&::after': {
-      borderColor: '#fff',
-      right: '6px',
-    },
-  },
-  '&:active, &:focus': {
-    opacity: '0.8',
-  },
-});
-
 export const Checkout: React.FC = () => {
-  const { setOrder } = GlobalStore.useContainer().order;
-  const router = useRouter();
-  // const history = useHistory();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Order>({
-    mode: 'onChange',
-    criteriaMode: 'all',
-    shouldFocusError: false,
-  });
-
-  const onSubmit: SubmitHandler<Order> = (data) => {
-    setOrder(data);
-    router.push(routing.checkout.confirm);
-  };
+  const { onSubmit, register, handleSubmit, errors } = useCheckout();
 
   return (
     <Wrapper>
@@ -319,7 +257,7 @@ export const Checkout: React.FC = () => {
             {errors.paymentType?.types?.required && '支払い方法を選択してください'}
           </ErrorText>
           <Box m={30}>
-            <Button type="submit">注文内容確認へ</Button>
+            <NextButton type="submit">注文内容確認へ</NextButton>
           </Box>
         </form>
       </Box>

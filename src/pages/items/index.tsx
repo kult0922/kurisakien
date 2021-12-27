@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { Header } from '../../components/organisms/Header';
 import { routing } from '../../constants/routing';
-import { GiftCard } from '../../components/molecules/giftCard';
+import { GiftCard } from '../../components/molecules/GiftCard';
 import { giftList } from '../../constants/store/giftList';
 import { BasicLink } from '../../components/atoms/BasicLink';
 

@@ -2,7 +2,15 @@ import { GlobalStore } from '../../../store/Global';
 import styled from '@emotion/styled';
 import { bp } from '../../../constants/css';
 
-export const Table = styled.table({
+interface Props {
+  editable: boolean;
+  showTotal: boolean;
+  style?: React.CSSProperties;
+}
+
+const Wrapper = styled.div({});
+
+const Table = styled.table({
   border: 'solid 2px #aaaaaa',
   marginLeft: 'auto',
   marginRight: 'auto',
@@ -36,21 +44,17 @@ const DeleteButton = styled.div({
   color: 'red',
 });
 
-interface Props {
-  editable: boolean;
-  showTotal: boolean;
-}
-
-export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
+export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
   const {
     carts,
     total,
     onDeleteCartItem,
     onChangeCartItemAmount,
   } = GlobalStore.useContainer().cart;
+
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
-    <div>
+    <Wrapper style={style}>
       <Table>
         <tbody>
           <tr>
@@ -100,16 +104,14 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
               </ItemRow>
             );
           })}
-          {showTotal ? (
+          {showTotal && (
             <tr>
               <td colSpan={3}></td>
               <TotalData>合計: {total}円</TotalData>
             </tr>
-          ) : (
-            <tr />
           )}
         </tbody>
       </Table>
-    </div>
+    </Wrapper>
   );
 };
