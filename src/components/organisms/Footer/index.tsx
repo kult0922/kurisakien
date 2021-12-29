@@ -13,7 +13,7 @@ const Text = styled.div({
   marginLeft: '10px',
 });
 
-const Block = styled(Box)({
+const Wrapper = styled(Box)({
   height: '100px',
   backgroundColor: '#fcfcfc',
   textAlign: 'center',
@@ -21,7 +21,7 @@ const Block = styled(Box)({
 
 export const Footer: React.FC = () => {
   return (
-    <Block>
+    <Wrapper>
       <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20} mt={20}>
         <Box mr={10}>
           <Link
@@ -51,6 +51,6 @@ export const Footer: React.FC = () => {
         <Text>and</Text>
         <LinkText href="https://twitter.com/PeeI043">@PeeI043</LinkText>
       </Flex>
-    </Block>
+    </Wrapper>
   );
 };

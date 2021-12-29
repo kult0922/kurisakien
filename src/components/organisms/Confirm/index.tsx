@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { bp } from '../../../constants/css';
-import { Box } from '../../../lib/styled';
+import { Box, BoxProps } from '../../../lib/styled';
 import { useConfirm } from '../../../store/organisms/Confirm';
 import { CartTable } from '../../molecules/CartTable';
 
-const Wrapper = styled.div({
+interface Props extends BoxProps {
+  style?: React.CSSProperties;
+}
+
+const Wrapper = styled(Box)({
   textAlign: 'center',
-  paddingBottom: 20,
 });
 
 const TotalPrice = styled.div({
@@ -70,7 +73,7 @@ const Button = styled.button({
   },
 });
 
-export const Confirm: React.FC = () => {
+export const Confirm: React.FC<Props> = ({ style, ...props }) => {
   const {
     itemSubTotal,
     order,
@@ -83,7 +86,7 @@ export const Confirm: React.FC = () => {
   const [disabled, setDisabled] = useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <h1>注文確認</h1>
       <CartTable editable={false} showTotal={false} />
       <Box mt={30}>

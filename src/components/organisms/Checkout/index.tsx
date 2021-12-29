@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
-import { Box, Flex } from '../../../lib/styled';
+import { Box, BoxProps, Flex } from '../../../lib/styled';
 import PostageTable from '../PostageTable';
 import PaymentTable from '../PaymentTable';
 import { bp } from '../../../constants/css';
 import { NextButton } from '../../atoms/Buttons/next';
 import { useCheckout } from '../../../store/organisms/Checkout';
+import React from 'react';
 
-const Wrapper = styled.div({
-  paddingBottom: 20,
+interface Props extends BoxProps {
+  style?: React.CSSProperties;
+}
+
+const Wrapper = styled(Box)({
   textAlign: 'center',
 });
 
@@ -54,11 +58,11 @@ const ErrorText = styled(Box)({
   color: 'red',
 });
 
-export const Checkout: React.FC = () => {
+export const Checkout: React.FC<Props> = ({ style, ...props }) => {
   const { onSubmit, register, handleSubmit, errors } = useCheckout();
 
   return (
-    <Wrapper>
+    <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box m={20}>

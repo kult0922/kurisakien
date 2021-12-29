@@ -1,23 +1,23 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { routing } from '../../../constants/routing';
-import { Box } from '../../../lib/styled';
+import { Box, BoxProps } from '../../../lib/styled';
 import { BasicLink } from '../../atoms/BasicLink';
 import { NextButton } from '../../atoms/Buttons/next';
 import { SectionTitle } from '../../atoms/SectionTitle';
 import { CartTable } from '../../molecules/CartTable';
 
-interface Props {
+interface Props extends BoxProps {
   style?: React.CSSProperties;
 }
 
-const Wrapper = styled.div({
+const Wrapper = styled(Box)({
   textAlign: 'center',
 });
 
-export const Cart: React.FC<Props> = ({ style }) => {
+export const Cart: React.FC<Props> = ({ style, ...props }) => {
   return (
-    <Wrapper style={style}>
+    <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box mt={10}>
         <SectionTitle>カートの中身</SectionTitle>
       </Box>
