@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
-import { useCart } from './Cart';
-import { useOrder } from './Order';
+import { useCart } from '~/store/Global/Cart';
+import { useOrder } from '~/store/Global/Order';
 
 export const useGlobal = () => {
   const cart = useCart();

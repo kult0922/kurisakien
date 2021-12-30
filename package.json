@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build && next export",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint --max-warnings=0 '**/*.tsx' '**/*.ts'"
+
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",

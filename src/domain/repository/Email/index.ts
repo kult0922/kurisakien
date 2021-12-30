@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { SEND_EMAIL_API } from '../../../constants/env';
-import { Email } from '../../entity/Email';
-import { emailImplConverter } from './converter';
+import { SEND_EMAIL_API } from '~/constants/env';
+import { Email } from '~/domain/entity/Email';
+import { emailImplConverter } from '~/domain/repository/Email/converter';
 
 const createEmailOwner = async (email: Email): Promise<void> => {
   const params = emailImplConverter.createOwnerParameter(email);
