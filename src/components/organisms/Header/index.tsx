@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { TabBar } from '../../molecules/TabBar';
-import { Box } from '../../../lib/styled';
-import { KurisakienLogo } from '../../Icons/KurisakienLogo';
-import { bp } from '../../../constants/css';
+import { KurisakienLogo } from '~/components/Icons/KurisakienLogo';
+import { TabBar } from '~/components/molecules/TabBar';
+import { bp } from '~/constants/css';
+import { Box } from '~/lib/styled';
 
 const Wrapper = styled.div({
   display: 'flex',

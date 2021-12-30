@@ -1,4 +1,4 @@
-import { FaxDocument } from '../../components/organisms/Docs/Fax';
+import { FaxDocument } from '~/components/organisms/Docs/Fax';
 
 const Component: React.FC = () => {
   return <FaxDocument />;

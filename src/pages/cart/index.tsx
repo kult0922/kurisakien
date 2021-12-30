@@ -1,5 +1,5 @@
-import { Cart } from '../../components/organisms/Cart';
-import { Header } from '../../components/organisms/Header';
+import { Cart } from '~/components/organisms/Cart';
+import { Header } from '~/components/organisms/Header';
 
 const Component: React.FC = () => {
   return (

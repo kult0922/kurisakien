@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { routing } from '../../../../constants/routing';
-import { Box } from '../../../../lib/styled';
-import { BasicLink } from '../../../atoms/BasicLink';
+import { BasicLink } from '~/components/atoms/BasicLink';
+import { routing } from '~/constants/routing';
+import { Box } from '~/lib/styled';
 
 const Wrapper = styled.div({
   textAlign: 'center',

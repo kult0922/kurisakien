@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { routing } from '../../../constants/routing';
-import { Box, Flex } from '../../../lib/styled';
 import Link from 'next/link';
+import { routing } from '~/constants/routing';
+import { Box, Flex } from '~/lib/styled';
 
 const LinkText = styled.a({
   color: '#777',
