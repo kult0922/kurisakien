@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { Box, BoxProps } from '../../../lib/styled';
-import { Item } from '../../../@types/product';
-import { bp } from '../../../constants/css';
+import { Item } from '~/@types/product';
+import { bp } from '~/constants/css';
+import { Box, BoxProps } from '~/lib/styled';
 
 interface Props extends BoxProps {
   item: Item;

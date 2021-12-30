@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { routing } from '../../../constants/routing';
-import { Box, BoxProps } from '../../../lib/styled';
-import { BasicLink } from '../../atoms/BasicLink';
-import { NextButton } from '../../atoms/Buttons/next';
-import { SectionTitle } from '../../atoms/SectionTitle';
-import { CartTable } from '../../molecules/CartTable';
+import { BasicLink } from '~/components/atoms/BasicLink';
+import { NextButton } from '~/components/atoms/Buttons/next';
+import { SectionTitle } from '~/components/atoms/SectionTitle';
+import { CartTable } from '~/components/molecules/CartTable';
+import { routing } from '~/constants/routing';
+import { Box, BoxProps } from '~/lib/styled';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

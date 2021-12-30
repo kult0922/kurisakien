@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { Box, BoxProps, Flex } from '../../../lib/styled';
-import PostageTable from '../PostageTable';
-import PaymentTable from '../PaymentTable';
-import { bp } from '../../../constants/css';
-import { NextButton } from '../../atoms/Buttons/next';
-import { useCheckout } from '../../../store/organisms/Checkout';
 import React from 'react';
+import { NextButton } from '~/components/atoms/Buttons/next';
+import { bp } from '~/constants/css';
+import { Box, BoxProps, Flex } from '~/lib/styled';
+import { useCheckout } from '~/store/organisms/Checkout';
+import PaymentTable from '~/components/organisms/PaymentTable';
+import PostageTable from '~/components/organisms/PostageTable';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

@@ -33,7 +33,8 @@
         {
           "argsIgnorePattern": "^_"
         }
-      ]
+      ],
+      "no-restricted-imports": ["warn", { "patterns": ["../*", "./*"] }]
     },
     "settings": {
       "react": {
