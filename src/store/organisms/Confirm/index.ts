@@ -1,9 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { routing } from '../../../constants/routing';
 import { backend } from '../../../domain/backend';
 import { useRouter } from 'next/router';
 import { Area, PaymentType } from '../../../@types/order';
 import { GlobalStore } from '../../Global';
+import { Email } from '../../../domain/entity/Email';
 
 const getPostage = (itemsPrice: number, area: Area): number => {
   if (itemsPrice >= 10000) return 0;
@@ -28,6 +29,13 @@ const getCommission = (paymentType: PaymentType): number => {
   if (paymentType === 'delivery') return 450;
 };
 
+const getPaymentTypeName = (paymentType: PaymentType): string => {
+  if (paymentType === 'postal') return '郵便振替';
+  if (paymentType === 'bank') return '銀行振り込み';
+  if (paymentType === 'convenience') return 'コンビニ払い';
+  if (paymentType === 'delivery') return '代引き払い';
+};
+
 export const useConfirm = () => {
   const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
   const { carts, clearCart } = cartStore;
@@ -37,24 +45,25 @@ export const useConfirm = () => {
   const postage = getPostage(itemSubTotal, order.area);
   const commission = getCommission(order.paymentType);
 
-  const getPaymentTypeName = useCallback((paymentType: PaymentType): string => {
-    if (paymentType === 'postal') return '郵便振替';
-    if (paymentType === 'bank') return '銀行振り込み';
-    if (paymentType === 'convenience') return 'コンビニ払い';
-    if (paymentType === 'delivery') return '代引き払い';
-  }, []);
+  const total = useMemo(() => {
+    return itemSubTotal + postage + commission;
+  }, [itemSubTotal, postage, commission]);
+
+  const emailParams: Email = useMemo(() => {
+    return {
+      order,
+      paymentTypeName: getPaymentTypeName(order.paymentType),
+      postage,
+      commission,
+      itemSubTotal,
+      total,
+      carts,
+    };
+  }, [order, itemSubTotal, postage, commission, carts, total]);
 
   const onClickConfirmButton = useCallback(async () => {
     await backend()
-      .email.createEmail({
-        order,
-        paymentTypeName: getPaymentTypeName(order.paymentType),
-        postage,
-        commission,
-        itemSubTotal: itemSubTotal,
-        total: itemSubTotal + commission + postage,
-        carts,
-      })
+      .email.createEmail(emailParams)
       .then(() => {
         router.push(routing.checkout.complete);
         // 注文確定後にlocal strageのカートデータを削除
@@ -63,14 +72,14 @@ export const useConfirm = () => {
       .catch(() => {
         router.push(routing.checkout.error);
       });
-  }, [order, itemSubTotal, carts, router, commission, postage, clearCart, getPaymentTypeName]);
+  }, [emailParams, router, clearCart]);
 
   return {
-    carts,
     itemSubTotal,
     order,
     postage,
     commission,
+    total,
     getPaymentTypeName,
     onClickConfirmButton,
   };

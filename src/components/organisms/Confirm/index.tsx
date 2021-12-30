@@ -1,12 +1,15 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
-import { Box } from '../../lib/styled';
-import { useConfirm } from '../../store/organisms/Confirm';
-import { CartTable } from '../../components/organisms/CartTable';
-import { GlobalStore } from '../../store/Global';
-import { bp } from '../../constants/css';
+import React, { useState } from 'react';
+import { bp } from '../../../constants/css';
+import { Box, BoxProps } from '../../../lib/styled';
+import { useConfirm } from '../../../store/organisms/Confirm';
+import { CartTable } from '../../molecules/CartTable';
 
-const Wrapper = styled.div({
+interface Props extends BoxProps {
+  style?: React.CSSProperties;
+}
+
+const Wrapper = styled(Box)({
   textAlign: 'center',
 });
 
@@ -58,7 +61,7 @@ const Button = styled.button({
   border: '0px',
   color: '#fff',
   fontWeight: 'bold',
-  padding: '0.5em 2em 0.5em 1em',
+  padding: '7px 5px',
   lineHeight: '1.4',
   maxWidth: '200px',
   width: '100%',
@@ -70,16 +73,20 @@ const Button = styled.button({
   },
 });
 
-const Confirm: React.FC = () => {
-  const { order, postage, commission, getPaymentTypeName, onClickConfirmButton } = useConfirm();
+export const Confirm: React.FC<Props> = ({ style, ...props }) => {
+  const {
+    itemSubTotal,
+    order,
+    postage,
+    commission,
+    total,
+    getPaymentTypeName,
+    onClickConfirmButton,
+  } = useConfirm();
   const [disabled, setDisabled] = useState(false);
-  const { cart: cartStore } = GlobalStore.useContainer();
-  const itemSubTotal = cartStore.total;
-
-  const totalPrice = itemSubTotal + postage + commission;
 
   return (
-    <Wrapper>
+    <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <h1>注文確認</h1>
       <CartTable editable={false} showTotal={false} />
       <Box mt={30}>
@@ -103,7 +110,7 @@ const Confirm: React.FC = () => {
             <TablePriceRow>
               <TableHeader>請求合計</TableHeader>
               <TablePriceData>
-                <TotalPrice>{totalPrice}円</TotalPrice>
+                <TotalPrice>{total}円</TotalPrice>
               </TablePriceData>
             </TablePriceRow>
           </tbody>
@@ -164,5 +171,3 @@ const Confirm: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default Confirm;
