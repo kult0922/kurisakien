@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Tab = styled.a<{ bottom?: number | string }>(({ bottom = -4 }) => ({
+export const Tab = styled.a<{ hasOpened?: boolean }>(({ hasOpened }) => ({
   textAlign: 'center',
   position: 'relative',
   display: 'inline-block',
@@ -10,13 +10,13 @@ export const Tab = styled.a<{ bottom?: number | string }>(({ bottom = -4 }) => (
   padding: '10px 20px 0 20px',
   '&:after': {
     position: 'absolute',
-    bottom,
+    bottom: '-4px',
     left: '10%',
     content: "''",
     width: '80%',
     height: '2px',
     background: '#333',
-    transform: 'scale(0, 1)',
+    transform: hasOpened ? 'scale(1, 1)' : 'scale(0, 1)',
     transformOrigin: 'right top',
     transition: 'transform 0.2s',
   },
