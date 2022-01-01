@@ -16,7 +16,7 @@ const Wrapper = styled.div({
   overflowX: 'scroll',
 });
 
-const PaymentTable: React.FC = () => {
+export const PaymentTable: React.FC = () => {
   return (
     <Wrapper>
       <Table>
@@ -40,5 +40,3 @@ const PaymentTable: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default PaymentTable;
