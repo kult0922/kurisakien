@@ -1,10 +1,11 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { Area, PaymentType } from '~/@types/order';
+import { Area, Order, PaymentType } from '~/@types/order';
 import { GlobalStore } from '~/store/Global';
 import { Email } from '~/domain/entity/Email';
 import { backend } from '~/domain/backend';
 import { routing } from '~/constants/routing';
+import { CartItem } from '~/@types/product';
 
 const getPostage = (itemsPrice: number, area: Area): number => {
   if (itemsPrice >= 10000) return 0;
@@ -36,6 +37,19 @@ const getPaymentTypeName = (paymentType: PaymentType): string => {
   if (paymentType === 'delivery') return '代引き払い';
 };
 
+const submittionIsInvalid = (carts: CartItem[], order: Order) => {
+  if (carts.length === 0) return true;
+  if (!order?.address) return true;
+  if (!order?.phone) return true;
+  if (!order?.area) return true;
+  if (!order?.email) return true;
+  if (!order?.firstName) return true;
+  if (!order?.lastName) return true;
+  if (!order?.postalCode) return true;
+
+  return false;
+};
+
 export const useConfirm = () => {
   const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
   const { carts } = cartStore;
@@ -62,6 +76,11 @@ export const useConfirm = () => {
   }, [order, itemSubTotal, postage, commission, carts, total]);
 
   const onClickConfirmButton = useCallback(async () => {
+    // リユーザーデータに欠損があればエラー画面に遷移
+    if (submittionIsInvalid(carts, order)) {
+      router.push(routing.checkout.error);
+      return;
+    }
     await backend()
       .email.createEmail(emailParams)
       .then(() => {
@@ -70,7 +89,18 @@ export const useConfirm = () => {
       .catch(() => {
         router.push(routing.checkout.error);
       });
-  }, [emailParams, router]);
+  }, [carts, emailParams, order, router]);
+
+  const beforeUnloadhandler = (event) => {
+    event.returnValue = '入力した内容がリセットされます。よろしいですか？';
+  };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', beforeUnloadhandler);
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnloadhandler);
+    };
+  }, []);
 
   return {
     itemSubTotal,
