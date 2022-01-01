@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Order } from '~/@types/order';
 import { routing } from '~/constants/routing';
@@ -26,6 +26,17 @@ export const useCheckout = () => {
     },
     [router, setOrder],
   );
+
+  const beforeUnloadhandler = (event) => {
+    event.returnValue = '入力した内容がリセットされます。よろしいですか？';
+  };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', beforeUnloadhandler);
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnloadhandler);
+    };
+  }, []);
 
   return { onSubmit, register, handleSubmit, errors };
 };

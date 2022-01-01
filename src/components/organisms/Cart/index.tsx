@@ -6,6 +6,7 @@ import { SectionTitle } from '~/components/atoms/SectionTitle';
 import { CartTable } from '~/components/molecules/CartTable';
 import { routing } from '~/constants/routing';
 import { Box, BoxProps } from '~/lib/styled';
+import { GlobalStore } from '~/store/Global';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -16,6 +17,7 @@ const Wrapper = styled(Box)({
 });
 
 export const Cart: React.FC<Props> = ({ style, ...props }) => {
+  const { carts } = GlobalStore.useContainer().cart;
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box mt={10}>
@@ -26,7 +28,7 @@ export const Cart: React.FC<Props> = ({ style, ...props }) => {
           <CartTable editable showTotal />
           <Box mt={20}>
             <Link href={routing.checkout.root} passHref>
-              <NextButton>注文に進む</NextButton>
+              <NextButton disabled={carts.length === 0}>注文に進む</NextButton>
             </Link>
           </Box>
         </Box>
