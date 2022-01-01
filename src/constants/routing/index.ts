@@ -1,5 +1,4 @@
 const items = '/items';
-// const gifts = '/items/gifts';
 const news = '/news';
 const cart = '/cart';
 const checkout = '/checkout';

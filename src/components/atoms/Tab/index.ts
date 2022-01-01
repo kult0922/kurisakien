@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Tab = styled.a<{ hasOpened?: boolean }>(({ hasOpened = false }) => ({
+export const Tab = styled.a<{ hasOpened?: boolean }>(({ hasOpened }) => ({
   textAlign: 'center',
   position: 'relative',
   display: 'inline-block',
