@@ -38,7 +38,7 @@ const getPaymentTypeName = (paymentType: PaymentType): string => {
 
 export const useConfirm = () => {
   const { cart: cartStore, order: orderStore } = GlobalStore.useContainer();
-  const { carts, clearCart } = cartStore;
+  const { carts } = cartStore;
   const itemSubTotal = cartStore.total;
   const { order } = orderStore;
   const router = useRouter();
@@ -66,12 +66,11 @@ export const useConfirm = () => {
       .email.createEmail(emailParams)
       .then(() => {
         router.push(routing.checkout.complete);
-        clearCart();
       })
       .catch(() => {
         router.push(routing.checkout.error);
       });
-  }, [emailParams, router, clearCart]);
+  }, [emailParams, router]);
 
   return {
     itemSubTotal,
