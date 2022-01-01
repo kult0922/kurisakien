@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
-import { routing } from '../../../constants/routing';
-import { backend } from '../../../domain/backend';
 import { useRouter } from 'next/router';
-import { Area, PaymentType } from '../../../@types/order';
-import { GlobalStore } from '../../Global';
-import { Email } from '../../../domain/entity/Email';
+import { Area, PaymentType } from '~/@types/order';
+import { GlobalStore } from '~/store/Global';
+import { Email } from '~/domain/entity/Email';
+import { backend } from '~/domain/backend';
+import { routing } from '~/constants/routing';
 
 const getPostage = (itemsPrice: number, area: Area): number => {
   if (itemsPrice >= 10000) return 0;
@@ -66,7 +66,6 @@ export const useConfirm = () => {
       .email.createEmail(emailParams)
       .then(() => {
         router.push(routing.checkout.complete);
-        // 注文確定後にlocal strageのカートデータを削除
         clearCart();
       })
       .catch(() => {

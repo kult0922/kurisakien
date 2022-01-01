@@ -1,13 +1,13 @@
-import { giftList } from '../../../constants/store/giftList';
 import styled from '@emotion/styled';
-import { GlobalStore } from '../../../store/Global';
 import { useState } from 'react';
-import { LinkButton } from '../../../components/atoms/LinkButton';
-import { Box, BoxProps, Flex } from '../../../lib/styled';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { routing } from '../../../constants/routing';
-import { bp } from '../../../constants/css';
+import { Box, BoxProps, Flex } from '~/lib/styled';
+import { bp } from '~/constants/css';
+import { GlobalStore } from '~/store/Global';
+import { giftList } from '~/constants/store/giftList';
+import { routing } from '~/constants/routing';
+import { LinkButton } from '~/components/atoms/LinkButton';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

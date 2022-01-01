@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { bp } from '../../../constants/css';
-import { newsList } from '../../../constants/news';
-import { routing } from '../../../constants/routing';
-import { Box, Flex } from '../../../lib/styled';
-import { P } from '../../atoms/P';
+import { P } from '~/components/atoms/P';
+import { bp } from '~/constants/css';
+import { newsList } from '~/constants/news';
+import { routing } from '~/constants/routing';
+import { Box, Flex } from '~/lib/styled';
 
 const News = styled.a({
   color: '#1b1b1b',

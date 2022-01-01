@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { routing } from '../../../constants/routing';
-import { Box, BoxProps } from '../../../lib/styled';
-import { BasicLink } from '../../atoms/BasicLink';
+import { BasicLink } from '~/components/atoms/BasicLink';
+import { routing } from '~/constants/routing';
+import { Box, BoxProps } from '~/lib/styled';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

@@ -1,7 +1,7 @@
-import { Tab } from '../../atoms/Tab';
-import { ShoppingCart } from '../../Icons/ShoppingCart';
 import Link from 'next/link';
-import { routing } from '../../../constants/routing';
+import { Tab } from '~/components/atoms/Tab';
+import { ShoppingCart } from '~/components/Icons/ShoppingCart';
+import { routing } from '~/constants/routing';
 
 export const TabBar: React.FC = () => {
   return (

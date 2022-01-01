@@ -1,4 +1,4 @@
-import { PrivacyPolicyDocument } from '../../components/organisms/Docs/Privacy';
+import { PrivacyPolicyDocument } from '~/components/organisms/Docs/Privacy';
 
 const Component: React.FC = () => {
   return <PrivacyPolicyDocument />;

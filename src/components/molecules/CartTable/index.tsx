@@ -1,6 +1,6 @@
-import { GlobalStore } from '../../../store/Global';
 import styled from '@emotion/styled';
-import { bp } from '../../../constants/css';
+import { bp } from '~/constants/css';
+import { GlobalStore } from '~/store/Global';
 
 interface Props {
   editable: boolean;

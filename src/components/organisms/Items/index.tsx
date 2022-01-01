@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import { Box, BoxProps } from '../../../lib/styled';
-import { SectionTitle } from '../../atoms/SectionTitle';
-import { itemList } from '../../../constants/store/itemList';
-import { ItemCard } from '../../molecules/ItemCard';
-import { giftList } from '../../../constants/store/giftList';
-import { GiftCard } from '../../molecules/GiftCard';
-import { BasicLink } from '../../atoms/BasicLink';
-import { routing } from '../../../constants/routing';
+import { Box, BoxProps } from '~/lib/styled';
+import { SectionTitle } from '~/components/atoms/SectionTitle';
+import { itemList } from '~/constants/store/itemList';
+import { ItemCard } from '~/components/molecules/ItemCard';
+import { giftList } from '~/constants/store/giftList';
+import { GiftCard } from '~/components/molecules/GiftCard';
+import { BasicLink } from '~/components/atoms/BasicLink';
+import { routing } from '~/constants/routing';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

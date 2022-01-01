@@ -1,4 +1,4 @@
-import { News } from '../../@types/news';
+import { News } from '~/@types/news';
 
 export const newsList: News[] = [
   {

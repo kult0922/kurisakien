@@ -1,4 +1,4 @@
-import { LowDocument } from '../../components/organisms/Docs/Low';
+import { LowDocument } from '~/components/organisms/Docs/Low';
 
 const Component: React.FC = () => {
   return <LowDocument />;

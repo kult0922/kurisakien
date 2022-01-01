@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { News } from '../../../@types/news';
-import { Box } from '../../../lib/styled';
+import { News } from '~/@types/news';
+import { Box } from '~/lib/styled';
 
 interface Props {
   news?: News;

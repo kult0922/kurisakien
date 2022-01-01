@@ -16,7 +16,7 @@ const Wrapper = styled.div({
   overflowX: 'scroll',
 });
 
-const PostageTable: React.FC = () => {
+export const PostageTable: React.FC = () => {
   return (
     <Wrapper>
       <Table>
@@ -44,5 +44,3 @@ const PostageTable: React.FC = () => {
     </Wrapper>
   );
 };
-
-export default PostageTable;

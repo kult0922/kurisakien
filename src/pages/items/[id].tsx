@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { Header } from '../../components/organisms/Header';
-import { ItemDetail } from '../../components/organisms/ItemDetail';
-import { itemList } from '../../constants/store/itemList';
+import { Header } from '~/components/organisms/Header';
+import { ItemDetail } from '~/components/organisms/ItemDetail';
+import { itemList } from '~/constants/store/itemList';
 
 const Component: React.FC = () => {
   const router = useRouter();

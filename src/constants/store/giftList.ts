@@ -1,4 +1,4 @@
-import { Item } from '../../@types/product';
+import { Item } from '~/@types/product';
 
 export const giftList = new Map<string, Item[]>([
   [

@@ -1,5 +1,5 @@
 import { AppProps } from 'next/dist/shared/lib/router/router';
-import { GlobalStore } from '../store/Global';
+import { GlobalStore } from '~/store/Global';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

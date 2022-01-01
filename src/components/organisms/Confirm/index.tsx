@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import { bp } from '../../../constants/css';
-import { Box, BoxProps } from '../../../lib/styled';
-import { useConfirm } from '../../../store/organisms/Confirm';
-import { CartTable } from '../../molecules/CartTable';
+import { CartTable } from '~/components/molecules/CartTable';
+import { bp } from '~/constants/css';
+import { Box, BoxProps } from '~/lib/styled';
+import { useConfirm } from '~/store/organisms/Confirm';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;

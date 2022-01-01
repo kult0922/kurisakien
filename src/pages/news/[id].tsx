@@ -1,7 +1,7 @@
-import { newsList } from '../../constants/news';
 import { useRouter } from 'next/router';
-import { Header } from '../../components/organisms/Header';
-import { NewsContent } from '../../components/organisms/News';
+import { Header } from '~/components/organisms/Header';
+import { NewsContent } from '~/components/organisms/News';
+import { newsList } from '~/constants/news';
 
 const Component = () => {
   const router = useRouter();

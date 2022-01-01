@@ -1,4 +1,4 @@
-import { Complete } from '../../../components/organisms/Complete';
+import { Complete } from '~/components/organisms/Complete';
 
 const Component: React.FC = () => {
   return <Complete mb={50} />;

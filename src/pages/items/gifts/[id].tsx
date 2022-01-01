@@ -1,6 +1,6 @@
-import { GiftDetail } from '../../../components/organisms/GiftDetail';
-import { Header } from '../../../components/organisms/Header';
-import { giftList } from '../../../constants/store/giftList';
+import { GiftDetail } from '~/components/organisms/GiftDetail';
+import { Header } from '~/components/organisms/Header';
+import { giftList } from '~/constants/store/giftList';
 
 const Component: React.FC = () => {
   return (
