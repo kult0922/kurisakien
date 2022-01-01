@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
 import { Box, BoxProps } from '~/lib/styled';
-import { useComplete } from '~/store/organisms/Complete';
+import { GlobalStore } from '~/store/Global';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -14,7 +14,10 @@ const Wrapper = styled(Box)({
 });
 
 export const Complete: React.FC<Props> = ({ style, ...props }) => {
-  useComplete();
+  const { clearCart } = GlobalStore.useContainer().cart;
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <h1>ご注文ありがとうございました</h1>
