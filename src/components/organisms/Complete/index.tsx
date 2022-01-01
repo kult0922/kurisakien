@@ -3,6 +3,7 @@ import React from 'react';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
 import { Box, BoxProps } from '~/lib/styled';
+import { useComplete } from '~/store/organisms/Complete';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -13,6 +14,7 @@ const Wrapper = styled(Box)({
 });
 
 export const Complete: React.FC<Props> = ({ style, ...props }) => {
+  useComplete();
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <h1>ご注文ありがとうございました</h1>
