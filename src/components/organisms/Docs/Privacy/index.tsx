@@ -50,7 +50,7 @@ export const PrivacyPolicyDocument: React.FC = () => {
         e-mail kurisakien@gmail.com
       </div>
       <h3>事業者の名称</h3>
-      <div>栗崎 2022年1月1日 制定</div>
+      <div>栗崎園 2022年1月1日 制定</div>
     </Wrapper>
   );
 };
