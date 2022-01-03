@@ -15,7 +15,9 @@ const PdfLink = styled.a({
 export const FaxDocument: React.FC = () => {
   return (
     <Wrapper>
-      <Box mt={30}>価格表の商品番号を注文表に記入の上、Faxにてお送り下さい。</Box>
+      <Box mt={30}>
+        価格表の商品番号、住所などの必要事項を注文表に記入の上、Faxにてお送り下さい。
+      </Box>
       <Box mt={20}>
         <PdfLink href="/pdf/kakaku.pdf" download="価格表.pdf">
           価格表
