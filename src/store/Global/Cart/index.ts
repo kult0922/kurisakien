@@ -43,6 +43,7 @@ export const useCart = () => {
   }, []);
 
   const total = useMemo(() => {
+    if (carts === null || carts === undefined) return 0;
     if (!carts.length) return 0;
     const prices = carts.map((elem) => elem.amount * elem.price);
     return prices.reduce((acc: number, val: number) => acc + val, 0);
