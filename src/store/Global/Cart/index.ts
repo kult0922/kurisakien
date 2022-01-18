@@ -43,7 +43,6 @@ export const useCart = () => {
   }, []);
 
   const total = useMemo(() => {
-    if (carts === null || carts === undefined) return 0;
     if (!carts.length) return 0;
     const prices = carts.map((elem) => elem.amount * elem.price);
     return prices.reduce((acc: number, val: number) => acc + val, 0);
@@ -51,8 +50,12 @@ export const useCart = () => {
 
   // localstrageに保存されているデータでカートを初期化
   useEffect(() => {
-    const storedCarts = JSON.parse(localStorage.getItem('carts')) as CartItem[];
-    setCarts(storedCarts);
+    const localStorageCarts = localStorage.getItem('carts');
+    if (localStorageCarts === null || localStorageCarts === undefined){
+      setCarts([])
+    }else{
+      setCarts(JSON.parse(localStorageCarts) as CartItem[]);
+    }
   }, []);
 
   // localstrageに保存
