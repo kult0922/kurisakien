@@ -51,11 +51,7 @@ export const useCart = () => {
   // localstrageに保存されているデータでカートを初期化
   useEffect(() => {
     const localStorageCarts = localStorage.getItem('carts');
-    if (localStorageCarts === null || localStorageCarts === undefined){
-      setCarts([])
-    }else{
-      setCarts(JSON.parse(localStorageCarts) as CartItem[]);
-    }
+    setCarts(localStorageCarts ? JSON.parse(localStorageCarts) : []);
   }, []);
 
   // localstrageに保存
