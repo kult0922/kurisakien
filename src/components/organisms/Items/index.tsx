@@ -67,7 +67,6 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
         />
         <Label htmlFor={'item-2'}>贈答用</Label>
       </Box>
-
       {menu === 'normal'
         ? itemList.map((item, i) => {
             return (

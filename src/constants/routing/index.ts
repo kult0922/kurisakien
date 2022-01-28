@@ -30,5 +30,6 @@ export const routing = {
     privacy: docs + '/privacy',
     low: docs + '/low',
     fax: docs + '/fax',
+    commission: docs + '/commission',
   },
 };

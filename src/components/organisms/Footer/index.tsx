@@ -14,14 +14,24 @@ const Text = styled.div({
 });
 
 const Wrapper = styled(Box)({
-  height: '100px',
-  backgroundColor: '#fcfcfc',
+  backgroundColor: '#f0f0f0',
+  padding: '20px',
   textAlign: 'center',
 });
 
 export const Footer: React.FC = () => {
   return (
     <Wrapper>
+      <Box>
+        <Link
+          href={{
+            pathname: routing.docs.commission,
+          }}
+          passHref
+        >
+          <LinkText>送料・手数料について</LinkText>
+        </Link>
+      </Box>
       <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20} mt={20}>
         <Box mr={10}>
           <Link

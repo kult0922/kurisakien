@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { BasicLink } from '~/components/atoms/BasicLink';
-import { routing } from '~/constants/routing';
+import { DocsFooter } from '~/components/molecules/DocsFooter';
 import { Box } from '~/lib/styled';
 
 const Wrapper = styled.div({
@@ -26,9 +25,7 @@ export const FaxDocument: React.FC = () => {
           注文表
         </PdfLink>
       </Box>
-      <Box mt={30}>
-        <BasicLink path={routing.root} text={'Topページへ戻る'}></BasicLink>
-      </Box>
+      <DocsFooter />
     </Wrapper>
   );
 };

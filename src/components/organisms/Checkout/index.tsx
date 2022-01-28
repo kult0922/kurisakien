@@ -220,6 +220,7 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
                       value="postal"
                     />
                     郵便振り込み (手数料無料)
+                    <div>* ただし現金での振込の場合、追加手数料110円</div>
                   </TableData>
                 </TableRow>
 

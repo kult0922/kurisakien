@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { DocsFooter } from '~/components/molecules/DocsFooter';
 
 const Wrapper = styled.div({
   width: '800px',
@@ -61,6 +62,7 @@ export const LowDocument: React.FC = () => {
           <Td>当方着払い便にて</Td>
         </tr>
       </Table>
+      <DocsFooter />
     </Wrapper>
   );
 };
