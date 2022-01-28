@@ -46,7 +46,7 @@ export const PaymentTable: React.FC = () => {
         <tr>
           <Td>代引き払い</Td>
           <Td>
-            <div>手数料: 200円</div>
+            <div>手数料: 450円</div>
             <div>配達員の方に料金をお支払い下さい。</div>
           </Td>
         </tr>
