@@ -294,6 +294,20 @@ export const itemList: Item[] = [
 `,
   },
   {
+    id: 'n27',
+    imagePaths: ['/image/items/benihukibag.JPG', '/image/items/benihukitbag_leaf.JPG'],
+    name: 'べにふうき緑茶ティーバッグ',
+    price: 870,
+    amount: '3g x 20',
+    description: `
+べにふうきという品種の緑茶のティーバッグです。
+緑茶には健康成分カテキンが含まれていますが、このべにふうきに含まれるカテキンは「メチル化カテキン」と呼ばれる特殊なものです。
+
+花粉症体質の方に圧倒的支持をいただいており、花粉症シーズンになると途端に人気が出ます。
+通年飲まれる方がいいとのことですが、お薬ではありませんので、無理せず楽しみながら飲んでください。
+`,
+  },
+  {
     id: 'n19',
     imagePaths: ['/image/items/benihukistick.JPG', '/image/items/benihukistick_leaf.JPG'],
     name: 'べにふうき粉末茶スティックタイプ',
