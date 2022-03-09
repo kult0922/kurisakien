@@ -41,12 +41,22 @@ const TableRow = styled.tr({
   borderBottom: 'solid 1px #aaaaaa',
 });
 
-const TableData = styled.td({
+const AreaSelect = styled.td({
   textAlign: 'left',
   padding: '20px',
-  [bp.md]: {
-    display: 'block',
-  },
+  display: 'block',
+});
+
+const TableData = styled.td({
+  textAlign: 'left',
+  alignItems: 'center',
+  display: 'flex',
+  padding: '20px',
+  flexWrap: 'wrap',
+});
+
+const CardImage = styled.img({
+  height: '30px',
 });
 
 const Title = styled(Box)({
@@ -106,7 +116,7 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
 
                 <TableRow>
                   <TableHeader>配送地域</TableHeader>
-                  <TableData>
+                  <AreaSelect>
                     <div>
                       <input
                         type="radio"
@@ -134,7 +144,7 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
                     <ErrorText>
                       {errors.area?.types?.required && '配送地域を選択してください'}
                     </ErrorText>
-                  </TableData>
+                  </AreaSelect>
                 </TableRow>
 
                 <TableRow>
@@ -214,13 +224,31 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
               <tbody>
                 <TableRow>
                   <TableData>
+                    <Box>
+                      <input
+                        type="radio"
+                        {...register('paymentType', { required: true })}
+                        value="card"
+                      />
+                    </Box>
+                    クレジットカード
+                    <Box ml={10}>
+                      <CardImage src="/image/card/visa.png" />
+                      <CardImage src="/image/card/master.png" />
+                      <CardImage src="/image/card/amex.png" />
+                    </Box>
+                    <div>（現在、JCBカードはご利用いただけません。）</div>
+                  </TableData>
+                </TableRow>
+                <TableRow>
+                  <TableData>
                     <input
                       type="radio"
                       {...register('paymentType', { required: true })}
                       value="postal"
                     />
-                    郵便振り込み (手数料無料)
-                    <div>* ただし現金での振込の場合、追加手数料110円</div>
+                    郵便振り込み
+                    <div>(現金での振込の場合手数料 110円)</div>
                   </TableData>
                 </TableRow>
 

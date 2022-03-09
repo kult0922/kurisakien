@@ -12,6 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/stripe-js": "^1.23.0",
     "axios": "^0.21.1",
     "babel-jest": "^26.6.0",
     "babel-plugin-named-asset-import": "^0.3.7",
