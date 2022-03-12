@@ -56,7 +56,7 @@ const TableData = styled.td({
 });
 
 const CardImage = styled.img({
-  height: '30px',
+  height: '24px',
 });
 
 const Title = styled(Box)({
@@ -232,12 +232,12 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
                       />
                     </Box>
                     クレジットカード
-                    <Box ml={10}>
+                    <Box ml={20}>
                       <CardImage src="/image/card/visa.png" />
+                      <CardImage src="/image/card/jcb.png" />
                       <CardImage src="/image/card/master.png" />
                       <CardImage src="/image/card/amex.png" />
                     </Box>
-                    <div>（現在、JCBカードはご利用いただけません。）</div>
                   </TableData>
                 </TableRow>
                 <TableRow>

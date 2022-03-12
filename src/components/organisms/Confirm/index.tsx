@@ -92,6 +92,10 @@ const CardInput = styled.div({
   borderRadius: '5px',
 });
 
+const ErrorResult = styled.div({
+  color: 'red',
+});
+
 const ELEMENT_OPTIONS = {
   style: {
     base: {
@@ -112,8 +116,6 @@ const ELEMENT_OPTIONS = {
 const logEvent = (name) => (event) => {
   console.log(`[${name}]`, event);
 };
-
-export const ErrorResult = ({ children }) => <div className="error">{children}</div>;
 
 export const Confirm: React.FC<Props> = ({ style, ...props }) => {
   const {
@@ -155,7 +157,6 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
     const result = await onStripe(CardNumberElement, stripe, elements);
     if (result.error) {
       // stripe 決済の失敗 api_connection_error, api_error, authentication_error, card_error ...
-      console.log('error');
       setProcessing(false);
       setErrorMessage(result.error.message);
     } else {
@@ -266,7 +267,12 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
                 options={ELEMENT_OPTIONS}
               />
             </CardInput>
-            {errorMessage && <ErrorResult>{errorMessage}</ErrorResult>}
+            {errorMessage && (
+              <ErrorResult>
+                <div>{errorMessage}</div>
+                カード番号、有効期限、セキュリティコードに間違いがないか確認してください。
+              </ErrorResult>
+            )}
             <Box mt={20}>
               <Button
                 type="submit"
