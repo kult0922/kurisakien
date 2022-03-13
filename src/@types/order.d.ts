@@ -1,4 +1,4 @@
-type PaymentType = 'postal' | 'convenience' | 'bank' | 'delivery';
+type PaymentType = 'postal' | 'convenience' | 'bank' | 'delivery' | 'card';
 type Area = 'shizuoka' | 'near' | 'middle' | 'far';
 
 export interface Order {

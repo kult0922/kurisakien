@@ -6,6 +6,9 @@ import { Email } from '~/domain/entity/Email';
 import { backend } from '~/domain/backend';
 import { routing } from '~/constants/routing';
 import { CartItem } from '~/@types/product';
+import axios from 'axios';
+import { CardNumberElementComponent } from '@stripe/react-stripe-js';
+import { PaymentIntentResult, Stripe, StripeElements } from '@stripe/stripe-js';
 
 const getPostage = (itemsPrice: number, area: Area): number => {
   if (itemsPrice >= 10000) return 0;
@@ -28,9 +31,11 @@ const getCommission = (paymentType: PaymentType): number => {
   if (paymentType === 'bank') return 0;
   if (paymentType === 'convenience') return 200;
   if (paymentType === 'delivery') return 450;
+  return 0;
 };
 
 const getPaymentTypeName = (paymentType: PaymentType): string => {
+  if (paymentType === 'card') return 'クレジットカード';
   if (paymentType === 'postal') return '郵便振替';
   if (paymentType === 'bank') return '銀行振り込み';
   if (paymentType === 'convenience') return 'コンビニ払い';
@@ -75,12 +80,14 @@ export const useConfirm = () => {
     };
   }, [order, itemSubTotal, postage, commission, carts, total]);
 
-  const onClickConfirmButton = useCallback(async () => {
-    // リユーザーデータに欠損があればエラー画面に遷移
+  const isOrderReady = useCallback((): boolean => {
     if (submittionIsInvalid(carts, order)) {
-      router.push(routing.checkout.error);
-      return;
+      return false;
     }
+    return true;
+  }, [carts, order]);
+
+  const sendOrderMail = useCallback(async () => {
     await backend()
       .email.createEmail(emailParams)
       .then(() => {
@@ -89,7 +96,39 @@ export const useConfirm = () => {
       .catch(() => {
         router.push(routing.checkout.error);
       });
-  }, [carts, emailParams, order, router]);
+  }, [router, emailParams]);
+
+  // stripe
+  const onStripe = useCallback(
+    async (
+      cardNumberElement: CardNumberElementComponent,
+      stripe: Stripe,
+      elements: StripeElements,
+    ): Promise<PaymentIntentResult> => {
+      const res = await axios.post(process.env.NEXT_PUBLIC_STRIPE_API, { amount: total });
+      const secret = await res.data.client_secret;
+
+      const result = await stripe.confirmCardPayment(secret, {
+        payment_method: {
+          // FYI: payment_method (https://stripe.com/docs/api/payment_methods)
+          // card: elements.getElement(CardElement),
+          card: elements.getElement(cardNumberElement),
+          billing_details: {
+            name: order.lastName + order.firstName,
+            email: order.email,
+            phone: order.phone,
+            address: {
+              city: order.address,
+              postal_code: order.postalCode,
+            },
+          },
+        },
+      });
+
+      return result;
+    },
+    [order.lastName, order.firstName, total],
+  );
 
   const beforeUnloadhandler = (event) => {
     event.returnValue = '入力した内容がリセットされます。よろしいですか？';
@@ -109,6 +148,8 @@ export const useConfirm = () => {
     commission,
     total,
     getPaymentTypeName,
-    onClickConfirmButton,
+    isOrderReady,
+    sendOrderMail,
+    onStripe,
   };
 };

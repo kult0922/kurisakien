@@ -4,6 +4,15 @@ import { CartTable } from '~/components/molecules/CartTable';
 import { bp } from '~/constants/css';
 import { Box, BoxProps } from '~/lib/styled';
 import { useConfirm } from '~/store/organisms/Confirm';
+import {
+  CardNumberElement,
+  CardCvcElement,
+  CardExpiryElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
+import router from 'next/router';
+import { routing } from '~/constants/routing';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -73,6 +82,41 @@ const Button = styled.button({
   },
 });
 
+const StripeForm = styled(Box)({});
+
+const CardInput = styled.div({
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: '300px',
+  border: 'solid 1px #aaa',
+  borderRadius: '5px',
+});
+
+const ErrorResult = styled.div({
+  color: 'red',
+});
+
+const ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      fontSize: '18px',
+      color: '#424770',
+      letterSpacing: '0.025em',
+      '::placeholder': {
+        color: '#aab7c4',
+      },
+      textAlign: 'center',
+    },
+    invalid: {
+      color: '#9e2146',
+    },
+  },
+};
+
+const logEvent = (name) => (event) => {
+  console.log(`[${name}]`, event);
+};
+
 export const Confirm: React.FC<Props> = ({ style, ...props }) => {
   const {
     itemSubTotal,
@@ -81,9 +125,47 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
     commission,
     total,
     getPaymentTypeName,
-    onClickConfirmButton,
+    isOrderReady,
+    sendOrderMail,
+    onStripe,
   } = useConfirm();
-  const [disabled, setDisabled] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  // stripe
+  const stripe = useStripe();
+  const elements = useElements();
+
+  // const [errorMessage, setErrorMessage] = useState(null);
+  const normalSubmit = async () => {
+    if (!isOrderReady()) {
+      router.push(routing.checkout.error);
+      return;
+    }
+    sendOrderMail();
+  };
+
+  const stripeSubmit = async () => {
+    if (elements == null) {
+      return;
+    }
+    if (!isOrderReady()) {
+      router.push(routing.checkout.error);
+      return;
+    }
+
+    const result = await onStripe(CardNumberElement, stripe, elements);
+    if (result.error) {
+      // stripe 決済の失敗 api_connection_error, api_error, authentication_error, card_error ...
+      setProcessing(false);
+      setErrorMessage(result.error.message);
+    } else {
+      if (result.paymentIntent.status === 'succeeded') {
+        // stripe 決済成功
+        sendOrderMail();
+      }
+    }
+  };
 
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
@@ -155,19 +237,74 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
           </tr>
         </tbody>
       </Table>
+      {order.paymentType === 'card' ? (
+        <StripeForm mt={30}>
+          <form>
+            カード番号
+            <CardInput>
+              <CardNumberElement
+                id="cardNumber"
+                onChange={logEvent('change')}
+                onReady={logEvent('ready')}
+                options={ELEMENT_OPTIONS}
+              />
+            </CardInput>
+            有効期限
+            <CardInput>
+              <CardExpiryElement
+                id="expiry"
+                onChange={logEvent('change')}
+                onReady={logEvent('ready')}
+                options={ELEMENT_OPTIONS}
+              />
+            </CardInput>
+            セキュリティ番号
+            <CardInput>
+              <CardCvcElement
+                id="cvc"
+                onChange={logEvent('change')}
+                onReady={logEvent('ready')}
+                options={ELEMENT_OPTIONS}
+              />
+            </CardInput>
+            {errorMessage && (
+              <ErrorResult>
+                <div>{errorMessage}</div>
+                カード番号、有効期限、セキュリティコードに間違いがないか確認してください。
+              </ErrorResult>
+            )}
+            <Box mt={20}>
+              <Button
+                type="submit"
+                disabled={!stripe || !elements || processing}
+                onClick={async () => {
+                  setProcessing(true);
+                  await stripeSubmit();
+                }}
+              >
+                注文確定
+              </Button>
+            </Box>
+          </form>
+        </StripeForm>
+      ) : (
+        <Box mt={20}>
+          <Button
+            disabled={processing}
+            onClick={async () => {
+              setProcessing(true);
+              await normalSubmit();
+            }}
+          >
+            注文確定
+          </Button>
+        </Box>
+      )}
+      {processing && <div>注文を処理中...</div>}
       <Box m={20}>
-        ※以下のボタンを押すと注文が確定されます。
+        ※注文確定ボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。
       </Box>
-      <Button
-        disabled={disabled}
-        onClick={async () => {
-          setDisabled(true);
-          await onClickConfirmButton();
-        }}
-      >
-        注文確定
-      </Button>
     </Wrapper>
   );
 };
