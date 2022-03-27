@@ -8,6 +8,7 @@ export interface Order {
   lastName: string;
   phone: string;
   email: string;
+  voice?: string;
   area: Area;
   paymentType: PaymentType;
 }

@@ -290,6 +290,16 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
           <ErrorText>
             {errors.paymentType?.types?.required && '支払い方法を選択してください'}
           </ErrorText>
+
+          <Box mt={40}>ご意見、ご要望等ありましたら以下にお書きください</Box>
+          <textarea
+            rows={10}
+            cols={44}
+            {...register('voice', {
+              required: false,
+            })}
+          ></textarea>
+
           <Box m={30}>
             <NextButton type="submit">注文内容確認へ</NextButton>
           </Box>
