@@ -16,7 +16,9 @@ const createOrderText = (email: Email) => {
                 住所: ${order.address}<br />
                 電話番号: ${order.phone}<br />
                 メール: ${order.email}<br />
-                支払い方法: ${paymentTypeName}<br /><br />
+                支払い方法: ${paymentTypeName}<br />
+                ご意見、ご要望:<br />
+                ${order.voice.replace(/\r?\n/g, '<br />')}<br /><br />
                 ＜注文内容＞<br />
                 ${items}
                 商品小計: ${itemSubTotal}円<br />
