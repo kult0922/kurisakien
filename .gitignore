@@ -25,6 +25,7 @@ yarn-error.log*
 
 # firebase cache
 .firebase/
+firebase-debug.log
 
 # next
 .next
