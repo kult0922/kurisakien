@@ -7,8 +7,8 @@ interface Props extends BoxProps {
   item: Item;
 }
 
-const Price = styled(Box)({
-  fontSize: '12px',
+const SubInfo = styled(Box)({
+  fontSize: '13px',
   paddingBottom: '5px',
   [bp.md]: {
     paddingBottom: '2px',
@@ -44,12 +44,13 @@ const Wrapper = styled(Box)({
 });
 
 export const ItemCard: React.FC<Props> = ({ item, m, style }) => {
-  const { name, imagePaths, price } = item;
+  const { name, imagePaths, price, amount } = item;
   return (
     <Wrapper m={m} style={{ ...style }}>
       <Image src={imagePaths[0]}></Image>
       <Name mt={5}>{name}</Name>
-      <Price>{price}円</Price>
+      <SubInfo>{price} 円</SubInfo>
+      <SubInfo>{amount}</SubInfo>
     </Wrapper>
   );
 };
