@@ -22,6 +22,11 @@ const Wrapper = styled(Box)({
 export const Footer: React.FC = () => {
   return (
     <Wrapper>
+      <Box mb={10}>
+        <LinkText href="https://note.com/kurisakien" target="_blank" rel="noopener noreferrer">
+          ブログ 📘
+        </LinkText>
+      </Box>
       <Box>
         <Link
           href={{
