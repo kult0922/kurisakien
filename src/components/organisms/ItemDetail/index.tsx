@@ -56,6 +56,7 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
   const [focusIdx, setFocusIdx] = useState(0);
+  console.log('item', item);
 
   if (!item) return null;
   const { imagePaths, name, price, amount, description } = item;
@@ -65,7 +66,7 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
       <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
         <div>
           <div>
-            <FocusImage src={imagePaths[focusIdx]} />
+            <FocusImage src={imagePaths[focusIdx].url} />
           </div>
 
           <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
@@ -74,9 +75,9 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
                 <Box key={idx} mt={8} mr={6} ml={6}>
                   <a href="#!" onClick={() => setFocusIdx(idx)} key={idx}>
                     {focusIdx === idx ? (
-                      <ThumbnailImage border={'solid'} src={imagePath} />
+                      <ThumbnailImage border={'solid'} src={imagePath.url} />
                     ) : (
-                      <ThumbnailImage border={'none'} src={imagePath} />
+                      <ThumbnailImage border={'none'} src={imagePath.url} />
                     )}
                   </a>
                 </Box>

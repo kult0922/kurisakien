@@ -47,7 +47,7 @@ export const GiftCard: React.FC<Props> = ({ item, m, style }) => {
   const { name, imagePaths, price } = item;
   return (
     <Wrapper m={m} style={{ ...style }}>
-      <Image src={imagePaths[0]}></Image>
+      <Image src={imagePaths[0].url}></Image>
       <Name mt={5}>{name.split(' ')[0]}</Name>
       <Price>{price}円〜</Price>
     </Wrapper>

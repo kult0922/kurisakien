@@ -55,7 +55,7 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-        <ItemImage src={itemPack[idx].imagePaths[0]} />
+        <ItemImage src={itemPack[idx].imagePaths[0].url} />
         <PurchaseWrapper ml={30} mt={30}>
           <Name>{itemPack[idx].name}</Name>
           <Price mt={5}>{itemPack[idx].price} 円</Price>

@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { Box, BoxProps } from '~/lib/styled';
 import { SectionTitle } from '~/components/atoms/SectionTitle';
-import { itemList } from '~/constants/store/itemList';
+// import { itemList } from '~/constants/store/itemList';
 import { ItemCard } from '~/components/molecules/ItemCard';
 import { giftList } from '~/constants/store/giftList';
 import { GiftCard } from '~/components/molecules/GiftCard';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
+import { useEffect } from 'react';
+import { getProducts } from '~/domain/repository/Products/getProducts';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -44,7 +46,21 @@ const Input = styled.input({
 });
 
 export const Items: React.FC<Props> = ({ style, ...props }) => {
+  const [itemList, setItemList] = useState([]);
   const [menu, setMenu] = useState<Menu>('normal');
+
+  useEffect(() => {
+    const f = async () => {
+      const data = await getProducts();
+      setItemList(data);
+    };
+
+    f();
+  }, []);
+
+  if (itemList.length === 0) {
+    return <div>loading...</div>;
+  }
 
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
