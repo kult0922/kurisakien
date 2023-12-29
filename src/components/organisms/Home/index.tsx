@@ -98,11 +98,12 @@ const MainImage = styled.img({
 });
 
 const SubImage = styled.img({
-  width: '100%',
-  height: '430px',
+  width: '600px',
+  height: '600px',
   objectFit: 'cover',
   [bp.md]: {
     height: '300px',
+    width: '100%',
   },
 });
 
