@@ -48,7 +48,7 @@ const Input = styled.input({
 export const Items: React.FC<Props> = ({ style, ...props }) => {
   const [menu, setMenu] = useState<Menu>('normal');
 
-  const { data, error } = useSWR<Item[]>('products', getProducts);
+  const { data } = useSWR<Item[]>('products', getProducts);
 
   if (!data) return <></>;
 
