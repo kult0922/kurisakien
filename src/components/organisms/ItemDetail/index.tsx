@@ -56,7 +56,6 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
   const [focusIdx, setFocusIdx] = useState(0);
-  console.log('item', item);
 
   if (!item) return null;
   const { imagePaths, name, price, amount, description } = item;
