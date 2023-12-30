@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { Box, BoxProps } from '~/lib/styled';
 import { SectionTitle } from '~/components/atoms/SectionTitle';
-// import { itemList } from '~/constants/store/itemList';
 import { ItemCard } from '~/components/molecules/ItemCard';
 import { giftList } from '~/constants/store/giftList';
 import { GiftCard } from '~/components/molecules/GiftCard';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
-import { useEffect } from 'react';
-import { getProducts } from '~/domain/repository/Products/getProducts';
+import { CMSfetcher } from '~/domain/repository/Products/getProducts';
+import useSWR from 'swr';
+import { Item } from '~/@types/product';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -46,21 +46,11 @@ const Input = styled.input({
 });
 
 export const Items: React.FC<Props> = ({ style, ...props }) => {
-  const [itemList, setItemList] = useState([]);
   const [menu, setMenu] = useState<Menu>('normal');
 
-  useEffect(() => {
-    const f = async () => {
-      const data = await getProducts();
-      setItemList(data);
-    };
+  const { data, error } = useSWR<Item[]>('products', CMSfetcher);
 
-    f();
-  }, []);
-
-  if (itemList.length === 0) {
-    return <div>loading...</div>;
-  }
+  if (!data) return <></>;
 
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
@@ -84,7 +74,7 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
         <Label htmlFor={'item-2'}>贈答用</Label>
       </Box>
       {menu === 'normal'
-        ? itemList.map((item, i) => {
+        ? data.map((item, i) => {
             return (
               <Link key={i} href={`/items/${encodeURIComponent(item.id)}`} passHref>
                 <ItemLink>

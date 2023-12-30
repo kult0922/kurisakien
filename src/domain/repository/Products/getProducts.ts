@@ -1,16 +1,15 @@
 import { Item } from '~/@types/product';
 import { CMSclient } from '~/lib/microCMS/client';
 
-export const getProducts = async () => {
+export const CMSfetcher = <T>() => {
   return CMSclient.get({
-    endpoint: 'products/',
+    endpoint: 'products',
   })
     .then((res) => {
-      console.log(res);
-      return res.contents as Item[];
+      return res.contents as T;
     })
     .catch((err) => {
-      return [] as Item[];
+      return [] as T;
     });
 };
 
@@ -19,7 +18,6 @@ export const getProduct = async (id: string) => {
     endpoint: `products/${id}`,
   })
     .then((res) => {
-      console.log('detail res', res);
       return res as Item;
     })
     .catch((err) => {
