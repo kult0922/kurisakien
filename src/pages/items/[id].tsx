@@ -2,7 +2,7 @@ import { GetStaticPropsResult } from 'next';
 import { Item } from '~/@types/product';
 import { Header } from '~/components/organisms/Header';
 import { ItemDetail } from '~/components/organisms/ItemDetail';
-import { CMSfetcher, getProduct } from '~/domain/repository/Products/getProducts';
+import { getProducts, getProduct } from '~/domain/repository/Products/getProducts';
 
 type Props = {
   item: Item;
@@ -21,7 +21,8 @@ export default Component;
 
 // for SSG
 export const getStaticPaths = async () => {
-  const itemList = await CMSfetcher<Item[]>();
+  const itemList = await getProducts();
+  if (!itemList) return { paths: [], fallback: false };
   const paths = itemList.map((elem) => ({
     params: { id: elem.id },
   }));

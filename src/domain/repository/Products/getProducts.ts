@@ -1,15 +1,15 @@
 import { Item } from '~/@types/product';
 import { CMSclient } from '~/lib/microCMS/client';
 
-export const CMSfetcher = <T>() => {
+export const getProducts = () => {
   return CMSclient.get({
     endpoint: 'products',
   })
     .then((res) => {
-      return res.contents as T;
+      return res.contents as Item[];
     })
     .catch((err) => {
-      return [] as T;
+      return [];
     });
 };
 

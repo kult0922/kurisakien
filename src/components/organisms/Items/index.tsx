@@ -8,7 +8,7 @@ import { giftList } from '~/constants/store/giftList';
 import { GiftCard } from '~/components/molecules/GiftCard';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
-import { CMSfetcher } from '~/domain/repository/Products/getProducts';
+import { getProducts } from '~/domain/repository/Products/getProducts';
 import useSWR from 'swr';
 import { Item } from '~/@types/product';
 
@@ -48,7 +48,7 @@ const Input = styled.input({
 export const Items: React.FC<Props> = ({ style, ...props }) => {
   const [menu, setMenu] = useState<Menu>('normal');
 
-  const { data, error } = useSWR<Item[]>('products', CMSfetcher);
+  const { data, error } = useSWR<Item[]>('products', getProducts);
 
   if (!data) return <></>;
 
