@@ -2,5 +2,5 @@ import { createClient } from 'microcms-js-sdk';
 
 export const CMSclient = createClient({
   serviceDomain: 'kurisakien-product',
-  apiKey: 'iRYY5gZCqujfbg13xVcIdW7atrECDRCynTor',
+  apiKey: process.env.NEXT_PUBLIC_CMS_API_KEY,
 });
