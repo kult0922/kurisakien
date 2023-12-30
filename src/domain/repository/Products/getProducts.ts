@@ -4,6 +4,7 @@ import { CMSclient } from '~/lib/microCMS/client';
 export const getProducts = () => {
   return CMSclient.get({
     endpoint: 'products',
+    queries: { limit: 100 },
   })
     .then((res) => {
       return res.contents as Item[];
