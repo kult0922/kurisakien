@@ -65,7 +65,7 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
       <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
         <div>
           <div>
-            <FocusImage src={imagePaths[focusIdx].url} />
+            <FocusImage src={imagePaths.length > focusIdx && imagePaths[focusIdx].url} />
           </div>
 
           <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
