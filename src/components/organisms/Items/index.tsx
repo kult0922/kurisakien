@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { Box, BoxProps } from '~/lib/styled';
 import { SectionTitle } from '~/components/atoms/SectionTitle';
-import { itemList } from '~/constants/store/itemList';
 import { ItemCard } from '~/components/molecules/ItemCard';
 import { giftList } from '~/constants/store/giftList';
 import { GiftCard } from '~/components/molecules/GiftCard';
 import { BasicLink } from '~/components/atoms/BasicLink';
 import { routing } from '~/constants/routing';
+import { getProducts } from '~/domain/repository/Products/getProducts';
+import useSWR from 'swr';
+import { Item } from '~/@types/product';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -46,6 +48,10 @@ const Input = styled.input({
 export const Items: React.FC<Props> = ({ style, ...props }) => {
   const [menu, setMenu] = useState<Menu>('normal');
 
+  const { data } = useSWR<Item[]>('products', getProducts);
+
+  if (!data) return <></>;
+
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box mt={10}>
@@ -68,7 +74,7 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
         <Label htmlFor={'item-2'}>贈答用</Label>
       </Box>
       {menu === 'normal'
-        ? itemList.map((item, i) => {
+        ? data.map((item, i) => {
             return (
               <Link key={i} href={`/items/${encodeURIComponent(item.id)}`} passHref>
                 <ItemLink>

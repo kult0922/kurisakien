@@ -47,7 +47,7 @@ export const ItemCard: React.FC<Props> = ({ item, m, style }) => {
   const { name, imagePaths, price, amount } = item;
   return (
     <Wrapper m={m} style={{ ...style }}>
-      <Image src={imagePaths[0]}></Image>
+      <Image src={imagePaths.length > 0 && imagePaths[0].url}></Image>
       <Name mt={5}>{name}</Name>
       <SubInfo>{price} 円</SubInfo>
       <SubInfo>{amount}</SubInfo>

@@ -1,6 +1,8 @@
 export interface Item {
-  imagePaths: string[];
   id: string;
+  imagePaths: {
+    url: string;
+  }[];
   name: string;
   price: number;
   amount: string;
