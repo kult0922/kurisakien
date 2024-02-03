@@ -11,6 +11,7 @@ import { routing } from '~/constants/routing';
 import { getProducts } from '~/domain/repository/Products/getProducts';
 import useSWR from 'swr';
 import { Item } from '~/@types/product';
+import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -55,30 +56,24 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box mt={10}>
-        <SectionTitle>商品一覧</SectionTitle>
+        <SectionTitle text="商品一覧" />
       </Box>
-      <Box mb={10}>
-        <Input
-          id="item-1"
-          type="radio"
-          checked={menu === 'normal'}
-          onChange={() => setMenu('normal')}
-        />
-        <Label htmlFor={'item-1'}>自宅用</Label>
-        <Input
-          id="item-2"
-          type="radio"
-          checked={menu === 'gift'}
-          onChange={() => setMenu('gift')}
-        />
-        <Label htmlFor={'item-2'}>贈答用</Label>
-      </Box>
+      <Tabs defaultValue={'normal'}>
+        <TabsList>
+          <TabsTrigger onClick={() => setMenu('normal')} value={'normal'}>
+            自宅用
+          </TabsTrigger>
+          <TabsTrigger onClick={() => setMenu('gift')} value={'gift'}>
+            贈答用
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
       {menu === 'normal'
         ? data.map((item, i) => {
             return (
               <Link key={i} href={`/items/${encodeURIComponent(item.id)}`} passHref>
                 <ItemLink>
-                  <ItemCard item={item} m={8} />
+                  <ItemCard item={item} />
                 </ItemLink>
               </Link>
             );
@@ -87,7 +82,7 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
             return (
               <Link key={giftId} href={`/items/gifts/${encodeURIComponent(giftId)}`} passHref>
                 <ItemLink>
-                  <GiftCard item={giftList.get(giftId)[0]} m={8} />
+                  <GiftCard item={giftList.get(giftId)[0]} />
                 </ItemLink>
               </Link>
             );

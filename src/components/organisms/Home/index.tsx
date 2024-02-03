@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
-import Link from 'next/link';
-import { P } from '~/components/atoms/P';
+import { Separator } from '~/components/ui/separator';
 import { bp } from '~/constants/css';
-import { newsList } from '~/constants/news';
-import { routing } from '~/constants/routing';
-import { Box, Flex } from '~/lib/styled';
+import { Box } from '~/lib/styled';
+import { Card, CardContent, CardDescription, CardTitle } from '~/components/ui/card';
 
 const News = styled.a({
   color: '#1b1b1b',
@@ -16,42 +14,6 @@ const NewsDate = styled(Box)({
 
 const NewsTitle = styled(Box)({
   fontSize: '24px',
-  [bp.md]: {
-    paddingRight: '240px',
-    fontSize: '18px',
-  },
-});
-
-const Paragrapgh = styled(Box)({
-  textAlign: 'left',
-  width: '600px',
-  [bp.md]: {
-    width: '300px',
-  },
-});
-
-const Section = styled(Box)({
-  fontSize: '32px',
-  textAlign: 'left',
-  borderBottom: '4px solid #67ce9a',
-  width: '90px',
-});
-
-const SmallSection = styled(Box)({
-  fontSize: '14px',
-  textAlign: 'left',
-  color: '#909090',
-});
-
-const SubSection = styled(Box)({
-  fontSize: '24px',
-  textAlign: 'left',
-  borderBottom: '2px solid #bbbbbb',
-});
-
-const ContentWrapper = styled.div({
-  width: '90%',
-  margin: 'auto',
 });
 
 const MainText = styled.div({
@@ -97,24 +59,6 @@ const MainImage = styled.img({
   },
 });
 
-const SubImage = styled.img({
-  width: '600px',
-  height: '600px',
-  objectFit: 'cover',
-  [bp.md]: {
-    height: '300px',
-    width: '100%',
-  },
-});
-
-const SectionFlex = styled(Flex)({
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  [bp.md]: {
-    justifyContent: 'center',
-  },
-});
-
 export const Home: React.FC = () => {
   return (
     <>
@@ -123,91 +67,73 @@ export const Home: React.FC = () => {
           <MainImage src="/image/main/home.JPG" alt="栗崎園" />
           <MainText>霧の里、春野町のお茶農家</MainText>
           <SubText>
-            <P m={3}>ちいさいながらも、</P>
-            <P m={3}>自然と共に日々お茶づくりに励んでいます。</P>
+            <p>ちいさいながらも、</p>
+            <p>自然と共に日々お茶づくりに励んでいます。</p>
           </SubText>
         </Top>
       </Box>
-      <ContentWrapper>
-        <Box mt={40}>
-          <Flex justifyContent={'center'} flexWrap={'wrap'}>
-            <NewsTitle mr={30}>News</NewsTitle>
-            <Box>
-              {newsList.map((news, i) => {
-                return (
-                  <Flex flexWrap={'wrap'} key={i}>
-                    <NewsDate mr={40}>{news.date}</NewsDate>
-                    <Box>
-                      <Link
-                        href={{
-                          pathname: routing.news.id,
-                          query: { id: news.id },
-                        }}
-                        passHref
-                      >
-                        <News>{news.title}</News>
-                      </Link>
-                    </Box>
-                  </Flex>
-                );
-              })}
-            </Box>
-          </Flex>
-        </Box>
-        <Section mt={100}>About</Section>
-        <SmallSection mt={20}>栗崎園のお茶</SmallSection>
+      <div className="ml-4 mt-4">
+        <div className="text-2xl">About</div>
+        <div className="text-slate-500 text-sm">栗崎園のお茶</div>
+      </div>
 
-        <Box mt={100}>
-          <SectionFlex flexWrap="wrap">
-            <Box>
-              <SubSection>地の利・茶畑</SubSection>
-              <Paragrapgh mt={30}>
-                <P>春野町は、天竜川が流れる静かな山あいの里です。</P>
-                <P>
-                  標高350ｍ、川を見下ろす茶畑には霧が立ち込め、
-                  辺り一面柔らかい日差しと穏やかな風に包まれます。
-                </P>
-              </Paragrapgh>
-            </Box>
-            <Box>
-              <SubImage src="/image/main/sub1.JPG" alt="栗崎園" />
-            </Box>
-          </SectionFlex>
-        </Box>
-        <Section mt={100}>Feature</Section>
-        <SmallSection mt={20}>特徴</SmallSection>
+      <Separator className="mb-8" />
 
-        <Box mt={100}>
-          <SectionFlex flexWrap="wrap">
-            <Box>
-              <SubSection>人の利・茶工場</SubSection>
-              <Paragrapgh mt={30}>
-                {/** TODO: BOXに変える */}
-                <P>朝涼しいうちに収穫し、住まいに隣接する茶工場ですぐに製茶します。</P>
-                <P>見て、触って、香って、充実した新芽を香味豊かな茶葉に仕上げます。</P>
-              </Paragrapgh>
-            </Box>
-            <Box>
-              <SubImage src="/image/main/sub2.JPG" alt="栗崎園" />
-            </Box>
-          </SectionFlex>
-        </Box>
+      <div className="flex sm:ml-14 sm:justify-start justify-center">
+        <Card className="sm:w-[500px] w-[360px]">
+          <CardContent className="p-0">
+            <CardTitle className="p-2">地の利・茶畑</CardTitle>
+            <CardDescription className="p-2">
+              春野町は、天竜川が流れる静かな山あいの里です。
+              標高350ｍ、川を見下ろす茶畑には霧が立ち込め、
+              辺り一面柔らかい日差しと穏やかな風に包まれます。
+            </CardDescription>
+            <img
+              className="w-full object-cover rounded-b-lg"
+              src="/image/main/sub1.JPG"
+              alt="栗崎園"
+            />
+          </CardContent>
+        </Card>
+      </div>
 
-        <Box mt={100}>
-          <SectionFlex flexWrap="wrap-reverse">
-            <Box>
-              <SubImage src="/image/main/sub3.JPG" alt="栗崎園" />
-            </Box>
-            <Box>
-              <SubSection>茶縁・皆さまへ</SubSection>
-              <Paragrapgh mt={30}>
-                <P>春の息吹と共に揉み上げられた我が家のお茶を「春野の精」と名付けました。</P>
-                <P>皆さまが、お茶と共に日々健やかに安らかに過ごせますようにと願っています。</P>
-              </Paragrapgh>
-            </Box>
-          </SectionFlex>
-        </Box>
-      </ContentWrapper>
+      <Separator className="my-4" />
+
+      <div className="flex sm:mr-14 sm:justify-end justify-center">
+        <Card className="sm:w-[500px] w-[360px]">
+          <CardContent className="p-0">
+            <CardTitle className="p-2">人の利・茶工場</CardTitle>
+            <CardDescription className="p-2">
+              朝涼しいうちに収穫し、住まいに隣接する茶工場ですぐに製茶します。
+              見て、触って、香って、充実した新芽を香味豊かな茶葉に仕上げます。
+            </CardDescription>
+            <img
+              className="w-full object-cover rounded-b-lg"
+              src="/image/main/sub2.JPG"
+              alt="栗崎園"
+            />
+          </CardContent>
+        </Card>
+      </div>
+
+      <Separator className="my-4" />
+
+      <div className="flex sm:ml-14 sm:justify-start justify-center">
+        <Card className="sm:w-[500px] w-[360px]">
+          <CardContent className="p-0">
+            <CardTitle className="p-2">茶縁・皆さまへ</CardTitle>
+            <CardDescription className="p-2">
+              春の息吹と共に揉み上げられた我が家のお茶を「春野の精」と名付けました。
+              皆さまが、お茶と共に日々健やかに安らかに過ごせますようにと願っています。
+            </CardDescription>
+            <img
+              className="w-full object-cover rounded-b-lg"
+              src="/image/main/sub3.JPG"
+              alt="栗崎園"
+            />
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 };

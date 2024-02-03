@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { NextButton } from '~/components/atoms/Buttons/next';
 import { bp } from '~/constants/css';
 import { Box, BoxProps, Flex } from '~/lib/styled';
 import { useCheckout } from '~/store/organisms/Checkout';
 import { PaymentTable } from '~/components/organisms/PaymentTable';
 import { PostageTable } from '~/components/organisms/PostageTable';
+import { Button } from '~/components/ui/button';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -301,7 +301,7 @@ export const Checkout: React.FC<Props> = ({ style, ...props }) => {
           ></textarea>
 
           <Box m={30}>
-            <NextButton type="submit">注文内容確認へ</NextButton>
+            <Button type="submit">注文内容確認へ</Button>
           </Box>
         </form>
       </Box>

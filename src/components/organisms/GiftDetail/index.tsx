@@ -7,7 +7,7 @@ import { bp } from '~/constants/css';
 import { GlobalStore } from '~/store/Global';
 import { giftList } from '~/constants/store/giftList';
 import { routing } from '~/constants/routing';
-import { LinkButton } from '~/components/atoms/LinkButton';
+import { Button } from '~/components/ui/button';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -96,13 +96,13 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
 
           <Box mt={60}>
             <Link href={routing.cart.root} passHref>
-              <LinkButton
+              <Button
                 onClick={() => {
                   addCarts(itemPack[idx], itemCount);
                 }}
               >
                 カートに入れる
-              </LinkButton>
+              </Button>
             </Link>
           </Box>
         </PurchaseWrapper>
