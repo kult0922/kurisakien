@@ -56,7 +56,6 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Box mt={10}>
         <SectionTitle>商品一覧</SectionTitle>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
       </Box>
       <Box mb={10}>
         <Input
