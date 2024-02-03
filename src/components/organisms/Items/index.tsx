@@ -88,7 +88,7 @@ export const Items: React.FC<Props> = ({ style, ...props }) => {
             );
           })}
       <Box mb={20}>
-        <BasicLink path={routing.docs.fax} text={'Faxでの注文を希望の方はこちらから'}></BasicLink>
+        <BasicLink path={routing.docs.fax}>Faxでの注文を希望の方はこちらから</BasicLink>
       </Box>
       ※ パッケージ、包装は予告なく変わる場合がございますのでご了承ください。
     </Wrapper>

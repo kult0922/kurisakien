@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 interface Props {
-  text: string;
   path: string;
+  children: ReactNode;
 }
 
-export const BasicLink: React.FC<Props> = ({ text, path }) => {
+export const BasicLink: React.FC<Props> = ({ children, path }) => {
   return (
     <Link
       href={{
@@ -14,7 +14,7 @@ export const BasicLink: React.FC<Props> = ({ text, path }) => {
       }}
       passHref
     >
-      <a className="text-slate-700 underline">{text}</a>
+      <a className="text-slate-700 underline">{children}</a>
     </Link>
   );
 };

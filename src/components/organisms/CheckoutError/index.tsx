@@ -26,10 +26,10 @@ export const CheckoutError: React.FC<Props> = ({ style, ...props }) => {
       <Box>通信エラーにより注文を送信できなかった。</Box>
       <Box mt={20}>もう一度カートの中身を確認し、再度住所入力をお願いします。</Box>
       <Box mt={20}>
-        <BasicLink path={routing.root} text={'ホームへ戻る'}></BasicLink>
+        <BasicLink path={routing.root}>ホームへ戻る</BasicLink>
       </Box>
       <Box>
-        <BasicLink path={routing.cart.root} text={'カートへ戻る'}></BasicLink>
+        <BasicLink path={routing.cart.root}>カートへ戻る</BasicLink>
       </Box>
     </Wrapper>
   );

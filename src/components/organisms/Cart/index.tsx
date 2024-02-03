@@ -34,7 +34,7 @@ export const Cart: React.FC<Props> = ({ style, ...props }) => {
         </Box>
       </Box>
       <Box mt={20}>
-        <BasicLink path={routing.items.root} text={'買い物を続ける'}></BasicLink>
+        <BasicLink path={routing.items.root}>買い物を続ける</BasicLink>
       </Box>
     </Wrapper>
   );
