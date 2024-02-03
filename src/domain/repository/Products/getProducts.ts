@@ -10,6 +10,7 @@ export const getProducts = () => {
       return res.contents as Item[];
     })
     .catch((err) => {
+      console.log(err);
       return [];
     });
 };
@@ -22,6 +23,7 @@ export const getProduct = async (id: string) => {
       return res as Item;
     })
     .catch((err) => {
+      console.log(err);
       return {} as Item;
     });
 };

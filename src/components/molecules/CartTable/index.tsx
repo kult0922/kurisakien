@@ -45,12 +45,8 @@ const DeleteButton = styled.div({
 });
 
 export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
-  const {
-    carts,
-    total,
-    onDeleteCartItem,
-    onChangeCartItemAmount,
-  } = GlobalStore.useContainer().cart;
+  const { carts, total, onDeleteCartItem, onChangeCartItemAmount } =
+    GlobalStore.useContainer().cart;
 
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
   return (
