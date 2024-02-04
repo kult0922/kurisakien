@@ -5,7 +5,7 @@ const Component: React.FC = () => {
   return (
     <>
       <Header />
-      <Items mb={50} />
+      <Items />
     </>
   );
 };

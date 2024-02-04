@@ -1,4 +1,4 @@
-import { GiftDetail } from '~/components/organisms/GiftDetail';
+import { GiftDetail } from '~/components/organisms/ItemDetail/gift';
 import { Header } from '~/components/organisms/Header';
 import { giftList } from '~/constants/store/giftList';
 
@@ -6,7 +6,7 @@ const Component: React.FC = () => {
   return (
     <>
       <Header />
-      <GiftDetail mt={50} mb={50} />
+      <GiftDetail />
     </>
   );
 };

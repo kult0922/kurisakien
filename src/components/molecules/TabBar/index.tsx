@@ -9,7 +9,7 @@ export const TabBar: React.FC = () => {
 
   return (
     <>
-      <Tabs defaultValue={pathname} className="w-[200px]">
+      <Tabs defaultValue={pathname} className="w-[180px]">
         <TabsList>
           <Link href={routing.root} passHref>
             <TabsTrigger value={routing.root}>ホーム</TabsTrigger>

@@ -5,7 +5,9 @@ import { Home } from '~/components/organisms/Home';
 const Component: React.FC = () => {
   return (
     <>
-      <Header />
+      <div className="mb-10">
+        <Header />
+      </div>
       <Home />
       <div className="mt-10">
         <Footer />

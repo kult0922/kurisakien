@@ -1,5 +1,4 @@
 import React from 'react';
-import { BoxProps } from '~/lib/styled';
 import { useCheckout } from '~/store/organisms/Checkout';
 import { PaymentTable } from '~/components/organisms/PaymentTable';
 import { PostageTable } from '~/components/organisms/PostageTable';
@@ -17,11 +16,7 @@ import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { Separator } from '~/components/ui/separator';
 import { Textarea } from '~/components/ui/textarea';
 
-interface Props extends BoxProps {
-  style?: React.CSSProperties;
-}
-
-export const Checkout: React.FC<Props> = () => {
+export const Checkout: React.FC = () => {
   const { onSubmit, form } = useCheckout();
 
   return (

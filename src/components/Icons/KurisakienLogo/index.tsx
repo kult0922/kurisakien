@@ -1,17 +1,11 @@
-import styled from '@emotion/styled';
-
 interface Props {
   width?: number;
   height?: number;
 }
 
-const Wrapper = styled.div({
-  padding: '10px 20px 10px',
-});
-
 export const KurisakienLogo: React.FC<Props> = ({ width, height }) => {
   return (
-    <Wrapper>
+    <div className="p-4">
       <svg
         id="レイヤー_1"
         data-name="レイヤー 1"
@@ -102,6 +96,6 @@ export const KurisakienLogo: React.FC<Props> = ({ width, height }) => {
           stroke="#000"
         />
       </svg>
-    </Wrapper>
+    </div>
   );
 };

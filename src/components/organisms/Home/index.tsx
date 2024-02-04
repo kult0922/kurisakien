@@ -1,65 +1,21 @@
-import styled from '@emotion/styled';
 import { Separator } from '~/components/ui/separator';
-import { bp } from '~/constants/css';
-import { Box } from '~/lib/styled';
 import { Card, CardContent, CardDescription, CardTitle } from '~/components/ui/card';
-
-const MainText = styled.div({
-  position: 'absolute',
-  fontSize: '24px',
-  background: 'white',
-  padding: '15px',
-  top: '30px',
-  right: 'calc(100% - 300px)',
-  writingMode: 'vertical-rl',
-  opacity: '0.9',
-  [bp.md]: {
-    display: 'none',
-  },
-});
-
-const SubText = styled.div({
-  textAlign: 'left',
-  position: 'absolute',
-  fontSize: '14px',
-  background: 'white',
-  padding: '15px',
-  top: '60px',
-  right: 'calc(100% - 200px)',
-  writingMode: 'vertical-rl',
-  opacity: '0.9',
-  [bp.md]: {
-    display: 'none',
-  },
-});
-
-const Top = styled.div({
-  position: 'relative',
-});
-
-const MainImage = styled.img({
-  width: '100%',
-  height: '600px',
-  objectFit: 'cover',
-  objectPosition: '50% 40%',
-  [bp.md]: {
-    height: '300px',
-  },
-});
 
 export const Home: React.FC = () => {
   return (
     <>
-      <Box mt={30}>
-        <Top>
-          <MainImage src="/image/main/home.JPG" alt="栗崎園" />
-          <MainText>霧の里、春野町のお茶農家</MainText>
-          <SubText>
+      <div>
+        <div className="relative">
+          <div className="hidden sm:block absolute top-[30px] p-3 right-[100px] [writing-mode:vertical-rl] bg-white">
+            霧の里、春野町のお茶農家
+          </div>
+          <div className="hidden sm:block absolute top-[60px] p-3 right-[200px] [writing-mode:vertical-rl] bg-white">
             <p>ちいさいながらも、</p>
             <p>自然と共に日々お茶づくりに励んでいます。</p>
-          </SubText>
-        </Top>
-      </Box>
+          </div>
+          <img className="w-full" src="/image/main/home.JPG" alt="栗崎園" />
+        </div>
+      </div>
       <div className="ml-4 mt-4">
         <div className="text-2xl">About</div>
         <div className="text-slate-500 text-sm">栗崎園のお茶</div>

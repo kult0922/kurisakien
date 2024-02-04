@@ -1,5 +1,4 @@
 import { DocsFooter } from '~/components/molecules/DocsFooter';
-import { Box } from '~/lib/styled';
 import { PaymentTable } from '~/components/organisms/PaymentTable';
 import { PostageTable } from '~/components/organisms/PostageTable';
 import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
@@ -79,12 +78,12 @@ export const LowDocument: React.FC = () => {
         </TableBody>
       </Table>
 
-      <Box mt={40}>
+      <div>
         <PostageTable />
-      </Box>
-      <Box mt={40}>
+      </div>
+      <div>
         <PaymentTable />
-      </Box>
+      </div>
       <DocsFooter />
     </>
   );
