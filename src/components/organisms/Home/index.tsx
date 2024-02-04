@@ -13,7 +13,7 @@ export const Home: React.FC = () => {
             <p>ちいさいながらも、</p>
             <p>自然と共に日々お茶づくりに励んでいます。</p>
           </div>
-          <img className="" src="/image/main/home.JPG" alt="栗崎園" />
+          <img className="w-full" src="/image/main/home.JPG" alt="栗崎園" />
         </div>
       </div>
       <div className="ml-4 mt-4">
