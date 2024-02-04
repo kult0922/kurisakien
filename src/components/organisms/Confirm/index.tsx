@@ -12,6 +12,7 @@ import router from 'next/router';
 import { routing } from '~/constants/routing';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
 
 const ELEMENT_OPTIONS = {
   style: {
@@ -86,7 +87,7 @@ export const Confirm: React.FC = () => {
 
   return (
     <>
-      <h1>注文確認</h1>
+      <h1 className="text-center">注文確認</h1>
       <CartTable editable={false} showTotal={false} />
 
       <div>
@@ -116,7 +117,7 @@ export const Confirm: React.FC = () => {
       </div>
 
       <div>
-        <h3>お客様情報</h3>
+        <h3 className="text-center mt-5">お客様情報</h3>
       </div>
       <Table className="w-80 mr-auto ml-auto">
         <TableBody>
@@ -155,42 +156,55 @@ export const Confirm: React.FC = () => {
         </TableBody>
       </Table>
       {order.paymentType === 'card' ? (
-        <div className="mt-10">
+        <div className="mt-10 flex justify-center">
           <form>
-            カード番号
-            <div>
-              <CardNumberElement
-                id="cardNumber"
-                onChange={logEvent('change')}
-                onReady={logEvent('ready')}
-                options={ELEMENT_OPTIONS}
-              />
-            </div>
-            有効期限
-            <div>
-              <CardExpiryElement
-                id="expiry"
-                onChange={logEvent('change')}
-                onReady={logEvent('ready')}
-                options={ELEMENT_OPTIONS}
-              />
-            </div>
-            セキュリティ番号
-            <div>
-              <CardCvcElement
-                id="cvc"
-                onChange={logEvent('change')}
-                onReady={logEvent('ready')}
-                options={ELEMENT_OPTIONS}
-              />
-            </div>
-            {errorMessage && (
-              <div className="text-red">
-                <div>{errorMessage}</div>
-                カード番号、有効期限、セキュリティコードに間違いがないか確認してください。
-              </div>
-            )}
-            <div>
+            <Card className="w-80">
+              <CardHeader>
+                <CardDescription>クレジットカード情報入力</CardDescription>
+                <div className="flex justify-end">
+                  <img width="30" src="/image/card/visa.png"></img>
+                  <img width="30" src="/image/card/jcb.png"></img>
+                  <img width="30" src="/image/card/master.png"></img>
+                  <img width="30" src="/image/card/amex.png"></img>
+                </div>
+              </CardHeader>
+              <CardContent>
+                カード番号
+                <div className="border w-72">
+                  <CardNumberElement
+                    id="cardNumber"
+                    onChange={logEvent('change')}
+                    onReady={logEvent('ready')}
+                    options={ELEMENT_OPTIONS}
+                  />
+                </div>
+                有効期限
+                <div className="border w-32">
+                  <CardExpiryElement
+                    id="expiry"
+                    onChange={logEvent('change')}
+                    onReady={logEvent('ready')}
+                    options={ELEMENT_OPTIONS}
+                  />
+                </div>
+                セキュリティ番号
+                <div className="border w-60">
+                  <CardCvcElement
+                    id="cvc"
+                    onChange={logEvent('change')}
+                    onReady={logEvent('ready')}
+                    options={ELEMENT_OPTIONS}
+                  />
+                </div>
+                {errorMessage && (
+                  <div className="text-red">
+                    <div>{errorMessage}</div>
+                    カード番号、有効期限、セキュリティコードに間違いがないか確認してください。
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+            <div className="flex justify-end mt-3">
               <Button
                 type="submit"
                 disabled={!stripe || !elements || processing}
@@ -205,7 +219,7 @@ export const Confirm: React.FC = () => {
           </form>
         </div>
       ) : (
-        <div>
+        <div className="flex justify-center mt-4">
           <Button
             disabled={processing}
             onClick={async () => {
@@ -218,7 +232,7 @@ export const Confirm: React.FC = () => {
         </div>
       )}
       {processing && <div>注文を処理中...</div>}
-      <div>
+      <div className="flex justify-center mt-6">
         ※注文確定ボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。
       </div>

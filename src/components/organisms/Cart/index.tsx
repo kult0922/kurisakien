@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { BasicLink } from '~/components/atoms/BasicLink';
 import { SectionTitle } from '~/components/atoms/SectionTitle';
 import { CartTable } from '~/components/molecules/CartTable';
 import { Button } from '~/components/ui/button';
@@ -16,15 +15,21 @@ export const Cart: React.FC = () => {
       <div className="mt-10">
         <div>
           <CartTable editable showTotal />
-          <div className="mt-20">
-            <Link href={routing.checkout.root} passHref>
-              <Button disabled={carts.length === 0}>注文に進む</Button>
-            </Link>
+          <div className="mt-20 flex justify-end">
+            <div className="mx-3">
+              <Link href={routing.items.root} passHref>
+                <Button variant="outline" disabled={carts.length === 0}>
+                  買い物を続ける
+                </Button>
+              </Link>
+            </div>
+            <div className="mx-3">
+              <Link href={routing.checkout.root} passHref>
+                <Button disabled={carts.length === 0}>注文に進む</Button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="mt-20">
-        <BasicLink path={routing.items.root}>買い物を続ける</BasicLink>
       </div>
     </>
   );

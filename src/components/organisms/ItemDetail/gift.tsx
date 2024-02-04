@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { GlobalStore } from '~/store/Global';
-import { Item } from '~/@types/product';
+import { giftList } from '~/constants/store/giftList';
 import { routing } from '~/constants/routing';
 import { Button } from '~/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 import {
   Select,
   SelectContent,
@@ -12,28 +12,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/components/ui/select';
+import { Label } from '~/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { ItemCarousel } from './ItemCarousel';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
-interface Props {
-  item?: Item;
-}
-
-export const ItemDetail: React.FC<Props> = ({ item }) => {
+export const GiftDetail: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
-
-  if (!item) return null;
-  const { imagePaths, name, price, amount, description } = item;
+  const [idx, setIdx] = useState(0);
+  const router = useRouter();
+  const id = router.query.id as string;
+  const itemPack = giftList.get(id);
+  if (!itemPack) return null;
+  const { name, imagePaths, price, amount, description } = itemPack[idx];
 
   return (
-    <div>
-      <div className="flex justify-center">
-        <ItemCarousel imagePaths={imagePaths} />
-      </div>
-
-      <div className="flex justify-center mt-3">
-        <Card className="sm:w-[600px] w-[350px]">
+    <>
+      <div className="flex flex-col items-center">
+        <div className="flex justify-center">
+          <ItemCarousel imagePaths={imagePaths} />
+        </div>
+        <Card className="sm:w-[600px] w-[350px] mt-4">
           <CardHeader>
             <CardTitle>{name}</CardTitle>
             <CardDescription>
@@ -61,11 +62,27 @@ export const ItemDetail: React.FC<Props> = ({ item }) => {
                 ))}
               </SelectContent>
             </Select>
+            <div className="my-3">茶葉を選択して下さい</div>
+            <RadioGroup
+              defaultValue="0"
+              onValueChange={(v) => {
+                setIdx(Number(v));
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="0" id="r1" />
+                <Label htmlFor="r1">高級煎茶 {itemPack[0].price}円</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="1" id="r2" />
+                <Label htmlFor="r2">特上煎茶 {itemPack[1].price}円</Label>
+              </div>
+            </RadioGroup>
             <div className="mt-5 flex justify-end">
               <Link href={routing.cart.root} passHref>
                 <Button
                   onClick={() => {
-                    addCarts(item, itemCount);
+                    addCarts(itemPack[idx], itemCount);
                   }}
                 >
                   カートに入れる
@@ -75,6 +92,6 @@ export const ItemDetail: React.FC<Props> = ({ item }) => {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   );
 };
