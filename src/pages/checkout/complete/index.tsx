@@ -1,7 +1,7 @@
 import { Complete } from '~/components/organisms/Complete';
 
 const Component: React.FC = () => {
-  return <Complete mb={50} />;
+  return <Complete />;
 };
 
 export default Component;

@@ -6,7 +6,7 @@ const Component: React.FC = () => {
   return (
     <>
       <Header />
-      <GiftDetail mt={50} mb={50} />
+      <GiftDetail />
     </>
   );
 };

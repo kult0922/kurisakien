@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { GlobalStore } from '~/store/Global';
 import {
   Table,
@@ -24,15 +23,13 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Wrapper = styled.div({});
-
 export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
   const { carts, total, onDeleteCartItem, onChangeCartItemCount } = GlobalStore.useContainer().cart;
 
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
 
   return (
-    <Wrapper style={style}>
+    <div>
       <Table>
         <TableHeader>
           <TableRow>
@@ -102,6 +99,6 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
           )}
         </TableFooter>
       </Table>
-    </Wrapper>
+    </div>
   );
 };

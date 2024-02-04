@@ -1,7 +1,5 @@
-import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { CartTable } from '~/components/molecules/CartTable';
-import { Box, BoxProps } from '~/lib/styled';
 import { useConfirm } from '~/store/organisms/Confirm';
 import {
   CardNumberElement,
@@ -14,28 +12,6 @@ import router from 'next/router';
 import { routing } from '~/constants/routing';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
-
-interface Props extends BoxProps {
-  style?: React.CSSProperties;
-}
-
-const Wrapper = styled(Box)({
-  textAlign: 'center',
-});
-
-const StripeForm = styled(Box)({});
-
-const CardInput = styled.div({
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  width: '300px',
-  border: 'solid 1px #aaa',
-  borderRadius: '5px',
-});
-
-const ErrorResult = styled.div({
-  color: 'red',
-});
 
 const ELEMENT_OPTIONS = {
   style: {
@@ -58,7 +34,7 @@ const logEvent = (name) => (event) => {
   console.log(`[${name}]`, event);
 };
 
-export const Confirm: React.FC<Props> = ({ style, ...props }) => {
+export const Confirm: React.FC = () => {
   const {
     itemSubTotal,
     order,
@@ -109,11 +85,11 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
   };
 
   return (
-    <Wrapper style={style} mt={props.mt} mb={props.mb}>
+    <>
       <h1>注文確認</h1>
       <CartTable editable={false} showTotal={false} />
 
-      <Box mt={30}>
+      <div>
         <Table className="w-72 mr-auto ml-auto">
           <TableBody>
             <TableRow>
@@ -137,11 +113,11 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
             </TableRow>
           </TableBody>
         </Table>
-      </Box>
+      </div>
 
-      <Box mt={50} mb={5}>
+      <div>
         <h3>お客様情報</h3>
-      </Box>
+      </div>
       <Table className="w-80 mr-auto ml-auto">
         <TableBody>
           <TableRow>
@@ -179,42 +155,42 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
         </TableBody>
       </Table>
       {order.paymentType === 'card' ? (
-        <StripeForm mt={30}>
+        <div className="mt-10">
           <form>
             カード番号
-            <CardInput>
+            <div>
               <CardNumberElement
                 id="cardNumber"
                 onChange={logEvent('change')}
                 onReady={logEvent('ready')}
                 options={ELEMENT_OPTIONS}
               />
-            </CardInput>
+            </div>
             有効期限
-            <CardInput>
+            <div>
               <CardExpiryElement
                 id="expiry"
                 onChange={logEvent('change')}
                 onReady={logEvent('ready')}
                 options={ELEMENT_OPTIONS}
               />
-            </CardInput>
+            </div>
             セキュリティ番号
-            <CardInput>
+            <div>
               <CardCvcElement
                 id="cvc"
                 onChange={logEvent('change')}
                 onReady={logEvent('ready')}
                 options={ELEMENT_OPTIONS}
               />
-            </CardInput>
+            </div>
             {errorMessage && (
-              <ErrorResult>
+              <div className="text-red">
                 <div>{errorMessage}</div>
                 カード番号、有効期限、セキュリティコードに間違いがないか確認してください。
-              </ErrorResult>
+              </div>
             )}
-            <Box mt={20}>
+            <div>
               <Button
                 type="submit"
                 disabled={!stripe || !elements || processing}
@@ -225,11 +201,11 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
               >
                 注文確定
               </Button>
-            </Box>
+            </div>
           </form>
-        </StripeForm>
+        </div>
       ) : (
-        <Box mt={20}>
+        <div>
           <Button
             disabled={processing}
             onClick={async () => {
@@ -239,13 +215,13 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
           >
             注文確定
           </Button>
-        </Box>
+        </div>
       )}
       {processing && <div>注文を処理中...</div>}
-      <Box m={20}>
+      <div>
         ※注文確定ボタンを押すと注文が確定されます。
         商品、住所、決済方法を確認の上、注文を確定してください。
-      </Box>
-    </Wrapper>
+      </div>
+    </>
   );
 };

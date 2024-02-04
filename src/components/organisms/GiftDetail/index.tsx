@@ -1,8 +1,6 @@
-import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Box, BoxProps, Flex } from '~/lib/styled';
 import { GlobalStore } from '~/store/Global';
 import { giftList } from '~/constants/store/giftList';
 import { routing } from '~/constants/routing';
@@ -25,33 +23,7 @@ import {
 import { Label } from '~/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 
-interface Props extends BoxProps {
-  style?: React.CSSProperties;
-}
-
-const Wrapper = styled(Box)({});
-
-const PurchaseWrapper = styled(Box)({
-  textAlign: 'left',
-});
-
-const Description = styled(Box)({
-  whiteSpace: 'pre-wrap',
-});
-
-const Name = styled(Box)({
-  fontSize: '24px',
-});
-
-const Price = styled(Box)({
-  fontSize: '20px',
-});
-
-const Amount = styled(Box)({
-  color: '#909090',
-});
-
-export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
+export const GiftDetail: React.FC = () => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
@@ -62,8 +34,8 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
   if (!itemPack) return null;
 
   return (
-    <Wrapper style={style} mt={props.mt} mb={props.mb}>
-      <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
+    <>
+      <div>
         <div className="mr-12">
           <Carousel className="w-full max-w-xs">
             <CarouselContent>
@@ -84,12 +56,12 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
           </Carousel>
         </div>
 
-        <PurchaseWrapper ml={30} mt={30}>
-          <Name>{itemPack[idx].name}</Name>
-          <Price mt={5}>{itemPack[idx].price} 円</Price>
-          <Amount mt={5}>{itemPack[idx].amount}</Amount>
-          <Description mt={5}>{itemPack[idx].description}</Description>
-          <Box mt={30}>数量</Box>
+        <div>
+          <div>{itemPack[idx].name}</div>
+          <div>{itemPack[idx].price} 円</div>
+          <div>{itemPack[idx].amount}</div>
+          <div>{itemPack[idx].description}</div>
+          <div>数量</div>
 
           <Select
             defaultValue="1"
@@ -109,9 +81,7 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
             </SelectContent>
           </Select>
 
-          <Box mt={30} mb={10}>
-            茶葉を選択して下さい
-          </Box>
+          <div>茶葉を選択して下さい</div>
           <RadioGroup
             defaultValue="0"
             onValueChange={(v) => {
@@ -128,7 +98,7 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
             </div>
           </RadioGroup>
 
-          <Box mt={60}>
+          <div>
             <Link href={routing.cart.root} passHref>
               <Button
                 onClick={() => {
@@ -138,9 +108,9 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
                 カートに入れる
               </Button>
             </Link>
-          </Box>
-        </PurchaseWrapper>
-      </Flex>
-    </Wrapper>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

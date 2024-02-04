@@ -1,15 +1,8 @@
-import styled from '@emotion/styled';
 import { DocsFooter } from '~/components/molecules/DocsFooter';
-
-const Wrapper = styled.div({
-  width: '800px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-});
 
 export const PrivacyPolicyDocument: React.FC = () => {
   return (
-    <Wrapper>
+    <>
       <h1>プライバシーポリシー</h1>
       <h3>お客様から取得する情報</h3>
       <div>当社は、お客様から以下の情報を取得します。</div>
@@ -53,6 +46,6 @@ export const PrivacyPolicyDocument: React.FC = () => {
       <h3>事業者の名称</h3>
       <div>栗崎園 2022年1月1日 制定</div>
       <DocsFooter />
-    </Wrapper>
+    </>
   );
 };

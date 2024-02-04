@@ -1,8 +1,6 @@
-import styled from '@emotion/styled';
 import { useState } from 'react';
 import Link from 'next/link';
 import { GlobalStore } from '~/store/Global';
-import { Box, BoxProps, Flex } from '~/lib/styled';
 import { Item } from '~/@types/product';
 import { routing } from '~/constants/routing';
 import { Button } from '~/components/ui/button';
@@ -24,32 +22,11 @@ import {
   SelectValue,
 } from '~/components/ui/select';
 
-interface Props extends BoxProps {
+interface Props {
   item?: Item;
-  style?: React.CSSProperties;
 }
 
-const PurchaseWrapper = styled(Box)({
-  textAlign: 'left',
-});
-
-const Description = styled(Box)({
-  whiteSpace: 'pre-wrap',
-});
-
-const Name = styled(Box)({
-  fontSize: '24px',
-});
-
-const Price = styled(Box)({
-  fontSize: '20px',
-});
-
-const Amount = styled(Box)({
-  color: '#909090',
-});
-
-export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
+export const ItemDetail: React.FC<Props> = ({ item }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
@@ -59,8 +36,8 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
   const { imagePaths, name, price, amount, description } = item;
 
   return (
-    <Box mt={props.mt} mb={props.mb} style={style}>
-      <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
+    <div>
+      <div>
         <div className="mr-12">
           <Carousel setApi={setApi} className="w-full max-w-xs">
             <CarouselContent>
@@ -80,25 +57,25 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
             <CarouselNext />
           </Carousel>
 
-          <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
+          <div>
             {imagePaths.map((imagePath, idx) => {
               return (
-                <Box key={idx} mt={8} mr={6} ml={6}>
+                <div key={idx}>
                   <a href="#!" onClick={() => api.scrollTo(idx)} key={idx}>
                     <img className="rounded-sm" width={80} src={imagePath.url} />
                   </a>
-                </Box>
+                </div>
               );
             })}
-          </Flex>
+          </div>
         </div>
 
-        <PurchaseWrapper ml={30} mt={30}>
-          <Name>{name}</Name>
-          <Price mt={5}>{price} 円</Price>
-          <Amount mt={5}>{amount}</Amount>
-          <Description mt={5}>{description}</Description>
-          <Box mt={30}>個数</Box>
+        <div>
+          <div>{name}</div>
+          <div>{price} 円</div>
+          <div>{amount}</div>
+          <div>{description}</div>
+          <div>個数</div>
 
           <Select
             defaultValue="1"
@@ -118,7 +95,7 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
             </SelectContent>
           </Select>
 
-          <Box mt={60}>
+          <div>
             <Link href={routing.cart.root} passHref>
               <Button
                 onClick={() => {
@@ -128,9 +105,9 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
                 カートに入れる
               </Button>
             </Link>
-          </Box>
-        </PurchaseWrapper>
-      </Flex>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

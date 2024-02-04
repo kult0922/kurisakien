@@ -12,7 +12,7 @@ const Component: React.FC<Props> = ({ item }) => {
   return (
     <>
       <Header />
-      <ItemDetail item={item} mt={50} mb={50} />
+      <ItemDetail item={item} />
     </>
   );
 };
