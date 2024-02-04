@@ -1,6 +1,7 @@
-import { Order } from '~/@types/order';
+import { OrderSchema } from '~/store/organisms/Checkout';
+import { z } from 'zod';
 
-export const initialOrder: Order = {
+export const initialOrder: z.infer<typeof OrderSchema> = {
   postalCode: null,
   address: null,
   firstName: null,
