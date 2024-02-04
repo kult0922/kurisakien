@@ -20,10 +20,9 @@ import { Button } from '~/components/ui/button';
 interface Props {
   editable: boolean;
   showTotal: boolean;
-  style?: React.CSSProperties;
 }
 
-export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
+export const CartTable: React.FC<Props> = ({ editable, showTotal }) => {
   const { carts, total, onDeleteCartItem, onChangeCartItemCount } = GlobalStore.useContainer().cart;
 
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
