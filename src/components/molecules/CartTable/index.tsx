@@ -93,10 +93,12 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
           ))}
         </TableBody>
         <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>合計</TableCell>
-            {showTotal && <TableCell className="text-right">{total}円</TableCell>}
-          </TableRow>
+          {showTotal && (
+            <TableRow>
+              <TableCell colSpan={3}>合計</TableCell>
+              <TableCell className="text-right">{total}円</TableCell>
+            </TableRow>
+          )}
         </TableFooter>
       </Table>
     </Wrapper>

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import { CartTable } from '~/components/molecules/CartTable';
-import { bp } from '~/constants/css';
 import { Box, BoxProps } from '~/lib/styled';
 import { useConfirm } from '~/store/organisms/Confirm';
 import {
@@ -13,6 +12,14 @@ import {
 } from '@stripe/react-stripe-js';
 import router from 'next/router';
 import { routing } from '~/constants/routing';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '~/components/ui/table';
+import { Button } from '~/components/ui/button';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
@@ -20,66 +27,6 @@ interface Props extends BoxProps {
 
 const Wrapper = styled(Box)({
   textAlign: 'center',
-});
-
-const TotalPrice = styled.div({
-  fontSize: '24px',
-});
-
-const Table = styled.table({
-  borderCollapse: 'collapse',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-});
-
-const TableHeader = styled.td({
-  textAlign: 'left',
-  paddingRight: '50px',
-  paddingLeft: '20px',
-  [bp.md]: {
-    display: 'block',
-    paddingTop: '10px',
-  },
-});
-
-const TablePriceRow = styled.tr({
-  borderTop: 'solid 2px #aaaaaa',
-});
-
-const TableData = styled.td({
-  textAlign: 'left',
-  paddingLeft: '20px',
-  borderBottom: '1px solid #aaaaaa',
-  [bp.md]: {
-    display: 'block',
-  },
-});
-
-const TablePriceData = styled.td({
-  textAlign: 'right',
-  [bp.md]: {
-    display: 'block',
-  },
-});
-
-const Button = styled.button({
-  background: '#e53a36',
-  textAlign: 'center',
-  boxSizing: 'border-box',
-  display: 'block',
-  border: '0px',
-  color: '#fff',
-  fontWeight: 'bold',
-  padding: '7px 5px',
-  lineHeight: '1.4',
-  maxWidth: '200px',
-  width: '100%',
-  margin: '0 auto',
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: '#f55a56',
-    color: '#fff',
-  },
 });
 
 const StripeForm = styled(Box)({});
@@ -171,71 +118,71 @@ export const Confirm: React.FC<Props> = ({ style, ...props }) => {
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <h1>注文確認</h1>
       <CartTable editable={false} showTotal={false} />
+
       <Box mt={30}>
-        <Table>
-          <tbody>
-            <tr>
-              <TableHeader>商品小計: </TableHeader>
-              <TablePriceData>{itemSubTotal} 円</TablePriceData>
-            </tr>
+        <Table className="w-72 mr-auto ml-auto">
+          <TableBody>
+            <TableRow>
+              <TableCell>商品小計 </TableCell>
+              <TableCell>{itemSubTotal} 円</TableCell>
+            </TableRow>
 
-            <tr>
-              <TableHeader>送料</TableHeader>
-              <TablePriceData>{postage}円</TablePriceData>
-            </tr>
+            <TableRow>
+              <TableCell>送料</TableCell>
+              <TableCell>{postage}円</TableCell>
+            </TableRow>
 
-            <tr>
-              <TableHeader>手数料</TableHeader>
-              <TablePriceData>{commission}円</TablePriceData>
-            </tr>
+            <TableRow>
+              <TableCell>手数料</TableCell>
+              <TableCell>{commission}円</TableCell>
+            </TableRow>
 
-            <TablePriceRow>
-              <TableHeader>請求合計</TableHeader>
-              <TablePriceData>
-                <TotalPrice>{total}円</TotalPrice>
-              </TablePriceData>
-            </TablePriceRow>
-          </tbody>
+            <TableRow>
+              <TableCell>請求合計</TableCell>
+              <TableCell className="text-xl">{total}円</TableCell>
+            </TableRow>
+          </TableBody>
         </Table>
       </Box>
+
       <Box mt={50} mb={5}>
         <h3>お客様情報</h3>
       </Box>
-      <Table>
-        <tbody>
-          <tr>
+      <Table className="w-80 mr-auto ml-auto">
+        <TableBody>
+          <TableRow>
             <TableHeader>郵便番号</TableHeader>
 
-            <TableData>{order.postalCode}</TableData>
-          </tr>
+            <TableCell>{order.postalCode}</TableCell>
+          </TableRow>
 
-          <tr>
+          <TableRow>
             <TableHeader>住所</TableHeader>
-            <TableData>{order.address}</TableData>
-          </tr>
+            <TableCell>{order.address}</TableCell>
+          </TableRow>
 
-          <tr>
+          <TableRow>
             <TableHeader>お名前</TableHeader>
-            <TableData>
+            <TableCell>
               {order.lastName} {order.firstName}
-            </TableData>
-          </tr>
+            </TableCell>
+          </TableRow>
 
-          <tr>
-            <TableHeader>メールアドレス</TableHeader>
-            <TableData>{order.email}</TableData>
-          </tr>
+          <TableRow>
+            <TableHeader>メール</TableHeader>
+            <TableCell>{order.email}</TableCell>
+          </TableRow>
 
-          <tr>
+          <TableRow>
             <TableHeader>電話番号</TableHeader>
-            <TableData>{order.phone}</TableData>
-          </tr>
+            <TableCell>{order.phone}</TableCell>
+          </TableRow>
 
-          <tr>
-            <TableHeader>お支払い方法</TableHeader>
-            <TableData>{getPaymentTypeName(order.paymentType)}</TableData>
-          </tr>
-        </tbody>
+          <TableRow>
+            <TableHeader>支払い方法</TableHeader>
+            <TableCell>{getPaymentTypeName(order.paymentType)}</TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
       {order.paymentType === 'card' ? (
         <StripeForm mt={30}>
