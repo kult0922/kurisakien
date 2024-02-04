@@ -27,8 +27,7 @@ interface Props {
 const Wrapper = styled.div({});
 
 export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
-  const { carts, total, onDeleteCartItem, onChangeCartItemAmount } =
-    GlobalStore.useContainer().cart;
+  const { carts, total, onDeleteCartItem, onChangeCartItemCount } = GlobalStore.useContainer().cart;
 
   if (!carts.length) return <div>ショッピングカートに商品は入っていません。</div>;
 
@@ -58,9 +57,9 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
                   {editable ? (
                     <div className="flex flex-col items-end">
                       <Select
-                        defaultValue={String(item.amount)}
+                        defaultValue={String(item.count)}
                         onValueChange={(value) => {
-                          onChangeCartItemAmount(item.id, Number(value));
+                          onChangeCartItemCount(item.id, Number(value));
                         }}
                       >
                         <SelectTrigger className="w-[80px]">
@@ -86,11 +85,11 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
                       </Button>
                     </div>
                   ) : (
-                    <div>{item.amount} 個</div>
+                    <div>{item.count} 個</div>
                   )}
                 </div>
               </TableCell>
-              <TableCell className="text-right">{item.price * item.amount}円</TableCell>
+              <TableCell className="text-right">{item.price * item.count}円</TableCell>
             </TableRow>
           ))}
         </TableBody>

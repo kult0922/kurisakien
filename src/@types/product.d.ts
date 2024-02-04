@@ -10,5 +10,5 @@ export interface Item {
 }
 
 export interface CartItem extends Item {
-  amount: number;
+  count: number;
 }
