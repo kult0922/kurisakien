@@ -12,13 +12,7 @@ import {
 } from '@stripe/react-stripe-js';
 import router from 'next/router';
 import { routing } from '~/constants/routing';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-} from '~/components/ui/table';
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
 interface Props extends BoxProps {

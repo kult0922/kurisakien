@@ -29,23 +29,6 @@ const ItemLink = styled.a({
   display: 'inline-block',
 });
 
-const Label = styled.label({
-  cursor: 'pointer',
-  display: 'inline-block',
-  padding: '0.5rem 1rem',
-  marginRight: '18px',
-  borderRadius: '3px',
-  transition: 'all .2s',
-});
-
-const Input = styled.input({
-  display: 'none',
-  '&:checked + Label': {
-    background: '#67ce9a',
-    marginRight: '18px',
-  },
-});
-
 export const Items: React.FC<Props> = ({ style, ...props }) => {
   const [menu, setMenu] = useState<Menu>('normal');
 

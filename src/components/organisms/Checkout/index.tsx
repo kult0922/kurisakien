@@ -21,7 +21,7 @@ interface Props extends BoxProps {
   style?: React.CSSProperties;
 }
 
-export const Checkout: React.FC<Props> = ({ style, ...props }) => {
+export const Checkout: React.FC<Props> = () => {
   const { onSubmit, form } = useCheckout();
 
   return (

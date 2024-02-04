@@ -10,7 +10,6 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent } from '~/components/ui/card';
 import {
   Carousel,
-  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -60,14 +59,13 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
   const router = useRouter();
   const id = router.query.id as string;
   const itemPack = giftList.get(id);
-  const [api, setApi] = useState<CarouselApi>();
   if (!itemPack) return null;
 
   return (
     <Wrapper style={style} mt={props.mt} mb={props.mb}>
       <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
         <div className="mr-12">
-          <Carousel setApi={setApi} className="w-full max-w-xs">
+          <Carousel className="w-full max-w-xs">
             <CarouselContent>
               {itemPack[idx].imagePaths.map((imagePath, index) => (
                 <CarouselItem key={index}>
@@ -104,7 +102,9 @@ export const GiftDetail: React.FC<Props> = ({ style, ...props }) => {
             </SelectTrigger>
             <SelectContent>
               {[...Array(10)].map((_, i) => (
-                <SelectItem value={String(i + 1)}>{i + 1}</SelectItem>
+                <SelectItem key={i + 'num'} value={String(i + 1)}>
+                  {i + 1}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>

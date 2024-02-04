@@ -111,7 +111,9 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
             </SelectTrigger>
             <SelectContent>
               {[...Array(10)].map((_, i) => (
-                <SelectItem value={String(i + 1)}>{i + 1}</SelectItem>
+                <SelectItem key={i + 'num'} value={String(i + 1)}>
+                  {i + 1}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>

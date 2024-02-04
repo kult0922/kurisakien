@@ -4,18 +4,6 @@ import { bp } from '~/constants/css';
 import { Box } from '~/lib/styled';
 import { Card, CardContent, CardDescription, CardTitle } from '~/components/ui/card';
 
-const News = styled.a({
-  color: '#1b1b1b',
-});
-
-const NewsDate = styled(Box)({
-  color: '#909090',
-});
-
-const NewsTitle = styled(Box)({
-  fontSize: '24px',
-});
-
 const MainText = styled.div({
   position: 'absolute',
   fontSize: '24px',

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { Area, Order, PaymentType } from '~/@types/order';
+import { Area, PaymentType } from '~/@types/order';
 import { GlobalStore } from '~/store/Global';
 import { Email } from '~/domain/entity/Email';
 import { backend } from '~/domain/backend';
@@ -9,6 +9,8 @@ import { CartItem } from '~/@types/product';
 import axios from 'axios';
 import { CardNumberElementComponent } from '@stripe/react-stripe-js';
 import { PaymentIntentResult, Stripe, StripeElements } from '@stripe/stripe-js';
+import { z } from 'zod';
+import { OrderSchema } from '../Checkout';
 
 const getPostage = (itemsPrice: number, area: Area): number => {
   if (itemsPrice >= 10000) return 0;
@@ -42,7 +44,7 @@ const getPaymentTypeName = (paymentType: PaymentType): string => {
   if (paymentType === 'delivery') return '代引き払い';
 };
 
-const submittionIsInvalid = (carts: CartItem[], order: Order) => {
+const submittionIsInvalid = (carts: CartItem[], order: z.infer<typeof OrderSchema>) => {
   if (carts.length === 0) return true;
   if (!order?.address) return true;
   if (!order?.phone) return true;

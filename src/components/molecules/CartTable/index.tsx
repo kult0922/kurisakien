@@ -68,7 +68,9 @@ export const CartTable: React.FC<Props> = ({ editable, showTotal, style }) => {
                         </SelectTrigger>
                         <SelectContent>
                           {[...Array(10)].map((_, i) => (
-                            <SelectItem value={String(i + 1)}>{i + 1}個</SelectItem>
+                            <SelectItem key={i + 'select-num'} value={String(i + 1)}>
+                              {i + 1}個
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
