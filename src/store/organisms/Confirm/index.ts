@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { Area, PaymentType } from '~/@types/order';
 import { GlobalStore } from '~/store/Global';
 import { Email } from '~/domain/entity/Email';
 import { backend } from '~/domain/backend';
@@ -10,9 +9,9 @@ import axios from 'axios';
 import { CardNumberElementComponent } from '@stripe/react-stripe-js';
 import { PaymentIntentResult, Stripe, StripeElements } from '@stripe/stripe-js';
 import { z } from 'zod';
-import { OrderSchema } from '../Checkout';
+import { AreaSchema, OrderSchema, PaymentTypeSchema } from '../Checkout';
 
-const getPostage = (itemsPrice: number, area: Area): number => {
+const getPostage = (itemsPrice: number, area: z.infer<typeof AreaSchema>): number => {
   if (itemsPrice >= 10000) return 0;
 
   if (itemsPrice >= 5000) {
@@ -28,7 +27,7 @@ const getPostage = (itemsPrice: number, area: Area): number => {
   }
 };
 
-const getCommission = (paymentType: PaymentType): number => {
+const getCommission = (paymentType: z.infer<typeof PaymentTypeSchema>): number => {
   if (paymentType === 'postal') return 0;
   if (paymentType === 'bank') return 0;
   if (paymentType === 'convenience') return 200;
@@ -36,7 +35,7 @@ const getCommission = (paymentType: PaymentType): number => {
   return 0;
 };
 
-const getPaymentTypeName = (paymentType: PaymentType): string => {
+const getPaymentTypeName = (paymentType: z.infer<typeof PaymentTypeSchema>): string => {
   if (paymentType === 'card') return 'クレジットカード';
   if (paymentType === 'postal') return '郵便振替';
   if (paymentType === 'bank') return '銀行振り込み';

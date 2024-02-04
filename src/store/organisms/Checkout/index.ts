@@ -6,12 +6,19 @@ import { GlobalStore } from '~/store/Global';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+export const PaymentTypeSchema = z.enum(['card', 'postal', 'convenience', 'bank', 'delivery'], {
+  required_error: '必須項目です',
+});
+export const AreaSchema = z.enum(['shizuoka', 'near', 'middle', 'far'], {
+  required_error: '必須項目です',
+});
+
 export const OrderSchema = z.object({
   postalCode: z.string({ required_error: '必須項目です' }).regex(/^[0-9]{3}-?[0-9]{4}$/, {
     message: '半角数字、ハイフン付きで入力してください（例: 123-4567）',
   }),
   address: z.string({ required_error: '必須項目です' }).min(1, { message: '必須項目です' }),
-  area: z.enum(['shizuoka', 'near', 'middle', 'far'], { required_error: '必須項目です' }),
+  area: AreaSchema,
   lastName: z.string({ required_error: '必須項目です' }).min(1, { message: '必須項目です' }),
   firstName: z.string({ required_error: '必須項目です' }).min(1, { message: '必須項目です' }),
   phone: z
@@ -23,9 +30,7 @@ export const OrderSchema = z.object({
     .string({ required_error: '必須項目です' })
     .email({ message: 'メールアドレスを正しく入力してください' }),
   voice: z.string().optional(),
-  paymentType: z.enum(['card', 'postal', 'convenience', 'bank', 'delivery'], {
-    required_error: '必須項目です',
-  }),
+  paymentType: PaymentTypeSchema,
 });
 [];
 
