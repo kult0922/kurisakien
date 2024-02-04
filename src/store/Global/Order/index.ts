@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Order } from '~/@types/order';
+import { z } from 'zod';
 import { initialOrder } from '~/constants/init';
+import { OrderSchema } from '~/store/organisms/Checkout';
 
 export const useOrder = () => {
-  const [order, setOrder] = useState<Order>(initialOrder);
+  const [order, setOrder] = useState<z.infer<typeof OrderSchema>>(initialOrder);
 
   return {
     order,

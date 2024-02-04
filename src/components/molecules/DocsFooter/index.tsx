@@ -6,7 +6,7 @@ export const DocsFooter: React.FC = () => {
   return (
     <>
       <Box mt={30}>
-        <BasicLink path={routing.root} text={'Topページへ戻る'}></BasicLink>
+        <BasicLink path={routing.root}>Topページへ戻る</BasicLink>
       </Box>
     </>
   );

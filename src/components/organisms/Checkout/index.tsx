@@ -1,316 +1,300 @@
-import styled from '@emotion/styled';
 import React from 'react';
-import { NextButton } from '~/components/atoms/Buttons/next';
-import { bp } from '~/constants/css';
-import { Box, BoxProps, Flex } from '~/lib/styled';
+import { BoxProps } from '~/lib/styled';
 import { useCheckout } from '~/store/organisms/Checkout';
 import { PaymentTable } from '~/components/organisms/PaymentTable';
 import { PostageTable } from '~/components/organisms/PostageTable';
+import { Button } from '~/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '~/components/ui/form';
+import { Input } from '~/components/ui/input';
+import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
+import { Separator } from '~/components/ui/separator';
+import { Textarea } from '~/components/ui/textarea';
 
 interface Props extends BoxProps {
   style?: React.CSSProperties;
 }
 
-const Wrapper = styled(Box)({
-  textAlign: 'center',
-});
-
-const Input = styled.input<{ width?: number | string }>(({ width }) => ({
-  width,
-  height: '25px',
-  border: 'solid 1px #aaaaaa',
-  backgroundColor: '#fde1e1',
-}));
-
-const Table = styled.table({
-  border: 'solid 2px #aaaaaa',
-  borderCollapse: 'collapse',
-});
-
-const TableHeader = styled.td({
-  textAlign: 'left',
-  paddingRight: '100px',
-  paddingLeft: '20px',
-  [bp.md]: {
-    display: 'block',
-    paddingTop: '20px',
-  },
-});
-
-const TableRow = styled.tr({
-  borderBottom: 'solid 1px #aaaaaa',
-});
-
-const AreaSelect = styled.td({
-  textAlign: 'left',
-  padding: '20px',
-  display: 'block',
-});
-
-const TableData = styled.td({
-  textAlign: 'left',
-  alignItems: 'center',
-  display: 'flex',
-  padding: '20px',
-  flexWrap: 'wrap',
-});
-
-const CardImage = styled.img({
-  height: '24px',
-});
-
-const Title = styled(Box)({
-  fontSize: '28px',
-});
-
-const ErrorText = styled(Box)({
-  fontSize: '12px',
-  color: 'red',
-});
-
-export const Checkout: React.FC<Props> = ({ style, ...props }) => {
-  const { onSubmit, register, handleSubmit, errors } = useCheckout();
+export const Checkout: React.FC<Props> = () => {
+  const { onSubmit, form } = useCheckout();
 
   return (
-    <Wrapper style={style} mt={props.mt} mb={props.mb}>
-      <Box>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box m={20}>
-            <Title>お客様情報</Title>
-          </Box>
-          <Flex justifyContent={'center'}>
-            <Table>
+    <>
+      <div className="mb-24">
+        <div className="flex justify-center text-lg mt-4">お客様情報</div>
+        <Separator className="mt-2" />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="mt-0">
+            <table className="border-separate border-spacing-y-3 ml-auto mr-auto">
               <tbody>
-                <TableRow>
-                  <TableHeader>郵便番号</TableHeader>
-
-                  <TableData>
-                    <Input
-                      placeholder="123-4567"
-                      {...register('postalCode', {
-                        required: true,
-                        pattern: /^[0-9]{3}-?[0-9]{4}$/,
-                      })}
-                    />
-                    <ErrorText>
-                      {errors.postalCode?.types?.required && '郵便番号を入力してください'}
-                      {errors.postalCode?.types?.pattern &&
-                        '郵便番号を正しく入力してください（半角数字）'}
-                    </ErrorText>
-                  </TableData>
-                </TableRow>
-
-                <TableRow>
-                  <TableHeader>住所</TableHeader>
-                  <TableData>
-                    <Input
-                      placeholder="○○県△△市□□町１−２−３ Kハイツ ○○号室"
-                      width={300}
-                      {...register('address', { required: true })}
-                    />
-                    <ErrorText>
-                      {errors.address?.types?.required && '住所を入力してください'}
-                    </ErrorText>
-                  </TableData>
-                </TableRow>
-
-                <TableRow>
-                  <TableHeader>配送地域</TableHeader>
-                  <AreaSelect>
-                    <div>
-                      <input
-                        type="radio"
-                        {...register('area', { required: true })}
-                        value="shizuoka"
+                <thead>
+                  <tr>
+                    <th scope="col" className="w-16"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tr className="my-10">
+                  <td>
+                    <FormLabel className="text-xs">氏名</FormLabel>
+                  </td>
+                  <td>
+                    <div className="flex items-center">
+                      <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Input placeholder="姓" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                      静岡県内
-                    </div>
-                    <div>
-                      <input type="radio" {...register('area', { required: true })} value="near" />
-                      関東、北陸、中部、関西
-                    </div>
-                    <div>
-                      <input
-                        type="radio"
-                        {...register('area', { required: true })}
-                        value="middle"
+                      <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Input placeholder="名" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                      東北、中国、四国
                     </div>
-                    <div>
-                      <input type="radio" {...register('area', { required: true })} value="far" />
-                      九州、沖縄、北海道
-                    </div>
-                    <ErrorText>
-                      {errors.area?.types?.required && '配送地域を選択してください'}
-                    </ErrorText>
-                  </AreaSelect>
-                </TableRow>
+                  </td>
+                </tr>
 
-                <TableRow>
-                  <TableHeader>氏名</TableHeader>
-                  <TableData>
-                    <Flex>
-                      <Box mr={5}>姓:</Box>
-                      <Input
-                        placeholder="姓"
-                        {...register('lastName', { required: true })}
-                        width={100}
-                      />
-                      <Box ml={15} mr={5}>
-                        名:
-                      </Box>
-                      <Input
-                        placeholder="名"
-                        {...register('firstName', { required: true })}
-                        width={100}
-                      />
-                    </Flex>
-                    <ErrorText>
-                      {errors.lastName?.types?.required && '姓を入力してください'}
-                    </ErrorText>
-                    <ErrorText>
-                      {errors.firstName?.types?.required && '名を入力してください'}
-                    </ErrorText>
-                  </TableData>
-                </TableRow>
-
-                <TableRow>
-                  <TableHeader>電話番号</TableHeader>
-                  <TableData>
-                    <Input
-                      placeholder="123-456-7890"
-                      {...register('phone', {
-                        required: true,
-                        pattern: /^[0-9]{2,4}-?[0-9]{2,4}-?[0-9]{3,4}$/,
-                      })}
-                      width={100}
+                <tr className="">
+                  <td>
+                    <FormLabel className="text-xs">電話番号</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input placeholder="123-456-789" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                    <ErrorText>
-                      {errors.phone?.types?.required && '電話番号を入力してください'}
-                      {errors.phone?.types?.pattern &&
-                        '電話番号を正しく入力してください（半角数字）'}
-                    </ErrorText>
-                  </TableData>
-                </TableRow>
+                  </td>
+                </tr>
 
-                <TableRow>
-                  <TableHeader>メールアドレス</TableHeader>
-                  <TableData>
-                    <Input
-                      placeholder="example@example.com"
-                      {...register('email', {
-                        required: true,
-                        pattern: /^.+@.+\..+$/,
-                      })}
-                      type="email"
-                      width={300}
+                <tr>
+                  <td>
+                    <FormLabel className="text-xs">メール</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input placeholder="example@example.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                    <ErrorText>
-                      {errors.email?.types?.required && 'メールアドレスを入力してください'}
-                      {errors.email?.types?.pattern &&
-                        'メールアドレスを正しく入力してください（半角数字）'}
-                    </ErrorText>
-                  </TableData>
-                </TableRow>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <FormLabel className="text-xs">郵便番号</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="postalCode"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input placeholder="123-4567" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <FormLabel className="text-xs">住所</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="address"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input placeholder="○県△市□町１−２−３ Kハイツ ○号室" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <FormLabel className="text-xs">配送地域</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="area"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex flex-col space-y-1 border p-3 rounded-md"
+                            >
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="shizuoka" />
+                                </FormControl>
+                                <FormLabel className="font-normal">静岡県内</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="near" />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                  関東、北陸、中部、関西
+                                </FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="middle" />
+                                </FormControl>
+                                <FormLabel className="font-normal">東北、中国、四国</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="far" />
+                                </FormControl>
+                                <FormLabel className="font-normal">九州、沖縄、北海道</FormLabel>
+                              </FormItem>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <FormLabel className="whitespace-nowrap text-xs">支払い方法</FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="paymentType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex flex-col space-y-1 border p-3 rounded-md"
+                            >
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="card" />
+                                </FormControl>
+                                <FormLabel className="font-normal">クレジットカード</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="postal" />
+                                </FormControl>
+                                <FormLabel className="font-normal">郵便振り込み</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="convenience" />
+                                </FormControl>
+                                <FormLabel className="font-normal">コンビニ決済</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="bank" />
+                                </FormControl>
+                                <FormLabel className="font-normal">銀行振り込み</FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="delivery" />
+                                </FormControl>
+                                <FormLabel className="font-normal">代金引換払い</FormLabel>
+                              </FormItem>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <FormLabel className="text-xs">
+                      <div>ご意見</div>
+                      <div>ご要望</div>
+                      <div> (任意)</div>
+                    </FormLabel>
+                  </td>
+                  <td>
+                    <FormField
+                      control={form.control}
+                      name="voice"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Textarea {...field}></Textarea>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td className="text-right">
+                    <Button type="submit">注文内容確認</Button>
+                  </td>
+                </tr>
               </tbody>
-            </Table>
-          </Flex>
-          <Box m={20}>
-            <Title>お支払い方法</Title>
-          </Box>
-          <Flex justifyContent={'center'}>
-            <Table>
-              <tbody>
-                <TableRow>
-                  <TableData>
-                    <Box>
-                      <input
-                        type="radio"
-                        {...register('paymentType', { required: true })}
-                        value="card"
-                      />
-                    </Box>
-                    クレジットカード
-                    <Box ml={20}>
-                      <CardImage src="/image/card/visa.png" />
-                      <CardImage src="/image/card/jcb.png" />
-                      <CardImage src="/image/card/master.png" />
-                      <CardImage src="/image/card/amex.png" />
-                    </Box>
-                  </TableData>
-                </TableRow>
-                <TableRow>
-                  <TableData>
-                    <input
-                      type="radio"
-                      {...register('paymentType', { required: true })}
-                      value="postal"
-                    />
-                    郵便振り込み
-                    <div>(現金での振込の場合手数料 110円)</div>
-                  </TableData>
-                </TableRow>
+            </table>
+          </form>
+        </Form>
+      </div>
 
-                <TableRow>
-                  <TableData>
-                    <input
-                      type="radio"
-                      {...register('paymentType', { required: true })}
-                      value="convenience"
-                    />
-                    コンビニ決済 (手数料 200円)
-                  </TableData>
-                </TableRow>
-
-                <TableRow>
-                  <TableData>
-                    <input
-                      type="radio"
-                      {...register('paymentType', { required: true })}
-                      value="bank"
-                    />
-                    銀行振り込み (振り込み手数料がかかります)
-                  </TableData>
-                </TableRow>
-
-                <TableRow>
-                  <TableData>
-                    <input
-                      type="radio"
-                      {...register('paymentType', { required: true })}
-                      value="delivery"
-                    />
-                    代金引換払い (手数料 450円)
-                  </TableData>
-                </TableRow>
-              </tbody>
-            </Table>
-          </Flex>
-          <ErrorText>
-            {errors.paymentType?.types?.required && '支払い方法を選択してください'}
-          </ErrorText>
-
-          <Box mt={40}>ご意見、ご要望等ありましたら以下にお書きください</Box>
-          <textarea
-            rows={10}
-            cols={44}
-            {...register('voice', {
-              required: false,
-            })}
-          ></textarea>
-
-          <Box m={30}>
-            <NextButton type="submit">注文内容確認へ</NextButton>
-          </Box>
-        </form>
-      </Box>
-      <Box mt={80}>※送料について</Box>
       <PostageTable />
-      <Box mb={5} mt={20}>
-        ※支払い方法の詳細
-      </Box>
       <PaymentTable />
-    </Wrapper>
+    </>
   );
 };

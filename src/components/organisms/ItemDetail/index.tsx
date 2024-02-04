@@ -1,12 +1,28 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import Link from 'next/link';
-import { bp } from '~/constants/css';
 import { GlobalStore } from '~/store/Global';
 import { Box, BoxProps, Flex } from '~/lib/styled';
 import { Item } from '~/@types/product';
 import { routing } from '~/constants/routing';
-import { LinkButton } from '~/components/atoms/LinkButton';
+import { Button } from '~/components/ui/button';
+
+import { Card, CardContent } from '~/components/ui/card';
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '~/components/ui/carousel';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~/components/ui/select';
 
 interface Props extends BoxProps {
   item?: Item;
@@ -33,29 +49,11 @@ const Amount = styled(Box)({
   color: '#909090',
 });
 
-const FocusImage = styled.img({
-  width: '600px',
-  [bp.md]: {
-    width: '100%',
-  },
-});
-
-const ThumbnailImage = styled.img<{ border: string }>(({ border = 'none' }) => ({
-  width: '100px',
-  color: '#8ab252',
-  boxSizing: 'border-box',
-  border: border,
-  borderWidth: '4px',
-  [bp.md]: {
-    width: '80px',
-  },
-}));
-
 export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
   const { cart: cartStore } = GlobalStore.useContainer();
   const { addCarts } = cartStore;
   const [itemCount, setItemCount] = useState(1);
-  const [focusIdx, setFocusIdx] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
 
   if (!item) return null;
   const { imagePaths, name, price, amount, description } = item;
@@ -63,21 +61,31 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
   return (
     <Box mt={props.mt} mb={props.mb} style={style}>
       <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
-        <div>
-          <div>
-            <FocusImage src={imagePaths.length > focusIdx && imagePaths[focusIdx].url} />
-          </div>
+        <div className="mr-12">
+          <Carousel setApi={setApi} className="w-full max-w-xs">
+            <CarouselContent>
+              {imagePaths.map((imagePath, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-0">
+                        <img className="w-full rounded-lg" src={imagePath.url} />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
 
           <Flex justifyContent={'center'} alignItems={'top'} flexWrap={'wrap'}>
             {imagePaths.map((imagePath, idx) => {
               return (
                 <Box key={idx} mt={8} mr={6} ml={6}>
-                  <a href="#!" onClick={() => setFocusIdx(idx)} key={idx}>
-                    {focusIdx === idx ? (
-                      <ThumbnailImage border={'solid'} src={imagePath.url} />
-                    ) : (
-                      <ThumbnailImage border={'none'} src={imagePath.url} />
-                    )}
+                  <a href="#!" onClick={() => api.scrollTo(idx)} key={idx}>
+                    <img className="rounded-sm" width={80} src={imagePath.url} />
                   </a>
                 </Box>
               );
@@ -90,28 +98,35 @@ export const ItemDetail: React.FC<Props> = ({ item, style, ...props }) => {
           <Price mt={5}>{price} 円</Price>
           <Amount mt={5}>{amount}</Amount>
           <Description mt={5}>{description}</Description>
-          <Box mt={30}>数量</Box>
-          <select
-            defaultValue={1}
-            onChange={(event) => {
-              setItemCount(Number(event.target.value));
+          <Box mt={30}>個数</Box>
+
+          <Select
+            defaultValue="1"
+            onValueChange={(value) => {
+              setItemCount(Number(value));
             }}
           >
-            {[...Array(10)].map((_, i) => (
-              <option key={i} value={i + 1}>
-                {i + 1}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="個数" />
+            </SelectTrigger>
+            <SelectContent>
+              {[...Array(10)].map((_, i) => (
+                <SelectItem key={i + 'num'} value={String(i + 1)}>
+                  {i + 1}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
           <Box mt={60}>
             <Link href={routing.cart.root} passHref>
-              <LinkButton
+              <Button
                 onClick={() => {
                   addCarts(item, itemCount);
                 }}
               >
                 カートに入れる
-              </LinkButton>
+              </Button>
             </Link>
           </Box>
         </PurchaseWrapper>

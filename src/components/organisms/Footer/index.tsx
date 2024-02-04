@@ -1,71 +1,62 @@
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import { ExternalLink } from '~/components/atoms/ExternalLink';
+import { Button } from '~/components/ui/button';
+import { Separator } from '~/components/ui/separator';
 import { routing } from '~/constants/routing';
-import { Box, Flex } from '~/lib/styled';
-
-const LinkText = styled.a({
-  color: '#777',
-});
-
-const Text = styled.div({
-  color: '#777',
-  marginRight: '10px',
-  marginLeft: '10px',
-});
-
-const Wrapper = styled(Box)({
-  backgroundColor: '#f0f0f0',
-  padding: '20px',
-  textAlign: 'center',
-});
 
 export const Footer: React.FC = () => {
   return (
-    <Wrapper>
-      <Box mb={10}>
-        <LinkText href="https://note.com/kurisakien" target="_blank" rel="noopener noreferrer">
-          ブログ 📘
-        </LinkText>
-      </Box>
-      <Box>
-        <Link
-          href={{
-            pathname: routing.docs.commission,
-          }}
-          passHref
-        >
-          <LinkText>送料・手数料について</LinkText>
-        </Link>
-      </Box>
-      <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20} mt={20}>
-        <Box mr={10}>
-          <Link
-            href={{
-              pathname: routing.docs.privacy,
-            }}
-            passHref
-          >
-            <LinkText>プライバシーポリシー</LinkText>
-          </Link>
-        </Box>
+    <>
+      <Separator className="mb-3" />
+      <div className="flex flex-col items-center">
+        <div className="flex flex-wrap">
+          <Button variant="secondary" className="m-2">
+            <a target="_blank" rel="noopener noreferrer" href="https://note.com/kurisakien">
+              ブログ 📘
+            </a>
+          </Button>
 
-        <Box>
-          <Link
-            href={{
-              pathname: routing.docs.low,
-            }}
-            passHref
-          >
-            <LinkText>特定商取引法に基づく表示</LinkText>
-          </Link>
-        </Box>
-      </Flex>
-      <Flex justifyContent={'center'} flexWrap={'wrap'} mb={20}>
-        <Text>developed by</Text>
-        <LinkText href="https://twitter.com/KK_sep_TT">@KK_sep_TT</LinkText>
-        <Text>and</Text>
-        <LinkText href="https://twitter.com/PeeI043">@PeeI043</LinkText>
-      </Flex>
-    </Wrapper>
+          <Button variant="secondary" className="m-2">
+            <Link
+              href={{
+                pathname: routing.docs.commission,
+              }}
+              passHref
+            >
+              送料・手数料について 🚛
+            </Link>
+          </Button>
+
+          <Button variant="secondary" className="m-2">
+            <Link
+              href={{
+                pathname: routing.docs.privacy,
+              }}
+              passHref
+            >
+              プライバシーポリシー 🔑
+            </Link>
+          </Button>
+
+          <Button variant="secondary" className="m-2">
+            <Link
+              href={{
+                pathname: routing.docs.low,
+              }}
+              passHref
+            >
+              特定商取引法に基づく表示 📜
+            </Link>
+          </Button>
+        </div>
+
+        <div className="flex text-slate-500 mt-2 mb-6">
+          <div className="mx-2">developed by</div>
+          <ExternalLink href="https://twitter.com/KK_sep_TT">@KK_sep_TT</ExternalLink>
+          <div className="mx-2">and</div>
+          <ExternalLink href="https://twitter.com/PeeI043">@PeeI043</ExternalLink>
+        </div>
+      </div>
+    </>
   );
 };

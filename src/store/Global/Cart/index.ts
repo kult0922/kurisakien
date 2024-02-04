@@ -5,13 +5,13 @@ export const useCart = () => {
   const [carts, setCarts] = useState<CartItem[]>([]);
 
   const addCarts = useCallback(
-    (item: Item, amount: number) => {
+    (item: Item, count: number) => {
       const isExist = carts.find((elm) => elm.id === item.id);
       if (isExist) {
         setCarts((prev) =>
           prev.map(function (elm) {
             if (elm.id === item.id) {
-              elm.amount += amount;
+              elm.count += count;
               return elm;
             } else {
               return elm;
@@ -19,17 +19,17 @@ export const useCart = () => {
           }),
         );
       } else {
-        setCarts((prev) => [...prev, { ...item, amount }]);
+        setCarts((prev) => [...prev, { ...item, count }]);
       }
     },
     [carts],
   );
 
-  const onChangeCartItemAmount = useCallback((id: string, amount: number) => {
+  const onChangeCartItemCount = useCallback((id: string, count: number) => {
     setCarts((prev) =>
       prev.map(function (elm) {
         if (elm.id === id) {
-          elm.amount = amount;
+          elm.count = count;
           return elm;
         } else {
           return elm;
@@ -44,7 +44,7 @@ export const useCart = () => {
 
   const total = useMemo(() => {
     if (!carts.length) return 0;
-    const prices = carts.map((elem) => elem.amount * elem.price);
+    const prices = carts.map((elem) => elem.count * elem.price);
     return prices.reduce((acc: number, val: number) => acc + val, 0);
   }, [carts]);
 
@@ -63,5 +63,5 @@ export const useCart = () => {
     setCarts([]);
   }, []);
 
-  return { carts, total, addCarts, onDeleteCartItem, onChangeCartItemAmount, clearCart };
+  return { carts, total, addCarts, onDeleteCartItem, onChangeCartItemCount, clearCart };
 };

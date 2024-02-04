@@ -7,10 +7,7 @@ import { Box } from '~/lib/styled';
 const Wrapper = styled.div({
   display: 'flex',
   justifyContent: 'space-between',
-  [bp.md]: {
-    display: 'block',
-    textAlign: 'center',
-  },
+  [bp.md]: {},
 });
 
 export const Header: React.FC = () => {

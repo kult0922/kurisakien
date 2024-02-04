@@ -24,7 +24,7 @@ export const Complete: React.FC<Props> = ({ style, ...props }) => {
       <Box>ご入力いただきましたメールアドレスに確認メールを送信しました。</Box>
       詳しいお支払い手順につきましては再度メールを送ります。 今しばらくお待ち下さい。
       <Box mt={20}>
-        <BasicLink path={routing.root} text={'ホームへ戻る'}></BasicLink>
+        <BasicLink path={routing.root}>ホームへ戻る</BasicLink>
       </Box>
     </Wrapper>
   );

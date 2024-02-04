@@ -1,56 +1,25 @@
-import styled from '@emotion/styled';
 import { Item } from '~/@types/product';
-import { bp } from '~/constants/css';
-import { Box, BoxProps } from '~/lib/styled';
-
-interface Props extends BoxProps {
+import { Card, CardContent, CardDescription } from '~/components/ui/card';
+import { Badge } from '~/components/ui/badge';
+interface Props {
   item: Item;
 }
 
-const SubInfo = styled(Box)({
-  fontSize: '13px',
-  paddingBottom: '5px',
-  [bp.md]: {
-    paddingBottom: '2px',
-  },
-});
-
-const Name = styled(Box)({
-  paddingBottom: '5px',
-  [bp.md]: {
-    paddingBottom: '2px',
-  },
-  /* はみ出したときに省略するためのcss */
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-});
-
-const Image = styled.img({
-  width: '100%',
-  objectFit: 'cover',
-  borderRadius: '5px 5px 0 0',
-});
-
-const Wrapper = styled(Box)({
-  cursor: 'pointer',
-  borderRadius: '5px',
-  backgroundColor: '#ededed',
-  width: '300px',
-  overflow: 'hidden',
-  [bp.md]: {
-    width: '150px',
-  },
-});
-
-export const ItemCard: React.FC<Props> = ({ item, m, style }) => {
+export const ItemCard: React.FC<Props> = ({ item }) => {
   const { name, imagePaths, price, amount } = item;
   return (
-    <Wrapper m={m} style={{ ...style }}>
-      <Image src={imagePaths.length > 0 && imagePaths[0].url}></Image>
-      <Name mt={5}>{name}</Name>
-      <SubInfo>{price} 円</SubInfo>
-      <SubInfo>{amount}</SubInfo>
-    </Wrapper>
+    <div className="p-2">
+      <Card className="w-72 pb-2">
+        <CardContent className="p-0">
+          <img
+            className="w-full object-cover rounded-t-lg"
+            src={imagePaths.length > 0 && imagePaths[0].url}
+          />
+        </CardContent>
+        <div className="pt-2">{name}</div>
+        <Badge className="text-sm mt-1">{price}円</Badge>
+        <CardDescription className="justify-end flex mr-2">{amount}</CardDescription>
+      </Card>
+    </div>
   );
 };
