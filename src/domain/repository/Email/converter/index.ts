@@ -19,7 +19,7 @@ const createOrderText = (email: Email) => {
                 メール: ${order.email}<br />
                 支払い方法: ${paymentTypeName}<br />
                 ご意見、ご要望:<br />
-                ${order.voice.replace(/\r?\n/g, '<br />')}<br /><br />
+                ${order.voice ?? ''}<br /><br />
                 ＜注文内容＞<br />
                 ${items}
                 商品小計: ${itemSubTotal}円<br />
