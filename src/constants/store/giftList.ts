@@ -8,7 +8,7 @@ export const giftList = new Map<string, Item[]>([
         id: 'g01',
         imagePaths: [{ url: '/image/items/kokyusetx2.JPG' }],
         name: '箱入り贈答用茶<100gx2> (高級煎茶)',
-        price: 10,
+        price: 50,
         amount: '100g x 2',
         description: `高級煎茶100g袋2ヶ入り`,
       },
