@@ -20,7 +20,7 @@ const getPostage = (itemsPrice: number, area: z.infer<typeof AreaSchema>): numbe
     if (area === 'middle') return 500;
     if (area === 'far') return 600;
   } else {
-    if (area === 'shizuoka') return 650;
+    if (area === 'shizuoka') return 10;
     if (area === 'near') return 750;
     if (area === 'middle') return 950;
     if (area === 'far') return 1200;

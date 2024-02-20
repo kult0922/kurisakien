@@ -57,6 +57,7 @@ export const Confirm: React.FC = () => {
   // const [errorMessage, setErrorMessage] = useState(null);
   const normalSubmit = async () => {
     if (!isOrderReady()) {
+      console.error('normal submit error');
       router.push(routing.checkout.error);
       return;
     }
@@ -68,6 +69,7 @@ export const Confirm: React.FC = () => {
       return;
     }
     if (!isOrderReady()) {
+      console.error('stripe submit error');
       router.push(routing.checkout.error);
       return;
     }
