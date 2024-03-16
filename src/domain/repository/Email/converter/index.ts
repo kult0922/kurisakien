@@ -1,7 +1,7 @@
 import { OWNER_EMAIL } from '~/constants/env';
 import { Email } from '~/domain/entity/Email';
 
-const createOrderText = (email: Email) => {
+export const createOrderText = (email: Email) => {
   let items = '';
   email.carts.forEach((cartItem) => {
     items += cartItem.name + ' ';
