@@ -1,7 +1,5 @@
-import axios from 'axios';
-// import { SEND_EMAIL_API } from '~/constants/env';
 import { Email } from '~/domain/entity/Email';
-import { createOrderText, emailImplConverter } from '~/domain/repository/Email/converter';
+import { createOrderText } from '~/domain/repository/Email/converter';
 import emailjs from '@emailjs/browser';
 
 // setup emailjs
@@ -23,9 +21,10 @@ emailjs.init({
   },
 });
 
-const createEmail = async (email: Email): Promise<void> => {
+const sendEmail = async (email: Email): Promise<void> => {
   const templateParams = {
-    user_email: email.order.email,
+    user_email: email.order.email, // 返信用 email
+    email: email.order.email,
     name: email.order.lastName + ' ' + email.order.firstName,
     postalCode: email.order.postalCode,
     address: email.order.address,
@@ -35,16 +34,15 @@ const createEmail = async (email: Email): Promise<void> => {
     items: createOrderText(email),
     itemSubTotal: email.itemSubTotal,
     postage: email.postage,
-    comission: email.commission,
+    commission: email.commission,
     total: email.total,
   };
-  await emailjs.send('', '', templateParams);
 
-  // await Promise.all([createEmailOwner(email), createEmailUser(email)]);
+  await emailjs.send('service_vf4d5jl', 'template_5lwzq1k', templateParams);
 };
 
 export const emailImpl = {
-  createEmail,
+  sendEmail,
 };
 
 export type EmailUseCase = typeof emailImpl;

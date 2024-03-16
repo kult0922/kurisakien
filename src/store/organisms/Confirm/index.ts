@@ -90,7 +90,7 @@ export const useConfirm = () => {
 
   const sendOrderMail = useCallback(async () => {
     await backend()
-      .email.createEmail(emailParams)
+      .email.sendEmail(emailParams)
       .then(() => {
         router.push(routing.checkout.complete);
       })
