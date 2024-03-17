@@ -30,3 +30,7 @@ firebase-debug.log
 
 # プロジェクトに関係するものを入れておく場所
 /other
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser';
 emailjs.init({
   publicKey: process.env.NEXT_PUBLIC_EMAILJS_KEY,
   // Do not allow headless browsers
-  blockHeadless: true,
+  blockHeadless: false,
   blockList: {
     // Block the suspended emails
     list: ['foo@emailjs.com', 'bar@emailjs.com'],
