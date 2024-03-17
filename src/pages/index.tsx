@@ -9,7 +9,7 @@ const Component: React.FC = () => {
         <Header />
       </div>
       <Home />
-      <div className="mt-10">
+      <div className="mt-4">
         <Footer />
       </div>
     </>
